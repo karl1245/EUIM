@@ -1,0 +1,38 @@
+# Project exclude paths
+/frontend/.angular/
+/frontend/node_modules/karma/config.tpl.js
+
+.gradle
+/build/
+**/target/**
+/booking-server-api/build/
+!gradle/wrapper/gradle-wrapper.jar
+/mockserver.log
+/mockserver_request.log
+/src/**/application-localhost-*.*
+frontend/node_modules
+frontend/dist
+testdb.db
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/mqtt*
