@@ -1,6 +1,5 @@
-package ee.ut.tuam;
+package ee.ut.tuam.deprecated;
 
-import ee.ut.tuam.common.ApiTest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
