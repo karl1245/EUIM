@@ -1,4 +1,4 @@
-package ee.ut.tuam.common;
+package ee.ut.tuam.domain.validation.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,17 +13,19 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@Table(name=ApiTest.TABLE)
+@Table(name= Validation.TABLE)
 @ToString
-public class ApiTest {
+public class Validation {
 
-  public static final String TABLE = "api_test";
-  public static final String SCHEMA = "main";
+  public static final String TABLE = "validation";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Integer id;
 
-  @Column(nullable = false, name="text_message")
-  private String textMessage;
+  @Column
+  private String nameEt;
+
+  @Column
+  private String nameEn;
 }
