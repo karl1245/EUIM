@@ -19,7 +19,7 @@ public class ValidationCombinationMapper {
     return new ValidationCombinationResponse(
       validationCombination.getId(),
       ValidationMapper.toResponse(validationCombination.getValidation()),
-      validationCombination.getValidationValue().getName(),
+      validationCombination.getValidationValue(),
       ValidationCombinationResultMapper.toResponseNoCombinations(validationCombination.getValidationCombinationResult())
     );
   }

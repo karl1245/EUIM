@@ -1,24 +1,3 @@
 <div>
-Hi! Ciao! Salut! Hoi!
-Here you get the message from Java:
+  <router-outlet></router-outlet>
 </div>
-<div *ngFor="let message of (serverMessage | async)?.message">
-  <div>
-    {{ message }}
-  </div>
-</div>
-
-<div >
-  Save message
-  <div>
-    <input
-      [(ngModel)]="textMessageInput"
-      type="text"
-      (keydown.enter)="saveMessage(textMessageInput)"
-    >
-    <button (click)="saveMessage(textMessageInput)">
-      Save message
-    </button>
-  </div>
-</div>
-

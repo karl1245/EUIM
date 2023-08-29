@@ -1,0 +1,34 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<table *ngIf="!loading">
+  <th [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
+    {{validationSummary.nameEn}}
+  </th>
+  <tr> <!--  TODO translate -->
+    <td *ngFor="let validation of validations">
+      {{validation.nameEn}}
+    </td>
+  </tr>
+  <tr *ngFor="let validationRowValue of validationRowValues">
+    <td *ngFor="let validation of validations">
+      <div *ngIf="isValidationSelectable(validation)">
+        <mat-form-field>
+          <mat-label>{{'chooseoption.translate'}}</mat-label>
+          <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).value"
+                      (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue))"
+          >
+            <mat-option
+              *ngFor="let validationValue of validationValues"
+              [value]="validationValue"
+            >
+              {{validationValue2LabelMapping[validationValue]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isValidationSelectable(validation)">
+        {{getValidationRowAnswer(validation, validationRowValue).value}}}
+      </div>
+    </td>
+  </tr>
+</table>
+

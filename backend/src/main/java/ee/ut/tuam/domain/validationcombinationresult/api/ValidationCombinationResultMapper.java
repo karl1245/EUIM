@@ -37,7 +37,7 @@ public class ValidationCombinationResultMapper {
     return new ValidationCombinationResultResponse.ValidationCombinationResponse(
       validationCombination.getId(),
       ValidationMapper.toResponse(validationCombination.getValidation()),
-      validationCombination.getValidationValue().getName()
+      validationCombination.getValidationValue()
     );
   }
 }

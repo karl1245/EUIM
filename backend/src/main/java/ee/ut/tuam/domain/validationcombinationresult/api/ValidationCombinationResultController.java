@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins =  {"${app.dev.frontend.local}"})
-@RequestMapping(value = "/api/validation-combination-result", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/validation-combination-result", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ValidationCombinationResultController {
 
   private final ValidationCombinationResultService validationCombinationResultService;
