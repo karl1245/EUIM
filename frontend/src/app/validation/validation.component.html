@@ -1,0 +1,55 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<table *ngIf="!loading" class="w-100 border-bottom-0">
+  <thead>
+    <tr>
+      <th style="min-width:200px !important" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
+        {{validationSummary.nameEn}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> <!--  TODO translate -->
+      <td *ngFor="let validation of validations">
+        {{validation.nameEn}}
+      </td>
+    </tr>
+    <tr *ngFor="let validationRowValue of validationRowValues">
+      <td *ngFor="let validation of validations">
+        <div *ngIf="isValidationSelectable(validation)">
+          <mat-form-field>
+            <mat-label>{{'chooseoption.translate'}}</mat-label>
+            <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).value"
+                        (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+            >
+              <mat-option
+                *ngFor="let validationValue of validationValues"
+                [value]="validationValue"
+              >
+                {{validationValue2LabelMapping[validationValue]}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isValidationTextField(validation)">
+          <textarea
+            [ngModel]="getValidationRowAnswer(validation, validationRowValue).value"
+            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+            class="overflow-auto w-100 border-0 textarea-min-height"
+          >
+          </textarea>
+        </div>
+        <div *ngIf="isValidationAutofill(validation)">
+          {{getValidationRowAnswer(validation, validationRowValue).value}}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot >
+    <tr colspan="100%">
+      <td colspan="100%">
+        <button class="w-100" (click)="addValidationRow()">Add new row (translate)</button>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+

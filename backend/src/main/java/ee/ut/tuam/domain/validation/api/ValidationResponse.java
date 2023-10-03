@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -16,4 +18,21 @@ public class ValidationResponse {
   private Integer id;
   private String nameEt;
   private String nameEn;
+  private Integer weight;
+  private String type;
+  private Integer summaryId;
+  private List<ValidationAutofill> validationAutofillList;
+
+  @Getter
+  @Setter
+  @ToString
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class ValidationAutofill {
+
+    private Integer validationFilledById;
+    private Integer weight;
+    private String placeholder;
+    private String type;
+  }
 }
