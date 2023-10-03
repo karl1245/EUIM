@@ -188,6 +188,8 @@ export class ValidationComponent implements OnInit{
 
     if (isAutofillTypeCombination && isAutoFillFromSelect) {
       this.updateCombinationAutoFillAnswers(answerValuesSortedByWeight, validationRowValue, validationFilledByAnswer);
+
+      return;
     }
 
     const answerToFill = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
