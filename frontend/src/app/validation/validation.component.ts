@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ValidationService } from './service/validation.service';
-import { Validation } from './model/validation';
-import { ValidationAnswer, ValidationAnswerType, ValidationRow } from './model/validation-row';
+import { Validation, ValidationType } from './model/validation';
+import { ValidationAnswer, ValidationRow } from './model/validation-row';
 import { ValidationCombinationResult } from './model/validation-combination-result';
 import { Observable } from 'rxjs';
 import { ValidationValue, ValidationValue2LabelMapping } from './model/validation-value';
@@ -17,6 +17,8 @@ export class ValidationComponent implements OnInit{
   loading: boolean = true;
   translate: boolean = false;
   validationIdsHavingSelections: number[] = [];
+  validationIdsHavingTextFields: number[] = [];
+  validationIdsHavingAutoFill: number[] = [];
   validations: Validation[] = [];
   validationSummaries: ValidationSummary[] = [];
   validationRowValues: ValidationRow[] = [];
@@ -47,7 +49,7 @@ export class ValidationComponent implements OnInit{
         this.validationCombinationResults.length > 0 &&
         this.validationSummaries.length > 0
       ) {
-        console.log("tehtud")
+        //TODO get current project row data
         this.getValidationAnswers();
         this.loading = false;
       }
@@ -59,10 +61,17 @@ export class ValidationComponent implements OnInit{
       .getValidations()
       .subscribe((next) => {
         this.validations = next.sort((a,b) => a.weight - b.weight);
-        console.log("finished getValidations")
+        this.validations.forEach(v => {
+          if (v.type === ValidationType.SELECT) {
+            this.validationIdsHavingSelections.push(v.id);
+          } else if (v.type === ValidationType.FILL) {
+            this.validationIdsHavingAutoFill.push(v.id);
+          } else if (v.type === ValidationType.TEXT) {
+            this.validationIdsHavingTextFields.push(v.id);
+          }
+        });
+        this.validationIdsHavingTextFields.push()
         subscriber.next(this.validations);
-        console.log("finished getValidations after subscriber next")
-        //this.columns = this.validations.map(validation => validation.nameEn); //Todo translation
       });
   }
   getValidationSummaries(subscriber: any): void {
@@ -77,12 +86,7 @@ export class ValidationComponent implements OnInit{
   getValidationCombinationResults(subscriber: any): void {
     this.validationService.getValidationCombinationResults().subscribe((next) => {
       this.validationCombinationResults = next
-      this.validationCombinationResults[0].validationCombinations.forEach(vc => this.validationIdsHavingSelections.push(vc.id));
-      console.log("ids for selections: " + this.validationIdsHavingSelections);
-      console.log(this.validationCombinationResults)
-      console.log("finished getValidationCombinationResults")
       subscriber.next(this.validationCombinationResults);
-      console.log("finished getValidationCombinationResults after subscriber")
     });
   }
 
@@ -91,28 +95,156 @@ export class ValidationComponent implements OnInit{
     this.validations.forEach( v => {
         if (this.validationIdsHavingSelections.includes(v.id)) {
           if (v.id === 1) {
-            validationRow.push({questionId: v.id, value: 'YES', questionRowId: 1, type: ValidationAnswerType.SELECT})
+            validationRow.push({validationId: v.id, value: 'YES', type: ValidationType.SELECT})
           }
-          validationRow.push({questionId: v.id, value: 'select value for: ' + v.nameEn, questionRowId: 1, type: ValidationAnswerType.SELECT})
+          validationRow.push({ value: null, validationId: v.id, type: ValidationType.SELECT})
         } else {
-          validationRow.push({questionId: v.id, value: 'value for: ' + v.nameEn, questionRowId: 1, type: ValidationAnswerType.TEXT})
+          validationRow.push({validationId: v.id, value: 'value for: ' + v.nameEn, type: ValidationType.TEXT})
         }
       }
     );
-    this.validationRowValues.push({answers: validationRow});
+    this.validationRowValues.push({answers: validationRow, questionRowId: 1});
     console.log(this.validationRowValues)
-    //subscriber.next(this.validations)
+    if (this.validationRowValues.length == 0) { //TODO do this when new project
+      this.addValidationRow();
+    }
+  }
+
+  addValidationRow(): void {
+    let validationRow: ValidationAnswer[] = [];
+    const maxRowId = this.validationRowValues.reduce(function(prev, current) {
+      return (prev.questionRowId > current.questionRowId) ? prev : current
+    }).questionRowId;
+
+    this.validations.forEach( v => {
+      validationRow.push({validationId: v.id, value: '', type: v.type})
+      }
+    );
+    this.validationRowValues.push({answers: validationRow, questionRowId: maxRowId + 1});
   }
 
   getValidationRowAnswer(validation: Validation, validationRowValue: ValidationRow) {
-    return validationRowValue.answers.filter(answer => answer.questionId === validation.id)[0];
+    return validationRowValue.answers.filter(answer => answer.validationId === validation.id)[0];
   }
 
   isValidationSelectable(validation: Validation): boolean {
     return this.validationIdsHavingSelections.includes(validation.id);
   }
 
-  onValidationRowValueChange(event: any, validationRowAnswer: ValidationAnswer) {
-      validationRowAnswer.value = event.value;
+  isValidationTextField(validation: Validation): boolean {
+    return this.validationIdsHavingTextFields.includes(validation.id);
+  }
+
+  isValidationAutofill(validation: Validation): boolean {
+    return this.validationIdsHavingAutoFill.includes(validation.id);
+  }
+
+  onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
+      validationRowAnswer.value = eventValue;
+      this.updateRelatedValidationAnswers(validation, validationRowValue);
+  }
+
+  updateRelatedValidationAnswers(validation: Validation, validationRowValue: ValidationRow): void {
+    const validationsFilledByAnswer = this.validations.filter(foundValidation =>
+      foundValidation.validationAutofillList.some(autofill =>
+        autofill.validationFilledById !== null && autofill.validationFilledById === validation.id
+      )
+    );
+
+    for (let validationFilledByAnswer of validationsFilledByAnswer) {
+      if (validationFilledByAnswer) {
+        this.setAutoFillAnswers(validationFilledByAnswer, validationRowValue);
+      }
+    }
+  }
+
+  private setAutoFillAnswers(validationFilledByAnswer: Validation, validationRowValue: ValidationRow) {
+    if (!this.allRequiredAnswersFilled(validationFilledByAnswer, validationRowValue)) {
+      return;
+    }
+
+    const answerValues = []
+    let isAutofillTypeCombination = true;
+    let isAutoFillFromSelect = true;
+    for (let validationFilledBy of validationFilledByAnswer.validationAutofillList) {
+      if (validationFilledBy.type !== 'COMBINATION') {
+        isAutofillTypeCombination = false;
+      }
+      const answer = validationRowValue.answers.find(a => a.validationId === validationFilledBy.validationFilledById);
+      if (answer != null) {
+        if (answer.type !== 'SELECT') {
+          isAutoFillFromSelect = false;
+        }
+        answerValues.push({
+          validationId: answer.validationId,
+          value: answer.value,
+          weight: validationFilledBy.weight,
+          hasMatch: false
+        })
+      }
+    }
+
+    const answerValuesSortedByWeight = answerValues.sort(({ weight: a }, { weight: b }) => a - b);
+
+    if (isAutofillTypeCombination && isAutoFillFromSelect) {
+      this.updateCombinationAutoFillAnswers(answerValuesSortedByWeight, validationRowValue, validationFilledByAnswer);
+    }
+
+    const answerToFill = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
+    if (answerToFill) {
+      answerToFill.value = this.getAnswerToSet(answerValuesSortedByWeight);
+    }
+  }
+
+   getAnswerToSet(answerValuesSortedByWeight: any[]) {
+    if (answerValuesSortedByWeight.length > 0) {
+      let combinationAnswer = '';
+      for (let answerValueSortedByWeight of answerValuesSortedByWeight) {
+        combinationAnswer += ' ' + answerValueSortedByWeight.value;
+      }
+      return combinationAnswer;
+    }
+
+    return answerValuesSortedByWeight[0].value
+  }
+
+  allRequiredAnswersFilled(validationFilledByAnswer: Validation, validationRowValue: ValidationRow): boolean {
+    for (let validationFilledBy of validationFilledByAnswer.validationAutofillList) {
+      const answer = validationRowValue.answers.find(a => a.validationId === validationFilledBy.validationFilledById);
+      if (answer == null || answer.value == '' || answer.value == null) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  updateCombinationAutoFillAnswers(answerValuesSortedByWeight: any[], validationRowValue: ValidationRow, validationFilledByAnswer: Validation) {
+    for (let combinationResult of this.validationCombinationResults) {
+      if (this.hasMatchingCombination(combinationResult, answerValuesSortedByWeight)) {
+        const correctAnswer = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
+        if (correctAnswer) {
+          correctAnswer.value = combinationResult.resultEn;
+          this.updateRelatedValidationAnswers(validationFilledByAnswer, validationRowValue);
+        }
+        return;
+      }
+    }
+  }
+
+  hasMatchingCombination(combinationResult: ValidationCombinationResult, answerValuesSortedByWeight: any[]) {
+    for (let combination of combinationResult.validationCombinations) {
+      const foundAnswer = answerValuesSortedByWeight.find(av => av.validationId == combination.validationResponse.id && av.value == combination.validationValue);
+      if (foundAnswer) {
+        foundAnswer.hasMatch = true;
+      }
+    }
+    let hasMatch = true;
+    for (let answerValue of answerValuesSortedByWeight) {
+      if (!answerValue.hasMatch) {
+        hasMatch = false;
+      }
+    }
+    return hasMatch;
   }
 }

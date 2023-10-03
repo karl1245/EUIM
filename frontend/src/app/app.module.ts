@@ -9,7 +9,9 @@ import { ValidationComponent } from './validation/validation.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TextFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

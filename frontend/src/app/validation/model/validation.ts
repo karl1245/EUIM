@@ -6,7 +6,16 @@ export interface Validation {
   weight: number;
   type: ValidationType;
   summaryId: number;
+  validationAutofillList: ValidationAutofill[];
 }
+export interface ValidationAutofill {
+
+  validationFilledById: number;
+  weight: number;
+  placeholder: string;
+  type: string;
+}
+
 
 export enum ValidationType {
   SELECT = "SELECT",

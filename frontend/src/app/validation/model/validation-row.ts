@@ -1,16 +1,12 @@
+import { ValidationType } from './validation';
+
 export interface ValidationRow {
   answers: ValidationAnswer[];
+  questionRowId: number;
 }
 
 export interface ValidationAnswer {
-  questionId: number;
-  questionRowId: number;
-  type: ValidationAnswerType;
-  value: string;
-}
-
-export enum ValidationAnswerType {
-  TEXT,
-  AUTOFILL,
-  SELECT
+  validationId: number;
+  type: ValidationType;
+  value: any;
 }
