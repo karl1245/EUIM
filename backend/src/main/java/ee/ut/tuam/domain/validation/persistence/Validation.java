@@ -1,7 +1,6 @@
 package ee.ut.tuam.domain.validation.persistence;
 
 import ee.ut.tuam.domain.validationautofill.persistence.ValidationAutofill;
-import ee.ut.tuam.domain.validationcombination.persistence.ValidationCombination;
 import ee.ut.tuam.domain.validationsummary.persistence.ValidationSummary;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

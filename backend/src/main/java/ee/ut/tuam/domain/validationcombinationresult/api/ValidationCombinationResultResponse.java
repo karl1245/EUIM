@@ -1,7 +1,6 @@
 package ee.ut.tuam.domain.validationcombinationresult.api;
 
 import ee.ut.tuam.domain.validation.api.ValidationResponse;
-import ee.ut.tuam.domain.validationvalue.persistence.ValidationValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
