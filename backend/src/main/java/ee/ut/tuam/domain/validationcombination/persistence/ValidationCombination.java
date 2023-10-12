@@ -2,7 +2,6 @@ package ee.ut.tuam.domain.validationcombination.persistence;
 
 import ee.ut.tuam.domain.validation.persistence.Validation;
 import ee.ut.tuam.domain.validationcombinationresult.persistence.ValidationCombinationResult;
-import ee.ut.tuam.domain.validationvalue.persistence.ValidationValue;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

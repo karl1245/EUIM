@@ -1,6 +1,6 @@
-package ee.ut.tuam.domain.validationsummary.persistence;
+package ee.ut.tuam.domain.questionnaire.persistence;
 
-import ee.ut.tuam.domain.validation.persistence.Validation;
+import ee.ut.tuam.domain.validationanswer.persistence.ValidationAnswer;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,25 +20,20 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name= ValidationSummary.TABLE)
+@Table(name= Questionnaire.TABLE)
 @ToString
-public class ValidationSummary {
+@Accessors(chain = true)
+public class Questionnaire {
 
-  public static final String TABLE = "validation_summary";
+  public static final String TABLE = "questionnaire";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column
-  private String nameEt;
+  private String name;
 
-  @Column
-  private String nameEn;
-
-  @Column
-  private Integer weight;
-
-  @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "summary")
-  private List<Validation> validations = new ArrayList<>();
+  @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "questionnaire")
+  private List<ValidationAnswer> validationAnswers = new ArrayList<>();
 }

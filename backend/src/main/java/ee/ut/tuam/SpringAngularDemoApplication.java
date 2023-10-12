@@ -4,12 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 @SpringBootApplication
 public class SpringAngularDemoApplication {
 
-	public static void main(String[] args) throws URISyntaxException, IOException {
+	public static void main(String[] args) throws IOException {
 		SpringApplication.run(SpringAngularDemoApplication.class, args);
 		Runtime rt = Runtime.getRuntime();
 		String url = "http://localhost:8080";
