@@ -12,12 +12,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatInputModule } from '@angular/material/input';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    ValidationComponent
+    ValidationComponent,
+    ToolbarComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     BrowserAnimationsModule,
     TextFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
