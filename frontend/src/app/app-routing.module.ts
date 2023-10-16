@@ -3,6 +3,7 @@ import {RouterModule, Route, Data} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PageMeta } from './common/page-meta';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 interface TuamRouteData extends Data {
   meta?: PageMeta;
@@ -14,8 +15,19 @@ interface TuamRoute extends Route {
 
 const validationRoutes: TuamRoute[] = [
   {
-    path: 'home',
+    path: 'validation',
     component: HomepageComponent,
+    data: {
+      meta: {
+        title: {
+          value: 'nontranslatedpagemeta'
+        }
+      }
+    }
+  },
+  {
+    path: 'questionnaire',
+    component: QuestionnaireComponent,
     data: {
       meta: {
         title: {
@@ -28,9 +40,9 @@ const validationRoutes: TuamRoute[] = [
 
 
 const routes: TuamRoute[] = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'questionnaire', pathMatch: 'full'},
   ...validationRoutes,
-  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+  {path: '**', pathMatch: 'full', redirectTo: 'questionnaire'}
 ];
 
 

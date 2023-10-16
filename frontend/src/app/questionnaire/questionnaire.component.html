@@ -1,0 +1,39 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div class="mb-5">
+  <h3>Küsimustikud - translate</h3>
+  <table *ngIf="!loading && questionnaires.length > 0" class="border-bottom-0">
+    <thead>
+    <tr>
+      <th>
+        {{'Questionnaires - translate'  }}
+      </th>
+      <th>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let questionnaire of questionnaires">
+      <td *ngIf="!getEditingQuestionnaire(questionnaire.id)">
+        <a class="mx-5" [routerLink]="validationPath" [queryParams]="{questionnaireId: questionnaire.id}">{{questionnaire.name}}</a>
+      </td>
+      <td *ngIf="getEditingQuestionnaire(questionnaire.id)">
+        <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id)" />
+      </td>
+      <td *ngIf="!getEditingQuestionnaire(questionnaire.id)">
+        <button (click)="setQuestionnaireAsEditing(questionnaire)">{{'muuda - translate'}} </button>
+        <button (click)="deleteQuestionnaire(questionnaire)">{{'kustuta - translate'}} </button>
+      </td>
+      <td *ngIf="getEditingQuestionnaire(questionnaire.id)">
+        <button (click)="updateQuestionnaireName(questionnaire.id)">{{'salvesta - translate'}} </button>
+        <button (click)="removeQuestionnaireAsEditing(questionnaire.id)">{{'tühista muutmine - translate'}} </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h3>Uue küsimustiku lisamine - translate</h3>
+  <input placeholder="{{'küsimustiku nimi - translate'}}" id="questionnaireName" type="text" [(ngModel)]="questionnaireName" />
+  <button class="mx-5" (click)="addNewQuestionnaire(questionnaireName)" formtarget="_blank">{{'Lisa - translate'}}</button>
+</div>
