@@ -7,8 +7,11 @@ export interface QuestionnaireResponse {
 
 export interface ValidationAnswer {
 
-  id: number;
+  id: number | null;
   rowId: number;
   answer: string;
-} //TODO this doesnt sadly match what comes from back-end so probably should change in backend
+  validationId: number;
+  type: string;
+  questionnaireId: number;
+}
 

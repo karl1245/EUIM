@@ -1,5 +1,6 @@
 package ee.ut.tuam.domain.questionnaire.api;
 
+import ee.ut.tuam.domain.validationanswer.api.ValidationAnswerResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,16 +19,4 @@ public class QuestionnaireResponse {
   private Integer id;
   private String name;
   private List<ValidationAnswerResponse> validationAnswers;
-
-  @Getter
-  @Setter
-  @ToString
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ValidationAnswerResponse {
-
-    private Integer id;
-    private Integer rowId;
-    private String answer;
-  }
 }

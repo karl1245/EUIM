@@ -27,4 +27,8 @@ public class QuestionnaireService {
   public void save(Questionnaire questionnaire) {
     questionnaireRepository.save(questionnaire);
   }
+
+  public void delete(Integer id) {
+    questionnaireRepository.deleteById(id);
+  }
 }

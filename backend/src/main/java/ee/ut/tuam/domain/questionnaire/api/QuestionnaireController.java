@@ -1,12 +1,15 @@
 package ee.ut.tuam.domain.questionnaire.api;
 
+import ee.ut.tuam.domain.questionnaire.service.QuestionnaireDeleteService;
 import ee.ut.tuam.domain.questionnaire.service.QuestionnaireService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,6 +28,7 @@ import java.util.List;
 public class QuestionnaireController {
 
   private final QuestionnaireService questionnaireService;
+  private final QuestionnaireDeleteService questionnaireDeleteService;
 
   @GetMapping
   public List<QuestionnaireResponse> getQuestionnaires() {
@@ -44,5 +48,11 @@ public class QuestionnaireController {
   public void putQuestionnaire(@RequestBody @Valid QuestionnaireRequest questionnaire) {
     log.info("Saving questionnaire: {}", questionnaire);
     questionnaireService.save(QuestionnaireMapper.toQuestionnaire(questionnaire));
+  }
+
+  @DeleteMapping(value = "/{id}")
+  public void deleteQuestionnaire(@PathVariable(value = "id") @NotNull Integer id) {
+    log.info("Deleting questionnaire with id: {}", id);
+    questionnaireDeleteService.delete(id);
   }
 }

@@ -1,6 +1,7 @@
 package ee.ut.tuam.domain.validationanswer.persistence;
 
 import ee.ut.tuam.domain.questionnaire.persistence.Questionnaire;
+import ee.ut.tuam.domain.validation.persistence.Validation;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,7 +36,14 @@ public class ValidationAnswer {
   @Column
   private Integer rowId;
 
+  @Column
+  private String type;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="questionnaire_id")
   private Questionnaire questionnaire;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="validation_id")
+  private Validation validation;
 }

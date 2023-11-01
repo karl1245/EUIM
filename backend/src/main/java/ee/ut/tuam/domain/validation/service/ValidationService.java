@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
@@ -17,5 +18,9 @@ public class ValidationService {
 
   public List<Validation> get() {
     return validationRepository.findAll();
+  }
+
+  public Validation getById(Integer id) {
+    return validationRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Validation not found with id:" + id));
   }
 }

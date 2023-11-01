@@ -5,6 +5,9 @@
       <th style="min-width:200px !important" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
         {{validationSummary.nameEn}}
       </th>
+      <th style="">
+        {{'Delete row? translate'}}
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +21,7 @@
         <div *ngIf="isValidationSelectable(validation)">
           <mat-form-field>
             <mat-label>{{'chooseoption.translate'}}</mat-label>
-            <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).value"
+            <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
                         (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
             >
               <mat-option
@@ -32,16 +35,17 @@
         </div>
         <div *ngIf="isValidationTextField(validation)">
           <textarea
-            [ngModel]="getValidationRowAnswer(validation, validationRowValue).value"
+            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
             (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
             class="overflow-auto w-100 border-0 textarea-min-height"
           >
           </textarea>
         </div>
         <div *ngIf="isValidationAutofill(validation)">
-          {{getValidationRowAnswer(validation, validationRowValue).value}}
+          {{getValidationRowAnswer(validation, validationRowValue).answer}}
         </div>
       </td>
+      <td><button (click)="deleteRow(validationRowValue.rowId)">Delete translate</button></td>
     </tr>
   </tbody>
   <tfoot >

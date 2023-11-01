@@ -1,7 +1,7 @@
 package ee.ut.tuam.domain.questionnaire.api;
 
 import ee.ut.tuam.domain.questionnaire.persistence.Questionnaire;
-import ee.ut.tuam.domain.validationanswer.persistence.ValidationAnswer;
+import ee.ut.tuam.domain.validationanswer.api.ValidationAnswerMapper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -18,15 +18,7 @@ public class QuestionnaireMapper {
     return new QuestionnaireResponse(
       questionnaire.getId(),
       questionnaire.getName(),
-      questionnaire.getValidationAnswers().stream().map(QuestionnaireMapper::toResponse).toList()
-    );
-  }
-
-  public static QuestionnaireResponse.ValidationAnswerResponse toResponse(ValidationAnswer validationAnswer) {
-    return new QuestionnaireResponse.ValidationAnswerResponse(
-      validationAnswer.getId(),
-      validationAnswer.getRowId(),
-      validationAnswer.getAnswer()
+      questionnaire.getValidationAnswers().stream().map(ValidationAnswerMapper::toResponse).toList()
     );
   }
 

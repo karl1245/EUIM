@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ValidationEndpointConstants } from '../../constants/validation-endpoint-constants';
 import { Validation } from '../model/validation';
 import { ValidationSummary } from '../model/validation-summary';
+import { ValidationAnswer } from '../../questionnaire/model/questionnaire-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,25 @@ export class ValidationService {
   public getValidationCombinationResults(): Observable<any> {
     return this.http.get<any[]>(
       ValidationEndpointConstants.getValidationCombinationResultUri()
+    );
+  }
+
+  public getValidationAnswersByQuestionnaireId(questionnaireId: number): Observable<ValidationAnswer[]> {
+    return this.http.get<ValidationAnswer[]>(
+      ValidationEndpointConstants.getValidationAnswersByQuestionnaireIdUri(questionnaireId)
+    );
+  }
+
+  public deleteValidationAnswersByQuestionnaireIdAndRowId(questionnaireId: number, rowId: number): Observable<any> {
+    return this.http.delete<any>(
+      ValidationEndpointConstants.deleteValidationAnswersByQuestionnaireIdUriAndRowId(questionnaireId, rowId)
+    );
+  }
+
+  public saveValidationAnswer(validationAnswer: ValidationAnswer): Observable<ValidationAnswer> {
+    return this.http.put<ValidationAnswer>(
+      ValidationEndpointConstants.getValidationAnswersUri(),
+      validationAnswer
     );
   }
 }
