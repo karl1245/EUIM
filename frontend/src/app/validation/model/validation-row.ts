@@ -1,12 +1,7 @@
-import { ValidationType } from './validation';
+import { ValidationAnswer } from '../../questionnaire/model/questionnaire-response';
 
 export interface ValidationRow {
   answers: ValidationAnswer[];
-  questionRowId: number;
+  rowId: number;
 }
 
-export interface ValidationAnswer {
-  validationId: number;
-  type: ValidationType;
-  value: any;
-}

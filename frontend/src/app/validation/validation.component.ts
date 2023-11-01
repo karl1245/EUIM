@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
-import { ValidationAnswer, ValidationRow } from './model/validation-row';
+import { ValidationRow } from './model/validation-row';
 import { ValidationCombinationResult } from './model/validation-combination-result';
 import { Observable } from 'rxjs';
 import { ValidationValue, ValidationValue2LabelMapping } from './model/validation-value';
 import { ValidationSummary } from './model/validation-summary';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ValidationAnswer } from '../questionnaire/model/questionnaire-response';
 
 @Component({
   selector: 'app-validation',
@@ -14,6 +16,7 @@ import { ValidationSummary } from './model/validation-summary';
 })
 export class ValidationComponent implements OnInit{
 
+  questionnaireId: number;
   loading: boolean = true;
   translate: boolean = false;
   validationIdsHavingSelections: number[] = [];
@@ -30,10 +33,19 @@ export class ValidationComponent implements OnInit{
 
 
   constructor(
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
+    const questionnaireId = this.route.snapshot.queryParamMap.get('questionnaireId');
+    if (!questionnaireId  || isNaN(Number(questionnaireId))) {
+      this.router.navigate(['questionnaire']);
+      return;
+    }
+
+    this.questionnaireId = +questionnaireId;
     this.getData();
   }
 
@@ -49,7 +61,6 @@ export class ValidationComponent implements OnInit{
         this.validationCombinationResults.length > 0 &&
         this.validationSummaries.length > 0
       ) {
-        //TODO get current project row data
         this.getValidationAnswers();
         this.loading = false;
       }
@@ -90,37 +101,51 @@ export class ValidationComponent implements OnInit{
     });
   }
 
-  getValidationAnswers(): void { //TODO get from backend
-    let validationRow: ValidationAnswer[] = [];
-    this.validations.forEach( v => {
-        if (this.validationIdsHavingSelections.includes(v.id)) {
-          if (v.id === 1) {
-            validationRow.push({validationId: v.id, value: 'YES', type: ValidationType.SELECT})
-          }
-          validationRow.push({ value: null, validationId: v.id, type: ValidationType.SELECT})
+  getValidationAnswers(): void {
+    this.validationService.getValidationAnswersByQuestionnaireId(this.questionnaireId).subscribe(
+      next => {
+        if (next.length === 0) {
+          this.addValidationRow();
         } else {
-          validationRow.push({validationId: v.id, value: 'value for: ' + v.nameEn, type: ValidationType.TEXT})
+          this.validationRowValues = this.mapValidationAnswersToRows(next);
         }
       }
     );
-    this.validationRowValues.push({answers: validationRow, questionRowId: 1});
-    console.log(this.validationRowValues)
-    if (this.validationRowValues.length == 0) { //TODO do this when new project
-      this.addValidationRow();
-    }
+    this.loading = false;
   }
+
+
+  mapValidationAnswersToRows(validationAnswers: ValidationAnswer[]) {
+    const result: { rowId: number; answers: ValidationAnswer[]; }[] = [];
+    for (const validationAnswer of validationAnswers) {
+      const existingRow = result.find(va => va.rowId === validationAnswer.rowId);
+      if (existingRow) {
+        existingRow.answers.push(validationAnswer)
+        continue;
+      }
+      result.push({rowId: validationAnswer.rowId, answers: [validationAnswer]})
+    }
+
+    return result;
+  }
+
 
   addValidationRow(): void {
     let validationRow: ValidationAnswer[] = [];
-    const maxRowId = this.validationRowValues.reduce(function(prev, current) {
-      return (prev.questionRowId > current.questionRowId) ? prev : current
-    }).questionRowId;
+    let maxRowId = 0;
+    if (this.validationRowValues.length > 0) {
+      maxRowId = this.validationRowValues.reduce(function(prev, current) {
+        return (prev.rowId > current.rowId) ? prev : current
+      }).rowId;
+    }
 
     this.validations.forEach( v => {
-      validationRow.push({validationId: v.id, value: '', type: v.type})
+        this.validationService.saveValidationAnswer({ id: null, rowId: maxRowId + 1, validationId: v.id, answer: '', type: v.type, questionnaireId: this.questionnaireId}).subscribe(
+          next => validationRow.push(next)
+        );
       }
     );
-    this.validationRowValues.push({answers: validationRow, questionRowId: maxRowId + 1});
+    this.validationRowValues.push({answers: validationRow, rowId: maxRowId + 1});
   }
 
   getValidationRowAnswer(validation: Validation, validationRowValue: ValidationRow) {
@@ -140,8 +165,10 @@ export class ValidationComponent implements OnInit{
   }
 
   onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
-      validationRowAnswer.value = eventValue;
-      this.updateRelatedValidationAnswers(validation, validationRowValue);
+      validationRowAnswer.answer = eventValue;
+      this.validationService.saveValidationAnswer(validationRowAnswer).subscribe(
+        next => this.updateRelatedValidationAnswers(validation, validationRowValue)
+      );
   }
 
   updateRelatedValidationAnswers(validation: Validation, validationRowValue: ValidationRow): void {
@@ -177,7 +204,7 @@ export class ValidationComponent implements OnInit{
         }
         answerValues.push({
           validationId: answer.validationId,
-          value: answer.value,
+          value: answer.answer,
           weight: validationFilledBy.weight,
           hasMatch: false
         })
@@ -194,7 +221,8 @@ export class ValidationComponent implements OnInit{
 
     const answerToFill = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
     if (answerToFill) {
-      answerToFill.value = this.getAnswerToSet(answerValuesSortedByWeight);
+      answerToFill.answer = this.getAnswerToSet(answerValuesSortedByWeight);
+      this.validationService.saveValidationAnswer(answerToFill).subscribe(next => {});
     }
   }
 
@@ -213,7 +241,7 @@ export class ValidationComponent implements OnInit{
   allRequiredAnswersFilled(validationFilledByAnswer: Validation, validationRowValue: ValidationRow): boolean {
     for (let validationFilledBy of validationFilledByAnswer.validationAutofillList) {
       const answer = validationRowValue.answers.find(a => a.validationId === validationFilledBy.validationFilledById);
-      if (answer == null || answer.value == '' || answer.value == null) {
+      if (answer == null || answer.answer == '' || answer.answer == null) {
         return false;
       }
     }
@@ -226,8 +254,10 @@ export class ValidationComponent implements OnInit{
       if (this.hasMatchingCombination(combinationResult, answerValuesSortedByWeight)) {
         const correctAnswer = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
         if (correctAnswer) {
-          correctAnswer.value = combinationResult.resultEn;
-          this.updateRelatedValidationAnswers(validationFilledByAnswer, validationRowValue);
+          correctAnswer.answer = combinationResult.resultEn;
+          this.validationService.saveValidationAnswer(correctAnswer).subscribe(next => {
+            this.updateRelatedValidationAnswers(validationFilledByAnswer, validationRowValue);
+          });
         }
         return;
       }
@@ -248,5 +278,11 @@ export class ValidationComponent implements OnInit{
       }
     }
     return hasMatch;
+  }
+
+  deleteRow(rowId: number) {
+    this.validationService.deleteValidationAnswersByQuestionnaireIdAndRowId(this.questionnaireId, rowId).subscribe(
+      next => this.validationRowValues = this.validationRowValues.filter(vrv => vrv.rowId !== rowId)
+    );
   }
 }

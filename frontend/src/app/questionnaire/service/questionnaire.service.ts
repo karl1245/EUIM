@@ -24,6 +24,10 @@ export class QuestionnaireService {
     );
   }
 
+  public deleteQuestionnaire(id: number): Observable<any> {
+    return this.http.delete(QuestionnaireEndpointConstants.getQuestionnaireUri(id));
+  }
+
   public saveQuestionnaire(body: QuestionnaireRequest): Observable<any> {
     return this.http.put<any>(
       QuestionnaireEndpointConstants.saveQuestionnaireUri(),

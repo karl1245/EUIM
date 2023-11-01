@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { DeleteQuestionnaireModalComponent } from './questionnaire/modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
     HomepageComponent,
     ValidationComponent,
     ToolbarComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    DeleteQuestionnaireModalComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
     BrowserAnimationsModule,
     TextFieldModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

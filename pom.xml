@@ -7,12 +7,12 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.0.5</version>
 	</parent>
-	<groupId>ee.ut.tuam</groupId>
+	<groupId>ee.ut.euim</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.3.0</version>
+	<version>0.4.0</version>
 	<packaging>pom</packaging>
-	<name>TUAM</name>
-	<description>TUAM</description>
+	<name>EUIM</name>
+	<description>EUIM</description>
 	<modules>
 		<module>backend</module>
 		<module>frontend</module>

@@ -5,15 +5,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { PageMeta } from './common/page-meta';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
-interface TuamRouteData extends Data {
+interface EuimRouteData extends Data {
   meta?: PageMeta;
 }
 
-interface TuamRoute extends Route {
-  data?: TuamRouteData;
+interface EuimRoute extends Route {
+  data?: EuimRouteData;
 }
 
-const validationRoutes: TuamRoute[] = [
+const validationRoutes: EuimRoute[] = [
   {
     path: 'validation',
     component: HomepageComponent,
@@ -39,7 +39,7 @@ const validationRoutes: TuamRoute[] = [
 ];
 
 
-const routes: TuamRoute[] = [
+const routes: EuimRoute[] = [
   {path: '', redirectTo: 'questionnaire', pathMatch: 'full'},
   ...validationRoutes,
   {path: '**', pathMatch: 'full', redirectTo: 'questionnaire'}

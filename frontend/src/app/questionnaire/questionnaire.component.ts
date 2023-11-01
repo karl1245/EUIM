@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './service/questionnaire.service';
 import { QuestionnaireResponse } from './model/questionnaire-response';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import {
+  DeleteQuestionnaireModalComponent
+} from './modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
 
 @Component({
   selector: 'app-questionnaire',
@@ -14,9 +18,12 @@ export class QuestionnaireComponent implements OnInit {
   questionnaireName: string = '';
   currentlyEditingQuestionnaires: any[] = [];
   validationPath = "/validation"
+  // @ts-ignore
+  modalRef: BsModalRef;
 
   constructor(
-    private questionnaireService: QuestionnaireService
+    private questionnaireService: QuestionnaireService,
+    private modalService: BsModalService,
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +78,24 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   deleteQuestionnaire(questionnaire: QuestionnaireResponse) {
-    //TODO deletion
+    const initialState = {
+      questionnaireName: questionnaire.name
+    };
+    this.modalRef = this.modalService.show(DeleteQuestionnaireModalComponent, {
+      class: 'modal-box modal-md', initialState
+    });
+    this.modalRef.content.onClose.subscribe((result: any) => {
+      if (result.deleteQuestionnaire) {
+        this.loading = true;
+        this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
+          this.removeQuestionnaireAsEditing(questionnaire.id)
+          this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
+          this.loading = false;
+
+          }, () => this.loading = false
+        )
+      }
+    });
+
   }
 }
