@@ -1,11 +1,10 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
 <div class="mb-5">
-  <h3>Küsimustikud - translate</h3>
   <table *ngIf="!loading && questionnaires.length > 0" class="border-bottom-0">
     <thead>
     <tr>
       <th>
-        {{'Questionnaires - translate'  }}
+        {{'questionnaires' | translate}}
       </th>
       <th>
       </th>
@@ -20,12 +19,12 @@
         <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id)" />
       </td>
       <td *ngIf="!getEditingQuestionnaire(questionnaire.id)">
-        <button (click)="setQuestionnaireAsEditing(questionnaire)">{{'muuda - translate'}} </button>
-        <button (click)="deleteQuestionnaire(questionnaire)">{{'kustuta - translate'}} </button>
+        <button (click)="setQuestionnaireAsEditing(questionnaire)">{{'table.edit' | translate}}</button>
+        <button (click)="deleteQuestionnaire(questionnaire)">{{'table.delete' | translate}}</button>
       </td>
       <td *ngIf="getEditingQuestionnaire(questionnaire.id)">
-        <button (click)="updateQuestionnaireName(questionnaire.id)">{{'salvesta - translate'}} </button>
-        <button (click)="removeQuestionnaireAsEditing(questionnaire.id)">{{'tühista muutmine - translate'}} </button>
+        <button (click)="updateQuestionnaireName(questionnaire.id)">{{'table.save' | translate}}</button>
+        <button (click)="removeQuestionnaireAsEditing(questionnaire.id)">{{'table.cancelEdit' | translate}}</button>
       </td>
     </tr>
     </tbody>
@@ -33,7 +32,7 @@
 </div>
 
 <div>
-  <h3>Uue küsimustiku lisamine - translate</h3>
-  <input placeholder="{{'küsimustiku nimi - translate'}}" id="questionnaireName" type="text" [(ngModel)]="questionnaireName" />
-  <button class="mx-5" (click)="addNewQuestionnaire(questionnaireName)" formtarget="_blank">{{'Lisa - translate'}}</button>
+  <h3>{{'questionnaire.addNew' | translate}}</h3>
+  <input placeholder="{{'questionnaire.name' | translate}}" id="questionnaireName" type="text" [(ngModel)]="questionnaireName" />
+  <button class="mx-5" [disabled]="questionnaireName.length <= 0" (click)="addNewQuestionnaire(questionnaireName)" formtarget="_blank">{{'questionnaire.add' | translate}}</button>
 </div>

@@ -1,26 +1,27 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<table *ngIf="!loading" class="w-100 border-bottom-0">
-  <thead>
+<div class="table-wrapper">
+  <table *ngIf="!loading" class="w-100 border-bottom-0">
+    <thead>
     <tr>
-      <th style="min-width:200px !important" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
-        {{validationSummary.nameEn}}
+      <th style="min-width:200px" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
+        {{getTranslation(validationSummary)}}
       </th>
-      <th style="">
-        {{'Delete row? translate'}}
+      <th>
+        {{'table.deleteRow' | translate}}
       </th>
     </tr>
-  </thead>
-  <tbody>
-    <tr> <!--  TODO translate -->
-      <td style="min-width:50px !important" *ngFor="let validation of validations">
-        {{validation.nameEn}}
+    </thead>
+    <tbody>
+    <tr>
+      <td style="min-width:50px" *ngFor="let validation of validations">
+        {{getTranslation(validation)}}
       </td>
     </tr>
     <tr *ngFor="let validationRowValue of validationRowValues">
       <td *ngFor="let validation of validations">
         <div *ngIf="isValidationSelectable(validation)">
           <mat-form-field>
-            <mat-label>{{'chooseoption.translate'}}</mat-label>
+            <mat-label>{{'select.chooseOption' | translate}}</mat-label>
             <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
                         (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
             >
@@ -28,7 +29,7 @@
                 *ngFor="let validationValue of validationValues"
                 [value]="validationValue"
               >
-                {{validationValue2LabelMapping[validationValue]}}
+                {{'select.' + validationValue2LabelMapping[validationValue] | translate}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -45,15 +46,17 @@
           {{getValidationRowAnswer(validation, validationRowValue).answer}}
         </div>
       </td>
-      <td><button (click)="deleteRow(validationRowValue.rowId)">Delete translate</button></td>
+      <td><button (click)="deleteRow(validationRowValue.rowId)">{{'table.delete' | translate}}</button></td>
     </tr>
-  </tbody>
-  <tfoot >
+    </tbody>
+    <tfoot >
     <tr colspan="100%">
       <td colspan="100%">
-        <button class="w-100" (click)="addValidationRow()">Add new row (translate)</button>
+        <button class="w-100" (click)="addValidationRow()">{{'table.newRow' | translate}}</button>
       </td>
     </tr>
-  </tfoot>
-</table>
+    </tfoot>
+  </table>
+</div>
+
 

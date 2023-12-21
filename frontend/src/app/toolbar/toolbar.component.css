@@ -1,0 +1,11 @@
+.nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 70px;
+  z-index: 2
+}
+
+.lang-select-width {
+  width: 80px;
+}

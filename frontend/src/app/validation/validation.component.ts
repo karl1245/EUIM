@@ -3,11 +3,13 @@ import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
 import { ValidationCombinationResult } from './model/validation-combination-result';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { ValidationValue, ValidationValue2LabelMapping } from './model/validation-value';
 import { ValidationSummary } from './model/validation-summary';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ValidationAnswer } from '../questionnaire/model/questionnaire-response';
+import { TranslateService } from '@ngx-translate/core';
+import { GlobalConstants } from '../constants/global-constants';
 
 @Component({
   selector: 'app-validation',
@@ -16,6 +18,7 @@ import { ValidationAnswer } from '../questionnaire/model/questionnaire-response'
 })
 export class ValidationComponent implements OnInit{
 
+  private TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE = 400;
   questionnaireId: number;
   loading: boolean = true;
   translate: boolean = false;
@@ -36,6 +39,7 @@ export class ValidationComponent implements OnInit{
     private validationService: ValidationService,
     private route: ActivatedRoute,
     private router: Router,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -130,7 +134,7 @@ export class ValidationComponent implements OnInit{
   }
 
 
-  addValidationRow(): void {
+  async addValidationRow() {
     let validationRow: ValidationAnswer[] = [];
     let maxRowId = 0;
     if (this.validationRowValues.length > 0) {
@@ -139,12 +143,20 @@ export class ValidationComponent implements OnInit{
       }).rowId;
     }
 
-    this.validations.forEach( v => {
-        this.validationService.saveValidationAnswer({ id: null, rowId: maxRowId + 1, validationId: v.id, answer: '', type: v.type, questionnaireId: this.questionnaireId}).subscribe(
-          next => validationRow.push(next)
-        );
-      }
-    );
+    for (const v of this.validations) {
+      const answer = await firstValueFrom(
+        this.validationService.saveValidationAnswer({
+        id: null,
+        rowId: maxRowId + 1,
+        validationId: v.id,
+        answer: '', type:
+        v.type,
+        questionnaireId:
+        this.questionnaireId
+        })
+      );
+      validationRow.push(answer);
+    }
     this.validationRowValues.push({answers: validationRow, rowId: maxRowId + 1});
   }
 
@@ -166,9 +178,11 @@ export class ValidationComponent implements OnInit{
 
   onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
       validationRowAnswer.answer = eventValue;
+    setTimeout(() => {
       this.validationService.saveValidationAnswer(validationRowAnswer).subscribe(
         next => this.updateRelatedValidationAnswers(validation, validationRowValue)
       );
+    }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 
   updateRelatedValidationAnswers(validation: Validation, validationRowValue: ValidationRow): void {
@@ -254,7 +268,7 @@ export class ValidationComponent implements OnInit{
       if (this.hasMatchingCombination(combinationResult, answerValuesSortedByWeight)) {
         const correctAnswer = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
         if (correctAnswer) {
-          correctAnswer.answer = combinationResult.resultEn;
+          correctAnswer.answer = this.getTranslation(combinationResult);
           this.validationService.saveValidationAnswer(correctAnswer).subscribe(next => {
             this.updateRelatedValidationAnswers(validationFilledByAnswer, validationRowValue);
           });
@@ -285,4 +299,17 @@ export class ValidationComponent implements OnInit{
       next => this.validationRowValues = this.validationRowValues.filter(vrv => vrv.rowId !== rowId)
     );
   }
+
+  getTranslation(value: any): string {
+    if (this.isCurrentLangEt) {
+      return value.nameEt ? value.nameEt : value.resultEt;
+    }
+
+    return value.nameEn ? value.nameEn : value.resultEn;
+  }
+
+  get isCurrentLangEt(): boolean {
+    return this.translateService.currentLang === GlobalConstants.ET;
+  }
+
 }

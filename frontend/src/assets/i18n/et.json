@@ -1,0 +1,30 @@
+{
+  "table": {
+    "newRow": "Lisa uus rida",
+    "deleteRow": "Ridade kustutamine",
+    "delete": "Kustuta",
+    "edit": "Muuda",
+    "save": "Salvesta",
+    "cancelEdit": "Tühista muutmine"
+  },
+  "select": {
+    "chooseOption": "Vali",
+    "yes": "Jah",
+    "no": "Ei",
+    "dontKnow": "Ei tea",
+    "partly": "Osaliselt"
+  },
+  "questionnaire": {
+    "addNew": "Uue küsimustiku lisamine",
+    "name": "Küsimustiku nimi",
+    "add": "Lisa"
+  },
+  "questionnaires": "Küsimustikud",
+  "et": "ET",
+  "en": "EN",
+  "deleteQuestionnaireModal": {
+    "title": "Kas oled kindel, et tahad kustutada küsimustiku nimega: {{name}}?",
+    "agree": "Kustutan",
+    "disagree": "Ei soovi kustatada"
+  }
+}

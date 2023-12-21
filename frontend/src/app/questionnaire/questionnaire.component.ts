@@ -52,7 +52,7 @@ export class QuestionnaireComponent implements OnInit {
     this.currentlyEditingQuestionnaires.push({id: questionnaire.id, name: questionnaire.name})
   }
 
-  updateQuestionnaireName(id: number) { //TODO dont  let empty names
+  updateQuestionnaireName(id: number) {
     const editedQuestionnaire = this.currentlyEditingQuestionnaires.find(o => o.id === id);
     this.questionnaireService.saveQuestionnaire(
       {id: id, name: editedQuestionnaire.name}

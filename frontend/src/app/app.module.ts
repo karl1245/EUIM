@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ValidationComponent } from './validation/validation.component';
@@ -17,6 +17,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DeleteQuestionnaireModalComponent } from './questionnaire/modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +44,15 @@ import { DeleteQuestionnaireModalComponent } from './questionnaire/modal/delete-
     TextFieldModule,
     MatInputModule,
     MatToolbarModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TranslateModule.forRoot({
+      defaultLanguage: 'et',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

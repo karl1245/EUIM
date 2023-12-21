@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClientModule} from "@angular/common/http";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,8 @@ import {HttpClientModule} from "@angular/common/http";
   providers: [HttpClientModule]
 })
 export class AppComponent {
-
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('et');
+    translate.use('et');
+  }
 }
