@@ -1,4 +1,16 @@
-<mat-toolbar>
+<mat-toolbar class="nav">
   <span>EUIM</span>
-  <a class="mx-5" [routerLink]="questionnairePath">Küsimustikud</a> <!-- TODO TRANSLATE -->
+  <a class="mx-5" [routerLink]="questionnairePath">{{'questionnaires' | translate}}</a>
+  <mat-form-field class="lang-select-width" >
+    <mat-select [ngModel]="currentLang"
+                (selectionChange)="setLang($event.value)"
+    >
+      <mat-option
+        *ngFor="let language of languages"
+        [value]="language"
+      >
+        {{language}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </mat-toolbar>

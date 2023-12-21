@@ -1,6 +1,6 @@
 import { ValidationCombination } from './validation-combination';
 
-export interface ValidationCombinationResult { //TODO rename api objects to responses
+export interface ValidationCombinationResult {
   id: number;
   resultEn: string;
   resultEt: string;

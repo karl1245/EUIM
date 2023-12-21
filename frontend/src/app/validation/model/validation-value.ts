@@ -6,8 +6,8 @@ export enum ValidationValue {
 }
 
 export const ValidationValue2LabelMapping: Record<ValidationValue, string> = {
-  [ValidationValue.YES]: "YES.translate",
-  [ValidationValue.NO]: "NO.translate",
-  [ValidationValue.DONT_KNOW]: "DONT_KNOW.translate",
-  [ValidationValue.PARTLY]: "PARTLY.translate",
+  [ValidationValue.YES]: "yes",
+  [ValidationValue.NO]: "no",
+  [ValidationValue.DONT_KNOW]: "dontKnow",
+  [ValidationValue.PARTLY]: "partly",
 };

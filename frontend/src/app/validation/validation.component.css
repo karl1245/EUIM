@@ -1,5 +1,7 @@
 table, th, td {
   border: 1px solid;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .textarea-min-height {
@@ -7,3 +9,46 @@ table, th, td {
 }
 tfoot td { border: none; }
 
+tr>th:first-child,tr>td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+tr>th:nth-child(2) {
+  min-width: 290px !important;
+  position: sticky;
+  left: 200px;
+  z-index: 1;
+}
+
+tr>td:nth-child(2) {
+  min-width: 30px !important;
+  max-width: 30px !important;
+  position: sticky;
+  left: 200px;
+  z-index: 1;
+}
+
+tr>td:nth-child(3) {
+  min-width: 90px !important;
+  max-width: 90px !important;
+  position: sticky;
+  left: 232px;
+  z-index: 1;
+}
+tr>td:nth-child(4) {
+  min-width: 150px !important;
+  max-width: 150px !important;
+  position: sticky;
+  left: 329px;
+  z-index: 1;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+tr, td, th {
+  background: white;
+}

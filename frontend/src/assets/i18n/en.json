@@ -1,0 +1,30 @@
+{
+  "table": {
+    "newRow": "Add new row",
+    "deleteRow": "Row deletion",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "cancelEdit": "Cancel editing"
+  },
+  "select": {
+    "chooseOption": "Choose",
+    "yes": "Yes",
+    "no": "No",
+    "dontKnow": "Don't know",
+    "partly": "Partly"
+  },
+  "questionnaire": {
+    "addNew": "Add new questionnaire",
+    "name": "Questionnaire name",
+    "add": "Add"
+  },
+  "questionnaires": "Questionnaires",
+  "et": "ET",
+  "en": "EN",
+  "deleteQuestionnaireModal": {
+    "title": "Are you sure you want to delete the questionnaire with the following name: {{name}}?",
+    "agree": "Agree",
+    "disagree": "Disagree"
+  }
+}
