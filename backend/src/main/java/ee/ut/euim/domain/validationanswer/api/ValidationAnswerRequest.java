@@ -35,4 +35,11 @@ public class ValidationAnswerRequest {
   @NotNull
   @Positive
   private Integer validationId;
+
+  @NotNull
+  @Positive
+  private Integer featureGroupId;
+
+  @Positive
+  private Integer featurePreconditionId;
 }

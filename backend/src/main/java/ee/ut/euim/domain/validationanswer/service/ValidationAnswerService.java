@@ -1,5 +1,7 @@
 package ee.ut.euim.domain.validationanswer.service;
 
+import ee.ut.euim.domain.featuregroup.service.FeatureGroupService;
+import ee.ut.euim.domain.featureprecondition.service.FeaturePreconditionService;
 import ee.ut.euim.domain.questionnaire.service.QuestionnaireService;
 import ee.ut.euim.domain.validation.service.ValidationService;
 import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswer;
@@ -21,6 +23,8 @@ public class ValidationAnswerService {
   private final ValidationAnswerRepository validationAnswerRepository;
   private final QuestionnaireService questionnaireService;
   private final ValidationService validationService;
+  private final FeaturePreconditionService featurePreconditionService;
+  private final FeatureGroupService featureGroupService;
 
   public ValidationAnswer save(SaveParameters params) {
     return validationAnswerRepository.save(
@@ -31,6 +35,8 @@ public class ValidationAnswerService {
         .setType(params.type())
         .setQuestionnaire(questionnaireService.get(params.questionnaireId()))
         .setValidation(validationService.getById(params.validationId()))
+        .setFeatureGroup(featureGroupService.get(params.featureGroupId))
+        .setFeaturePrecondition(featurePreconditionService.findOrCreatePrecondition(params.featurePreconditionId, params.answer()))
     );
   }
 
@@ -50,5 +56,14 @@ public class ValidationAnswerService {
     validationAnswerRepository.delete(ValidationAnswerSpecification.questionnaireId(questionnaireId).and(rowId(rowId)));
   }
 
-  public record SaveParameters(Integer id, Integer rowId, String answer, String type, Integer questionnaireId, Integer validationId) { }
+  public record SaveParameters(
+    Integer id,
+    Integer rowId,
+    String answer,
+    String type,
+    Integer questionnaireId,
+    Integer validationId,
+    Integer featurePreconditionId,
+    Integer featureGroupId
+  ) { }
 }
