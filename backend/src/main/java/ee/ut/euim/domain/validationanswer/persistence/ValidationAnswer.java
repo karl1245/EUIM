@@ -1,5 +1,7 @@
 package ee.ut.euim.domain.validationanswer.persistence;
 
+import ee.ut.euim.domain.featuregroup.persistence.FeatureGroup;
+import ee.ut.euim.domain.featureprecondition.persistence.FeaturePrecondition;
 import ee.ut.euim.domain.questionnaire.persistence.Questionnaire;
 import ee.ut.euim.domain.validation.persistence.Validation;
 import jakarta.persistence.Column;
@@ -46,4 +48,12 @@ public class ValidationAnswer {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="validation_id")
   private Validation validation;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="feature_group_id")
+  private FeatureGroup featureGroup;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="feature_precondition_id")
+  private FeaturePrecondition featurePrecondition;
 }
