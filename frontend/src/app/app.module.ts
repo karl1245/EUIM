@@ -24,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MenuComponent } from './menus/menu.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarComponent,
     QuestionnaireComponent,
     DeleteQuestionnaireModalComponent,
-    FeatureGroupComponent
+    FeatureGroupComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

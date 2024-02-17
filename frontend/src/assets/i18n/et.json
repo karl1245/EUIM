@@ -7,6 +7,12 @@
     "save": "Salvesta",
     "cancelEdit": "Tühista muutmine"
   },
+  "button": {
+    "delete": "Kustuta",
+    "edit": "Muuda",
+    "add": "Lisa",
+    "cancel": "Loobu"
+  },
   "select": {
     "chooseOption": "Vali",
     "yes": "Jah",
@@ -20,11 +26,19 @@
     "add": "Lisa"
   },
   "questionnaires": "Küsimustikud",
-  "et": "ET",
-  "en": "EN",
+  "et": "EST",
+  "en": "ENG",
   "deleteQuestionnaireModal": {
-    "title": "Kas oled kindel, et tahad kustutada küsimustiku nimega: {{name}}?",
-    "agree": "Kustutan",
-    "disagree": "Ei soovi kustatada"
+    "title": "Kustuta projekt: {{name}}",
+    "body": "Kas oled kindel, et soovid projekti kustutada?"
+  },
+  "editQuestionnaireModal": {
+    "title": "Muuda projekti nime: {{name}}",
+    "input": "Projekti nimi",
+    "placeholder": "Sisesta nimi"
+  },
+  "menu": {
+    "edit": "Muuda",
+    "delete":"Kustuta"
   }
 }

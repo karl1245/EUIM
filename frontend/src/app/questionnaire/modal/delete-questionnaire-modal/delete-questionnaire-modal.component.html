@@ -1,19 +1,18 @@
-<div class="p-3">
-  <h1 class="ps-2 my-3" translate>{{ 'deleteQuestionnaireModal.title' | translate: {name: questionnaireName} }}</h1>
-
-  <div class="d-flex justify-content-between ps-2 mb-1">
-    <button
-      (click)="close(true)"
-      type="button"
-      class="btn btn-outline-primary">
-      {{'deleteQuestionnaireModal.agree' | translate}}
-    </button>
+<div class="delete-project-modal">
+  <h1 translate>{{ 'deleteQuestionnaireModal.title' | translate: {name: questionnaireName} }}</h1>
+  <p>{{'deleteQuestionnaireModal.body' | translate}}</p>
+  <div class="delete-project-modal-actions">
     <button
       (click)="close(false)"
       type="button"
-      class="btn btn-outline-primary">
-      {{'deleteQuestionnaireModal.disagree' | translate}}
+      class="button cancel-button">
+      {{'button.cancel' | translate}}
     </button>
+    <button
+    (click)="close(true)"
+    type="button"
+    class="button delete-button">
+    {{'button.delete' | translate}}
+  </button>
   </div>
-
 </div>

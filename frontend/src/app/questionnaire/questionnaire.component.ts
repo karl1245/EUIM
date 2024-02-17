@@ -14,12 +14,15 @@ import {
 export class QuestionnaireComponent implements OnInit {
 
   loading: boolean = true;
+  isToggled: boolean = false;
+  isOpen: boolean = false
   questionnaires: QuestionnaireResponse[] = [];
   questionnaireName: string = '';
   currentlyEditingQuestionnaires: any[] = [];
   validationPath = "/validation"
   // @ts-ignore
   modalRef: BsModalRef;
+
 
   constructor(
     private questionnaireService: QuestionnaireService,
@@ -47,7 +50,14 @@ export class QuestionnaireComponent implements OnInit {
       }
     )
   }
-
+  
+  toggleAddNewQuistionnaire(): void {
+    this.isToggled = !this.isToggled;
+  }
+  
+  openActionButtonsMenu(): void {
+    this.isOpen = !this.isOpen;
+  }
   setQuestionnaireAsEditing(questionnaire: QuestionnaireResponse) {
     this.currentlyEditingQuestionnaires.push({id: questionnaire.id, name: questionnaire.name})
   }
@@ -98,4 +108,13 @@ export class QuestionnaireComponent implements OnInit {
     });
 
   }
+
+  getActions(questionnaire: any):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.edit", icon: 'edit', onClick: () => this.setQuestionnaireAsEditing(questionnaire)},
+      {name: "menu.delete", icon: 'delete', onClick: () => this.deleteQuestionnaire(questionnaire)},
+    ];
+  }
+  
+  
 }

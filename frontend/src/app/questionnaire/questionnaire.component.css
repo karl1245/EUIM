@@ -1,3 +1,97 @@
-table, th, td {
-  border: 1px solid;
+table {
+  background-color: var(--beige);
+}
+
+.projects-wrapper {
+  height: fit-content;
+  width: fit-content;
+  padding: 40px 40px 40px 40px;
+  background-color: #729368;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.add-project {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--beige);
+  max-width: 1000px;
+  padding: 32px 32px 32px 32px;
+  border-radius: 10px;
+  gap: 32px;
+}
+.add-project-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-project-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-project-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%;
+  gap: 8px;
+}
+
+.add-project-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: flex-end;
+  width: 100%;
+  gap: 16px;
+}
+
+.projects-table {
+  max-width: 1000px;
+  border-radius: 10px;
+}
+
+.projects-table-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.projects-table-head {
+  padding: 32px 32px 32px 32px;
+  justify-content: left;
+  align-items: center;
+}
+
+.project-cell {
+  padding: 32px 32px 32px 32px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+  
+.action-button-cell {
+  padding: 32px 32px 32px 32px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.see-more-button {
+  background-color: var(--highlight);
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
+  color: var(--text);
+
+}
+.see-more-button:hover {
+  background-color: var(--green);
 }

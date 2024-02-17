@@ -7,6 +7,12 @@
     "save": "Save",
     "cancelEdit": "Cancel editing"
   },
+  "button": {
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "cancel": "Cancel"
+  },
   "select": {
     "chooseOption": "Choose",
     "yes": "Yes",
@@ -20,10 +26,11 @@
     "add": "Add"
   },
   "questionnaires": "Questionnaires",
-  "et": "ET",
-  "en": "EN",
+  "et": "EST",
+  "en": "ENG",
   "deleteQuestionnaireModal": {
-    "title": "Are you sure you want to delete the questionnaire with the following name: {{name}}?",
+    "title": "Delete project: {{name}}",
+    "body": "", 
     "agree": "Agree",
     "disagree": "Disagree"
   }
