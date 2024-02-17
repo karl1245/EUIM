@@ -1,4 +1,44 @@
 {
+  "button": {
+    "delete": "Kustuta",
+    "edit": "Muuda",
+    "add": "Lisa",
+    "cancel": "Loobu"
+  },
+  "menu": {
+    "edit": "Muuda",
+    "delete":"Kustuta",
+    "copy": "Tee koopia",
+    "download": "Lae alla"
+  },
+  "toolbar": {
+    "name": "EUIM",
+    "projects": "Projektid",
+    "method": "KPA meetod",
+    "about": "Meist"
+  },
+  "languages": {
+    "est": "EST",
+    "eng": "ENG"
+  },
+  "addProject": {
+    "title": "Lisa projekt",
+    "input": "Projekti nimi",
+    "placeholder": "Sisesta nimi"
+  },
+  "projectsTable": {
+    "title": "Projektid",
+    "seeMore" : "Vaata ->"
+  },
+  "deleteProjectModal": {
+    "title": "Kustuta projekt: {{name}}",
+    "body": "Kas oled kindel, et soovid projekti kustutada?"
+  },
+  "editProjectModal": {
+    "title": "Muuda projekti nime: {{name}}",
+    "input": "Projekti nimi",
+    "placeholder": "Sisesta nimi"
+  },
   "table": {
     "newRow": "Lisa uus rida",
     "deleteRow": "Ridade kustutamine",
@@ -7,12 +47,6 @@
     "save": "Salvesta",
     "cancelEdit": "Tühista muutmine"
   },
-  "button": {
-    "delete": "Kustuta",
-    "edit": "Muuda",
-    "add": "Lisa",
-    "cancel": "Loobu"
-  },
   "select": {
     "chooseOption": "Vali",
     "yes": "Jah",
@@ -20,25 +54,8 @@
     "dontKnow": "Ei tea",
     "partly": "Osaliselt"
   },
-  "questionnaire": {
-    "addNew": "Uue küsimustiku lisamine",
-    "name": "Küsimustiku nimi",
-    "add": "Lisa"
-  },
+
   "questionnaires": "Küsimustikud",
   "et": "EST",
-  "en": "ENG",
-  "deleteQuestionnaireModal": {
-    "title": "Kustuta projekt: {{name}}",
-    "body": "Kas oled kindel, et soovid projekti kustutada?"
-  },
-  "editQuestionnaireModal": {
-    "title": "Muuda projekti nime: {{name}}",
-    "input": "Projekti nimi",
-    "placeholder": "Sisesta nimi"
-  },
-  "menu": {
-    "edit": "Muuda",
-    "delete":"Kustuta"
-  }
+  "en": "ENG"
 }

@@ -1,4 +1,44 @@
 {
+  "button": {
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "cancel": "Cancel"
+  },
+  "menu": {
+    "edit": "Edit",
+    "delete":"Delete",
+    "copy": "Make a copy",
+    "download": "Download"
+  },
+  "toolbar": {
+    "name": "EUIM",
+    "projects": "Projects",
+    "method": "EbA Method",
+    "about": "About"
+  },
+  "languages": {
+    "est": "EST",
+    "eng": "ENG"
+  },
+  "addProject": {
+    "title": "New project",
+    "input": "Project name",
+    "placeholder": "Project name"
+  },
+  "projectsTable": {
+    "title": "Projects",
+    "seeMore" : "See more ->"
+  },
+  "deleteProjectModal": {
+    "title": "Delete projekt: {{name}}",
+    "body": "Are you sure you want to delete the project?"
+  },
+  "editProjectModal": {
+    "title": "Edit project name: {{name}}",
+    "input": "Project name",
+    "placeholder": "Project name"
+  },
   "table": {
     "newRow": "Add new row",
     "deleteRow": "Row deletion",
@@ -7,12 +47,6 @@
     "save": "Save",
     "cancelEdit": "Cancel editing"
   },
-  "button": {
-    "delete": "Delete",
-    "edit": "Edit",
-    "add": "Add",
-    "cancel": "Cancel"
-  },
   "select": {
     "chooseOption": "Choose",
     "yes": "Yes",
@@ -20,18 +54,7 @@
     "dontKnow": "Don't know",
     "partly": "Partly"
   },
-  "questionnaire": {
-    "addNew": "Add new questionnaire",
-    "name": "Questionnaire name",
-    "add": "Add"
-  },
   "questionnaires": "Questionnaires",
   "et": "EST",
-  "en": "ENG",
-  "deleteQuestionnaireModal": {
-    "title": "Delete project: {{name}}",
-    "body": "", 
-    "agree": "Agree",
-    "disagree": "Disagree"
-  }
+  "en": "ENG"
 }
