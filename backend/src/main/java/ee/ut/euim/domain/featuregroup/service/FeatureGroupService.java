@@ -39,6 +39,9 @@ public class FeatureGroupService {
     );
   }
 
+  public void delete(Integer id) {
+    featureGroupRepository.deleteById(id);
+  }
 
   public record CreateParameters(String name, Integer questionnaireId) {}
 }

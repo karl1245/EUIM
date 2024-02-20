@@ -3,3 +3,4 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mdc-tab.mat-mdc-tab:has(.fake-disabled){opacity: initial;  .mdc-tab__content {     pointer-events: all;   }  }

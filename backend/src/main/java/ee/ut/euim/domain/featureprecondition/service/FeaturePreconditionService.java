@@ -6,12 +6,14 @@ import ee.ut.euim.domain.validationanswer.service.ValidationAnswerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class FeaturePreconditionService {
 
   private final FeaturePreconditionRepository featurePreconditionRepository;
@@ -31,6 +33,7 @@ public class FeaturePreconditionService {
   }
 
   public FeaturePrecondition findOrCreatePrecondition(Integer id, String answer) {
+    log.info("Finding or creating feature precondition with Id: {} and answer: {}", id, answer);
     if (id == null) {
       return create(answer);
     }

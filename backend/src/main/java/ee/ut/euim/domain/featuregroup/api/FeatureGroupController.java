@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +44,12 @@ public class FeatureGroupController {
     log.info("Creating feature group: {}", featureGroup);
 
     return toResponse(featureGroupService.create(toCreateParams(featureGroup)));
+  }
+
+  @DeleteMapping("/{id}")
+  public void delete(@PathVariable(value = "id") @NotNull Integer id) {
+    log.info("Deleting feature group with id: {}", id);
+
+    featureGroupService.delete(id);
   }
 }

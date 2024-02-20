@@ -1,5 +1,6 @@
 package ee.ut.euim.domain.validationanswer.persistence;
 
+import ee.ut.euim.domain.featuregroup.persistence.FeatureGroup_;
 import ee.ut.euim.domain.questionnaire.persistence.Questionnaire_;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,10 @@ public class ValidationAnswerSpecification {
 
   public static Specification<ValidationAnswer> questionnaireId(Integer id) {
     return (root, query, builder) -> builder.equal(root.get(ValidationAnswer_.questionnaire).get(Questionnaire_.id), id);
+  }
+
+  public static Specification<ValidationAnswer> featureGroupId(Integer id) {
+    return (root, query, builder) -> builder.equal(root.get(ValidationAnswer_.featureGroup).get(FeatureGroup_.id), id);
   }
 
   public static Specification<ValidationAnswer> rowId(Integer id) {

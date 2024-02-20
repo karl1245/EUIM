@@ -1,5 +1,6 @@
 package ee.ut.euim.domain.validationanswer.api;
 
+import ee.ut.euim.domain.feature.api.FeatureMapper;
 import ee.ut.euim.domain.featureprecondition.api.FeaturePreconditionMapper;
 import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswer;
 import ee.ut.euim.domain.validationanswer.service.ValidationAnswerService;
@@ -19,8 +20,9 @@ public class ValidationAnswerMapper {
       validationAnswer.getType(),
       validationAnswer.getQuestionnaireId(),
       validationAnswer.getValidationId(),
-      validationAnswer.getFeaturePreconditionId(),
-      validationAnswer.getFeatureGroupId()
+      validationAnswer.getFeaturePrecondition() != null ? validationAnswer.getFeaturePrecondition().getId() : null,
+      validationAnswer.getFeatureGroupId(),
+      validationAnswer.getFeature().getId()
     );
   }
 
@@ -36,7 +38,8 @@ public class ValidationAnswerMapper {
       validationAnswer.getValidation().getId(),
       validationAnswer.getQuestionnaire().getId(),
       validationAnswer.getFeatureGroup().getId(),
-      FeaturePreconditionMapper.toResponse(validationAnswer.getFeaturePrecondition())
+      FeaturePreconditionMapper.toResponse(validationAnswer.getFeaturePrecondition()),
+      FeatureMapper.toResponse(validationAnswer.getFeature())
     );
   }
 }

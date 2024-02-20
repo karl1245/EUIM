@@ -23,6 +23,10 @@ export class ValidationEndpointConstants {
     return this.getValidationAnswersUri() + '/questionnaire-id/' + questionnaireId;
   }
 
+  static getValidationAnswersByFeatureGroupUri(featureGroupId: number): string {
+    return this.getValidationAnswersUri() + '/feature-group-id/' + featureGroupId;
+  }
+
   static deleteValidationAnswersByQuestionnaireIdUriAndRowId(questionnaireId: number, rowId: number): string {
     return this.getValidationAnswersByQuestionnaireIdUri(questionnaireId) + '/row-id/' + rowId;
   }

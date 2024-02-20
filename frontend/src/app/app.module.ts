@@ -19,6 +19,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { DeleteQuestionnaireModalComponent } from './questionnaire/modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FeatureGroupComponent } from './feature-group/feature-group.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ValidationComponent,
     ToolbarComponent,
     QuestionnaireComponent,
-    DeleteQuestionnaireModalComponent
+    DeleteQuestionnaireModalComponent,
+    FeatureGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     TextFieldModule,
     MatInputModule,
     MatToolbarModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
     ModalModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: 'et',

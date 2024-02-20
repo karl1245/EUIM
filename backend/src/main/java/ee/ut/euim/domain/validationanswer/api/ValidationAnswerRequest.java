@@ -1,5 +1,6 @@
 package ee.ut.euim.domain.validationanswer.api;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,40 @@ public class ValidationAnswerRequest {
   @Positive
   private Integer featureGroupId;
 
-  @Positive
-  private Integer featurePreconditionId;
+  @Valid
+  private FeaturePreConditionRequest featurePrecondition;
+
+  @Valid
+  private FeatureRequest feature;
+
+  @Getter
+  @Setter
+  @ToString
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class FeatureRequest {
+
+    @NotNull
+    @Positive
+    private Integer id;
+
+    @NotNull
+    private String answer;
+  }
+
+  @Getter
+  @Setter
+  @ToString
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class FeaturePreConditionRequest {
+
+    @Positive
+    private Integer id;
+
+    @NotNull
+    private String answer;
+  }
 }
+
+

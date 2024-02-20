@@ -1,5 +1,6 @@
 package ee.ut.euim.domain.validationanswer.service;
 
+import ee.ut.euim.domain.feature.service.FeatureService;
 import ee.ut.euim.domain.featuregroup.service.FeatureGroupService;
 import ee.ut.euim.domain.featureprecondition.service.FeaturePreconditionService;
 import ee.ut.euim.domain.questionnaire.service.QuestionnaireService;
@@ -10,6 +11,7 @@ import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswerSpecificat
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ import static ee.ut.euim.domain.validationanswer.persistence.ValidationAnswerSpe
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ValidationAnswerService {
 
   private final ValidationAnswerRepository validationAnswerRepository;
@@ -25,6 +28,7 @@ public class ValidationAnswerService {
   private final ValidationService validationService;
   private final FeaturePreconditionService featurePreconditionService;
   private final FeatureGroupService featureGroupService;
+  private final FeatureService featureService;
 
   public ValidationAnswer save(SaveParameters params) {
     return validationAnswerRepository.save(
@@ -36,6 +40,7 @@ public class ValidationAnswerService {
         .setQuestionnaire(questionnaireService.get(params.questionnaireId()))
         .setValidation(validationService.getById(params.validationId()))
         .setFeatureGroup(featureGroupService.get(params.featureGroupId))
+        .setFeature(featureService.get(params.featureId))
         .setFeaturePrecondition(featurePreconditionService.findOrCreatePrecondition(params.featurePreconditionId, params.answer()))
     );
   }
@@ -43,7 +48,9 @@ public class ValidationAnswerService {
   public List<ValidationAnswer> findByQuestionnaireId(Integer id) {
     return validationAnswerRepository.findAll(ValidationAnswerSpecification.questionnaireId(id));
   }
-
+  public List<ValidationAnswer> findByFeatureGroupId(Integer id) {
+    return validationAnswerRepository.findAll(ValidationAnswerSpecification.featureGroupId(id));
+  }
   public void delete(Integer id) {
     validationAnswerRepository.deleteById(id);
   }
@@ -64,6 +71,7 @@ public class ValidationAnswerService {
     Integer questionnaireId,
     Integer validationId,
     Integer featurePreconditionId,
-    Integer featureGroupId
+    Integer featureGroupId,
+    Integer featureId
   ) { }
 }
