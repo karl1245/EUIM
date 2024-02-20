@@ -13,39 +13,56 @@
     </thead>
     <tbody>
     <tr>
-      <td style="min-width:50px" *ngFor="let validation of validations">
+      <td style="min-width:50px" *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
         {{getTranslation(validation)}}
       </td>
     </tr>
     <tr *ngFor="let validationRowValue of validationRowValues">
-      <td *ngFor="let validation of validations">
-        <div *ngIf="isValidationSelectable(validation)">
-          <mat-form-field>
-            <mat-label>{{'select.chooseOption' | translate}}</mat-label>
-            <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-                        (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-            >
-              <mat-option
-                *ngFor="let validationValue of validationValues"
-                [value]="validationValue"
+      <ng-container *ngFor="let validation of validations; index as i">
+        <td *ngIf="isFeatureNotDisplayed(validation, validationRowValue)" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getFeatureRowSpanAndMapAsDisplayed(validation, validationRowValue)">
+          <div *ngIf="isValidationSelectable(validation)">
+            <mat-form-field>
+              <mat-label>{{'select.chooseOption' | translate}}</mat-label>
+              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+                          (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               >
-                {{'select.' + validationValue2LabelMapping[validationValue] | translate}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div *ngIf="isValidationTextField(validation)">
+                <mat-option
+                  *ngFor="let validationValue of validationValues"
+                  [value]="validationValue"
+                >
+                  {{'select.' + validationValue2LabelMapping[validationValue] | translate}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="isValidationTextField(validation)">
           <textarea
             [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
             (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
             class="overflow-auto w-100 border-0 textarea-min-height"
           >
           </textarea>
-        </div>
-        <div *ngIf="isValidationAutofill(validation)">
-          {{getValidationRowAnswer(validation, validationRowValue).answer}}
-        </div>
-      </td>
+          </div>
+          <div  *ngIf="isValidationFeature(validation)">
+          <textarea
+            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+            class="overflow-auto w-100 border-0 textarea-min-height"
+          >
+          </textarea>
+            <button
+              (click)="addValidationRow(validationRowValue.answers[0].feature)"
+              color="primary"
+              mat-icon-button>
+              <mat-icon>add_circle_outline</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="isValidationAutofill(validation)">
+            {{getValidationRowAnswer(validation, validationRowValue).answer}}
+          </div>
+        </td>
+      </ng-container>
+
       <td><button (click)="deleteRow(validationRowValue.rowId)">{{'table.delete' | translate}}</button></td>
     </tr>
     </tbody>

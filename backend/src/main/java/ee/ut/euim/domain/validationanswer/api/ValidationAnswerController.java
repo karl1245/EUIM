@@ -42,6 +42,11 @@ public class ValidationAnswerController {
     return toResponse(validationAnswerService.findByQuestionnaireId(id));
   }
 
+  @GetMapping("/feature-group-id/{featureGroupId}")
+  public List<ValidationAnswerResponse> getValidationAnswersByFeatureGroupId(@PathVariable(value = "featureGroupId") @NotNull Integer id) {
+    log.info("Getting validation answers by feature group id: {}", id);
+    return toResponse(validationAnswerService.findByFeatureGroupId(id));
+  }
 
   @DeleteMapping(value = "/{id}")
   public void deleteValidationAnswer(@PathVariable(value = "id") @NotNull Integer id) {

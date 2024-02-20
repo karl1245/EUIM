@@ -1,5 +1,7 @@
 package ee.ut.euim.domain.validationanswer.api;
 
+import ee.ut.euim.domain.feature.api.FeatureMapper;
+import ee.ut.euim.domain.featureprecondition.api.FeaturePreconditionMapper;
 import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswer;
 import ee.ut.euim.domain.validationanswer.service.ValidationAnswerService;
 import lombok.AccessLevel;
@@ -17,7 +19,10 @@ public class ValidationAnswerMapper {
       validationAnswer.getAnswer(),
       validationAnswer.getType(),
       validationAnswer.getQuestionnaireId(),
-      validationAnswer.getValidationId()
+      validationAnswer.getValidationId(),
+      validationAnswer.getFeaturePrecondition() != null ? validationAnswer.getFeaturePrecondition().getId() : null,
+      validationAnswer.getFeatureGroupId(),
+      validationAnswer.getFeature().getId()
     );
   }
 
@@ -31,7 +36,10 @@ public class ValidationAnswerMapper {
       validationAnswer.getAnswer(),
       validationAnswer.getType(),
       validationAnswer.getValidation().getId(),
-      validationAnswer.getQuestionnaire().getId()
+      validationAnswer.getQuestionnaire().getId(),
+      validationAnswer.getFeatureGroup().getId(),
+      FeaturePreconditionMapper.toResponse(validationAnswer.getFeaturePrecondition()),
+      FeatureMapper.toResponse(validationAnswer.getFeature())
     );
   }
 }

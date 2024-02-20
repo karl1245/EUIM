@@ -7,9 +7,14 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { ValidationValue, ValidationValue2LabelMapping } from './model/validation-value';
 import { ValidationSummary } from './model/validation-summary';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ValidationAnswer } from '../questionnaire/model/questionnaire-response';
 import { TranslateService } from '@ngx-translate/core';
 import { GlobalConstants } from '../constants/global-constants';
+import { FeatureGroupResponse } from '../feature-group/model/feature-group-response';
+import { FeatureService } from '../feature/service/feature.service';
+import { ValidationAnswer } from './model/validation-answer';
+import { FeatureRowSpan } from './model/feature-row-span';
+import { FeatureResponse } from '../feature/model/feature';
+import { FeatureToDisplay } from './model/feature-to-display';
 
 @Component({
   selector: 'app-validation',
@@ -22,24 +27,24 @@ export class ValidationComponent implements OnInit{
   questionnaireId: number;
   loading: boolean = true;
   translate: boolean = false;
-  validationIdsHavingSelections: number[] = [];
-  validationIdsHavingTextFields: number[] = [];
-  validationIdsHavingAutoFill: number[] = [];
   validations: Validation[] = [];
   validationSummaries: ValidationSummary[] = [];
   validationRowValues: ValidationRow[] = [];
   validationCombinationResults: ValidationCombinationResult[] = [];
   validationValue2LabelMapping = ValidationValue2LabelMapping;
   validationValues = Object.values(ValidationValue);
+  featureRowSpans: FeatureRowSpan[] = [];
+  featuresAlreadyDisplayed: FeatureToDisplay[] = [];
 
   @Input() columns: string[] = [];
-
+  @Input() featureGroup: FeatureGroupResponse;
 
   constructor(
     private validationService: ValidationService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private featureService: FeatureService
   ) {}
 
   ngOnInit(): void {
@@ -76,16 +81,6 @@ export class ValidationComponent implements OnInit{
       .getValidations()
       .subscribe((next) => {
         this.validations = next.sort((a,b) => a.weight - b.weight);
-        this.validations.forEach(v => {
-          if (v.type === ValidationType.SELECT) {
-            this.validationIdsHavingSelections.push(v.id);
-          } else if (v.type === ValidationType.FILL) {
-            this.validationIdsHavingAutoFill.push(v.id);
-          } else if (v.type === ValidationType.TEXT) {
-            this.validationIdsHavingTextFields.push(v.id);
-          }
-        });
-        this.validationIdsHavingTextFields.push()
         subscriber.next(this.validations);
       });
   }
@@ -106,12 +101,14 @@ export class ValidationComponent implements OnInit{
   }
 
   getValidationAnswers(): void {
-    this.validationService.getValidationAnswersByQuestionnaireId(this.questionnaireId).subscribe(
+    this.validationService.getValidationAnswersByFeatureGroupId(this.featureGroup.id).subscribe(
       next => {
         if (next.length === 0) {
           this.addValidationRow();
         } else {
-          this.validationRowValues = this.mapValidationAnswersToRows(next);
+          this.validationRowValues = this.mapValidationAnswersToRows(next)
+            .sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.rowId - b.rowId);
+          this.mapFeatureRowSpans();
         }
       }
     );
@@ -134,7 +131,7 @@ export class ValidationComponent implements OnInit{
   }
 
 
-  async addValidationRow() {
+  async addValidationRow(existingFeature?: FeatureResponse) {
     let validationRow: ValidationAnswer[] = [];
     let maxRowId = 0;
     if (this.validationRowValues.length > 0) {
@@ -142,22 +139,32 @@ export class ValidationComponent implements OnInit{
         return (prev.rowId > current.rowId) ? prev : current
       }).rowId;
     }
-
+    const feature = existingFeature ?? await firstValueFrom(
+      this.featureService.create("")
+    );
     for (const v of this.validations) {
       const answer = await firstValueFrom(
         this.validationService.saveValidationAnswer({
         id: null,
         rowId: maxRowId + 1,
         validationId: v.id,
-        answer: '', type:
-        v.type,
-        questionnaireId:
-        this.questionnaireId
+        answer: v.type === ValidationType.FEATURE ? feature.answer : '',
+        type: v.type,
+        questionnaireId: this.questionnaireId,
+        featureGroupId: this.featureGroup.id,
+        featurePrecondition: {answer: "", id: undefined},
+        feature: {answer: feature.answer, id: feature.id}
         })
       );
       validationRow.push(answer);
     }
+    console.log(maxRowId)
+    console.log(this.validationRowValues, "enne");
     this.validationRowValues.push({answers: validationRow, rowId: maxRowId + 1});
+    this.validationRowValues = this.validationRowValues.sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.rowId - b.rowId);
+    console.log(this.validationRowValues, "pärast");
+
+    this.mapFeatureRowSpans();
   }
 
   getValidationRowAnswer(validation: Validation, validationRowValue: ValidationRow) {
@@ -165,22 +172,33 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationSelectable(validation: Validation): boolean {
-    return this.validationIdsHavingSelections.includes(validation.id);
+    return validation.type === ValidationType.SELECT;
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return this.validationIdsHavingTextFields.includes(validation.id);
+    return validation.type === ValidationType.TEXT;
+  }
+
+  isValidationFeature(validation: Validation): boolean {
+    return validation.type === ValidationType.FEATURE;
   }
 
   isValidationAutofill(validation: Validation): boolean {
-    return this.validationIdsHavingAutoFill.includes(validation.id);
+    return validation.type === ValidationType.FILL;
   }
 
-  onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
+  async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
       validationRowAnswer.answer = eventValue;
+    if (validation.type === ValidationType.FEATURE) {
+      await firstValueFrom(
+        this.featureService.update(validationRowAnswer.feature.id, eventValue)
+      );
+    }
     setTimeout(() => {
       this.validationService.saveValidationAnswer(validationRowAnswer).subscribe(
-        next => this.updateRelatedValidationAnswers(validation, validationRowValue)
+        next => {
+          this.updateRelatedValidationAnswers(validation, validationRowValue);
+        }
       );
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
@@ -312,4 +330,57 @@ export class ValidationComponent implements OnInit{
     return this.translateService.currentLang === GlobalConstants.ET;
   }
 
+
+  mapFeatureRowSpans():void {
+    const featureRowSpans: FeatureRowSpan[] = [];
+    for (let validationRow of this.validationRowValues) {
+      for (let validationAnswer of validationRow.answers) {
+        if (!featureRowSpans.map(a => a.featureId).includes(validationAnswer.feature.id)){
+          featureRowSpans.push({featureId: validationAnswer.feature.id, rowIdsSpanningFeature: [validationAnswer.rowId]});
+        } else {
+          const featureRowSpan = featureRowSpans.find(o => o.featureId === validationAnswer.feature.id);
+          if (featureRowSpan != null && !featureRowSpan.rowIdsSpanningFeature.includes(validationAnswer.rowId)) {
+            featureRowSpan.rowIdsSpanningFeature.push(validationAnswer.rowId);
+          }
+        }
+      }
+    }
+    this.featureRowSpans = featureRowSpans;
+  }
+
+
+  getFeatureRowSpanAndMapAsDisplayed(validation: Validation, validationRow: ValidationRow): number {
+    if (validation.type === ValidationType.FEATURE) {
+      const featureId = validationRow.answers[0].feature.id;
+      return this.featureRowSpans.find(a => a.featureId === featureId)?.rowIdsSpanningFeature.length ?? 1;
+    }
+    return 1;
+  }
+
+  isFeatureNotDisplayed(validation: Validation, validationRow: ValidationRow): boolean {
+    const featureId = validationRow.answers[0].feature.id;
+    if (validation.type === ValidationType.FEATURE) {
+      const existingFeatureToDisplay = this.featuresAlreadyDisplayed.find(f => f.featureId === featureId)
+      if (!existingFeatureToDisplay) {
+        this.featuresAlreadyDisplayed.push({featureId: featureId, rowIdToDisplayOn: validationRow.rowId});
+        return true;
+      }
+      return existingFeatureToDisplay?.rowIdToDisplayOn === validationRow.rowId;
+    }
+    return true;
+  }
+
+  getStickyClassByIndex(i: number): string {
+    if (i === 0) {
+      return 'content-cell-first-child'
+    } else if (i === 1) {
+      return 'content-cell-second-child'
+    } else if (i === 2) {
+      return 'content-cell-third-child'
+    } else if (i === 3) {
+      return 'content-cell-fourth-child'
+    }
+
+    return '';
+  }
 }

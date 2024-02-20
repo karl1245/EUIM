@@ -20,5 +20,6 @@ export interface ValidationAutofill {
 export enum ValidationType {
   SELECT = "SELECT",
   FILL = "FILL",
-  TEXT = "TEXT"
+  TEXT = "TEXT",
+  FEATURE = "FEATURE"
 }
