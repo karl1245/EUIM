@@ -1,4 +1,44 @@
 {
+  "button": {
+    "delete": "Kustuta",
+    "edit": "Muuda",
+    "add": "Lisa",
+    "cancel": "Loobu"
+  },
+  "menu": {
+    "edit": "Muuda",
+    "delete":"Kustuta",
+    "copy": "Tee koopia",
+    "download": "Lae alla"
+  },
+  "toolbar": {
+    "name": "EUIM",
+    "projects": "Projektid",
+    "method": "KPA meetod",
+    "about": "Meist"
+  },
+  "languages": {
+    "est": "EST",
+    "eng": "ENG"
+  },
+  "addProject": {
+    "title": "Lisa projekt",
+    "input": "Projekti nimi",
+    "placeholder": "Sisesta nimi"
+  },
+  "projectsTable": {
+    "title": "Projektid",
+    "seeMore" : "Vaata ->"
+  },
+  "deleteProjectModal": {
+    "title": "Kustuta projekt: {{name}}",
+    "body": "Kas oled kindel, et soovid projekti kustutada?"
+  },
+  "editProjectModal": {
+    "title": "Muuda projekti nime: {{name}}",
+    "input": "Projekti nimi",
+    "placeholder": "Sisesta nimi"
+  },
   "table": {
     "newRow": "Lisa uus rida",
     "deleteRow": "Ridade kustutamine",
@@ -14,17 +54,8 @@
     "dontKnow": "Ei tea",
     "partly": "Osaliselt"
   },
-  "questionnaire": {
-    "addNew": "Uue küsimustiku lisamine",
-    "name": "Küsimustiku nimi",
-    "add": "Lisa"
-  },
+
   "questionnaires": "Küsimustikud",
-  "et": "ET",
-  "en": "EN",
-  "deleteQuestionnaireModal": {
-    "title": "Kas oled kindel, et tahad kustutada küsimustiku nimega: {{name}}?",
-    "agree": "Kustutan",
-    "disagree": "Ei soovi kustatada"
-  }
+  "et": "EST",
+  "en": "ENG"
 }

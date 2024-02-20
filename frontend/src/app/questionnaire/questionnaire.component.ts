@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './service/questionnaire.service';
 import { QuestionnaireResponse } from './model/questionnaire-response';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import {
-  DeleteQuestionnaireModalComponent
-} from './modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
-
+import { DeleteQuestionnaireModalComponent } from './modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
+import { EditQuestionnaireModalComponent } from './modal/edit-questionnaire-name-modal/edit-questionnaire-name-modal.component';
 @Component({
   selector: 'app-questionnaire',
   templateUrl: './questionnaire.component.html',
@@ -14,12 +12,15 @@ import {
 export class QuestionnaireComponent implements OnInit {
 
   loading: boolean = true;
+  isToggled: boolean = false;
+  isOpen: boolean = false
   questionnaires: QuestionnaireResponse[] = [];
   questionnaireName: string = '';
   currentlyEditingQuestionnaires: any[] = [];
   validationPath = "/validation"
   // @ts-ignore
   modalRef: BsModalRef;
+
 
   constructor(
     private questionnaireService: QuestionnaireService,
@@ -47,34 +48,13 @@ export class QuestionnaireComponent implements OnInit {
       }
     )
   }
-
-  setQuestionnaireAsEditing(questionnaire: QuestionnaireResponse) {
-    this.currentlyEditingQuestionnaires.push({id: questionnaire.id, name: questionnaire.name})
+  
+  toggleAddNewQuistionnaire(): void {
+    this.isToggled = !this.isToggled;
   }
-
-  updateQuestionnaireName(id: number) {
-    const editedQuestionnaire = this.currentlyEditingQuestionnaires.find(o => o.id === id);
-    this.questionnaireService.saveQuestionnaire(
-      {id: id, name: editedQuestionnaire.name}
-    ).subscribe(next => {
-      const questionnaire = this.questionnaires.find(o => o.id === id);
-      if (questionnaire) {
-        questionnaire.name = editedQuestionnaire.name;
-      }
-     this.removeQuestionnaireAsEditing(id)
-    });
-  }
-
-  removeQuestionnaireAsEditing(id: number) {
-    this.currentlyEditingQuestionnaires = this.currentlyEditingQuestionnaires.filter(o => o.id !== id);
-  }
-
-  getEditingQuestionnaire(id: number): any {
-    return this.currentlyEditingQuestionnaires.find(o => o.id === id);
-  }
-
-  updateName(event: any, id: number) {
-    this.getEditingQuestionnaire(id).name = event.target.value;
+  
+  openActionButtonsMenu(): void {
+    this.isOpen = !this.isOpen;
   }
 
   deleteQuestionnaire(questionnaire: QuestionnaireResponse) {
@@ -88,7 +68,6 @@ export class QuestionnaireComponent implements OnInit {
       if (result.deleteQuestionnaire) {
         this.loading = true;
         this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
-          this.removeQuestionnaireAsEditing(questionnaire.id)
           this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
           this.loading = false;
 
@@ -96,6 +75,35 @@ export class QuestionnaireComponent implements OnInit {
         )
       }
     });
-
   }
+
+  editQuestionnaire(questionnaire: QuestionnaireResponse) {
+    const initialState = {
+      questionnaire: questionnaire,
+      questionnairesList: this.questionnaires,
+    };
+    this.modalRef = this.modalService.show(EditQuestionnaireModalComponent, {
+      class: 'modal-box modal-md', initialState
+    });
+    this.modalRef.content.onClose.subscribe((result: any) => {
+      if (result.deleteQuestionnaire) {
+        this.loading = true;
+        this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
+          this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
+          this.loading = false;
+
+          }, () => this.loading = false
+        )
+      }
+    });
+  }
+
+  getActions(questionnaire: any):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.edit", icon: 'edit', onClick: () => this.editQuestionnaire(questionnaire)},
+      {name: "menu.delete", icon: 'delete', onClick: () => this.deleteQuestionnaire(questionnaire)},
+    ];
+  }
+  
+  
 }
