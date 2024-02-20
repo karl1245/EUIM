@@ -3,6 +3,7 @@ table {
 }
 
 .projects-wrapper {
+  margin-top: 80px;
   height: fit-content;
   width: fit-content;
   padding: 40px 40px 40px 40px;

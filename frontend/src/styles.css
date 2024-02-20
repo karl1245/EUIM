@@ -42,8 +42,8 @@ body {
 }
 p {
     display: block;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-left: 0;
     margin-right: 0;
 }	
@@ -52,7 +52,7 @@ h1 {
     color: var(--text-color);
     font-family: Garamond;
     display: block;
-    font-size: 2em;
+    font-size: 2rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -63,7 +63,7 @@ h1 {
 h2 {
     font-family: Garamond;
     display: block;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -73,7 +73,7 @@ h2 {
 h3 {
     font-family: Garamond;
     display: block;
-    font-size: 1.17em;
+    font-size: 1.17rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -92,7 +92,7 @@ h4 {
 h5 {
     font-family: Garamond;
     display: block;
-    font-size: .83em;
+    font-size: .83rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -102,7 +102,7 @@ h5 {
 h6 {
     font-family: Garamond;
     display: block;
-    font-size: .67em;
+    font-size: .67rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -112,13 +112,13 @@ h6 {
 
 .fcc {
     display: flex;
-    align-items: center;
+    align-itrems: center;
     justify-content: center;
 }
 
 .fcl {
     display: flex;
-    align-items: center;
+    align-itrems: center;
     justify-content: flex-start;
 }
 

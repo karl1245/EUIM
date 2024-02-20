@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditQuestionnaireModalComponent } from './edit-questionnaire-name-modal';
+import { EditQuestionnaireModalComponent } from './edit-questionnaire-name-modal.component';
 
 describe('EditQuestionnaireModalComponent', () => {
   let component: EditQuestionnaireModalComponent;

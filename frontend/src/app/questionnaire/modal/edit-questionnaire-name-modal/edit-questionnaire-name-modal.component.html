@@ -1,8 +1,8 @@
 <div class="edit-project-modal">
-  <h1 translate>{{ 'editQuestionnaireModal.title' | translate: {name: questionnaireName} }}</h1>
+  <h1 translate>{{ 'editProjectModal.title' | translate: {name: questionnaire.name} }}</h1>
   <div class="edit-project-input">
-    <h2>{{'editQuestionnaireModal.placeholder' | translate}}</h2>
-    <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id)" />
+    <h2>{{'editProjectModal.placeholder' | translate}}</h2>
+    <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id, questionnairesList)" />
 </div>
   <div class="edit-project-modal-actions">
     <button

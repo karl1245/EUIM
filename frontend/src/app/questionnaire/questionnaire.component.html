@@ -2,7 +2,7 @@
 <div class="projects-wrapper">
   <div class="add-project">
     <div class="add-project-header">
-      <h1>{{'Lisa projekt' | translate}}</h1>
+      <h1>{{'addProject.title' | translate}}</h1>
       <button (click)="toggleAddNewQuistionnaire()" class="button-icon">
         <span *ngIf=!isToggled class="material-symbols-outlined icon">expand_more</span>    
         <span *ngIf=isToggled class="material-symbols-outlined icon">expand_less</span>    
@@ -10,21 +10,21 @@
     </div>
       <div *ngIf=isToggled class="add-project-row">
         <div class="add-project-input">
-          <h2>{{'questionnaire.addNew' | translate}}</h2>
-          <input placeholder="{{'questionnaire.name' | translate}}" id="questionnaireName" type="text" [(ngModel)]="questionnaireName" />
+          <h2>{{'addProject.input' | translate}}</h2>
+          <input placeholder="{{'addProject.placeholder' | translate}}" id="questionnaireName" type="text" [(ngModel)]="questionnaireName" />
         </div>
         <div class="add-project-buttons">
-          <button (click)="toggleAddNewQuistionnaire()" class="button cancel-button">{{'Loobu' | translate}}</button>
-          <button [disabled]="questionnaireName.length <= 0" (click)="addNewQuestionnaire(questionnaireName)" formtarget="_blank" class="button add-button">{{'questionnaire.add' | translate}}</button>
+          <button (click)="toggleAddNewQuistionnaire()" class="button cancel-button">{{'button.cancel' | translate}}</button>
+          <button [disabled]="questionnaireName.length <= 0" (click)="addNewQuestionnaire(questionnaireName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
         </div> 
     </div>
   </div>
   <div>
-    <table *ngIf="!loading && questionnaires.length > 0" class="border-bottom-0 projects-table">
+    <table *ngIf="!loading && questionnaires.length > 0" class="projects-table">
       <thead>
       <tr>
         <th class="projects-table-head">
-          <h1>{{'questionnaires' | translate}}</h1>
+          <h1>{{'projectsTable.title' | translate}}</h1>
         </th>
       </tr>
       </thead>
@@ -32,16 +32,10 @@
       <tr *ngFor="let questionnaire of questionnaires" class="projects-table-row">
         <td class="project-cell">
           <span>{{questionnaire.name}}</span>
-          <a [routerLink]="validationPath" [queryParams]="{questionnaireId: questionnaire.id}" class="see-more-button">{{'Vaata ->' | translate}}</a>
+          <a [routerLink]="validationPath" [queryParams]="{questionnaireId: questionnaire.id}" class="see-more-button">{{'projectsTable.seeMore' | translate}}</a>
         </td>
-        <td *ngIf="!getEditingQuestionnaire(questionnaire.id)" class="action-button-cell">
+        <td  class="action-button-cell">
           <app-menu [actions]="getActions(questionnaire)"></app-menu>
-          <!-- <button (click)="setQuestionnaireAsEditing(questionnaire)"n class="edit-button">{{'table.edit' | translate}} </button>
-          <button (click)="deleteQuestionnaire(questionnaire)" class="delete-button">{{'table.delete' | translate}}</button> -->
-        </td>
-        <td *ngIf="getEditingQuestionnaire(questionnaire.id)" class="action-button-cell">
-          <button (click)="updateQuestionnaireName(questionnaire.id)">{{'table.save' | translate}}</button>
-          <button (click)="removeQuestionnaireAsEditing(questionnaire.id)">{{'table.cancelEdit' | translate}}</button>
         </td>
       </tr>
       </tbody>
