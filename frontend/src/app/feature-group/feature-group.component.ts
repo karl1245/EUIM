@@ -18,6 +18,8 @@ export class FeatureGroupComponent {
 
   questionnaireId: number;
   loading: boolean = true;
+  isToggledGroupAdding: boolean = false;
+  isToggledStakeholderAdding: boolean = false;
   defaultTabIndex = 0;
   featureGroupName: string;
   stakeholderName: string;
@@ -40,6 +42,14 @@ export class FeatureGroupComponent {
     this.questionnaireId = +questionnaireId;
 
     this.getData();
+  }
+
+  toggleAddNewGroup(): void {
+    this.isToggledGroupAdding = !this.isToggledGroupAdding;
+  }
+
+  toggleAddNewStakeholder(): void {
+    this.isToggledStakeholderAdding = !this.isToggledStakeholderAdding;
   }
 
   getData(): void {

@@ -1,11 +1,11 @@
 .edit-project-modal {
   display: flex;
   flex-direction: column;
-  width: 600px;
+  width: 37.5rem;
   padding: 32px;
   gap: 32px;
   background-color: var(--beige);
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .edit-project-input {
@@ -13,12 +13,12 @@
   flex-direction: column;
   justify-content: left;
   width: 100%;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .edit-project-modal-actions {
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 1rem;
 }

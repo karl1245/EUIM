@@ -26,6 +26,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MenuComponent } from './menus/menu.component';
+import { SelectComponent } from './select/select.component';
+import { InfoComponent } from './info/info.component';
+
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,7 +45,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     DeleteQuestionnaireModalComponent,
     FeatureGroupComponent,
     EditQuestionnaireModalComponent,
-    MenuComponent
+    MenuComponent,
+    SelectComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

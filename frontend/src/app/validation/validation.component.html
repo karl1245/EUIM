@@ -1,31 +1,26 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
 <div class="table-wrapper">
-  <table *ngIf="!loading" class="w-100 border-bottom-0">
+  <table *ngIf="!loading">
     <thead>
-    <tr>
-      <th style="min-width:200px" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
-        {{getTranslation(validationSummary)}}
-      </th>
-      <th>
-        {{'table.deleteRow' | translate}}
-      </th>
-    </tr>
+      <tr>
+        <th *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
+          <div class="header">{{getTranslation(validation)}}
+          <app-info></app-info></div>
+        </th>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <td style="min-width:50px" *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
-        {{getTranslation(validation)}}
-      </td>
-    </tr>
-    <tr *ngFor="let validationRowValue of validationRowValues">
+      <tr *ngFor="let validationRowValue of validationRowValues">
       <ng-container *ngFor="let validation of validations; index as i">
         <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
           <div *ngIf="isValidationSelectable(validation)">
-            <mat-form-field>
+            <app-select
+              (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+            />
+            <!-- <mat-form-field>
               <mat-label>{{'select.chooseOption' | translate}}</mat-label>
-              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-                          (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-              >
+              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer" 
+              (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)">
                 <mat-option
                   *ngFor="let validationValue of validationValues"
                   [value]="validationValue"
@@ -33,7 +28,7 @@
                   {{'select.' + validationValue2LabelMapping[validationValue] | translate}}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
+            </mat-form-field>   -->
           </div>
           <div *ngIf="isValidationTextField(validation)">
             <textarea
@@ -58,9 +53,20 @@
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
+          <textarea
+            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+          >
+          </textarea>
+          </div>
+          <div  *ngIf="isValidationFeature(validation)">
+          <textarea
+            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"   
+          >
+          </textarea>
             <button
               (click)="addValidationRow(validationRowValue.answers[0].feature)"
-              color="primary"
               mat-icon-button>
               <mat-icon>add_circle_outline</mat-icon>
             </button>
@@ -84,14 +90,15 @@
           </div>
         </td>
       </ng-container>
-
-      <td><button (click)="deleteRow(validationRowValue.rowId)">{{'table.delete' | translate}}</button></td>
+      <td>
+        <button (click)="deleteRow(validationRowValue.rowId)">{{'table.delete' | translate}}</button>
+      </td>
     </tr>
     </tbody>
     <tfoot >
-    <tr colspan="100%">
-      <td colspan="100%">
-        <button class="w-100" (click)="addValidationRow()">{{'table.newRow' | translate}}</button>
+    <tr >
+      <td >
+        <button class="button add-button" (click)="addValidationRow()">{{'table.newRow' | translate}}</button>
       </td>
     </tr>
     </tfoot>
