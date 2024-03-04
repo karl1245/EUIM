@@ -1,16 +1,9 @@
-<mat-toolbar class="nav">
-  <span>EUIM</span>
-  <a class="mx-5" [routerLink]="questionnairePath">{{'questionnaires' | translate}}</a>
-  <mat-form-field class="lang-select-width" >
-    <mat-select [ngModel]="currentLang"
-                (selectionChange)="setLang($event.value)"
-    >
-      <mat-option
-        *ngFor="let language of languages"
-        [value]="language"
-      >
-        {{language}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</mat-toolbar>
+<div class="nav">
+  <h1>{{'toolbar.name' | translate}}</h1>
+  <a class="toolbar-router fcc" [routerLink]="questionnairePath">{{'toolbar.projects' | translate}}</a>
+  <a class="toolbar-router fcc">{{'toolbar.method' | translate}}</a>
+  <a class="toolbar-router fcc">{{'toolbar.about' | translate}}</a>
+  <div>
+    <button (click)="setLang(language)" *ngFor="let language of languages" [value]="language" class="button-language" [class.language-active]="isLanguageSelected(language)">{{language}}</button>
+  </div>
+</div>

@@ -1,11 +1,45 @@
 .nav {
-  position: fixed;
   width: 100%;
+  height: 80px !important;
   top: 0;
-  height: 70px;
-  z-index: 2
+  z-index: 2;
+  padding: 1em 0em 1em 0em;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  background-color: var(--beige);
 }
 
 .lang-select-width {
   width: 80px;
+}
+
+a {
+  justify-content: center;
+  align-items: center;
+}
+
+a.toolbar-router {
+  color: var(--contrast_highlight);  
+  text-decoration: none;
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+a.toolbar-router:hover {
+  background-color: var(--highlight);
+}
+
+.button-language {
+  background: none;
+  border: none;
+  width: 60px;
+  height: 40px;
+  padding: 8px;
+}
+
+.language-active {
+  font-weight: bold;
 }

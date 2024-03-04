@@ -22,4 +22,8 @@ export class ToolbarComponent {
   setLang(language: string): void {
     this.translate.use(language.toLowerCase());
   }
+
+  isLanguageSelected(language: string): boolean {
+    return this.currentLang == language;
+  }
 }

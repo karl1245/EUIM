@@ -1,4 +1,4 @@
-.delete-project-modal {
+.edit-project-modal {
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -8,7 +8,15 @@
   border-radius: 10px;
 }
 
-.delete-project-modal-actions {
+.edit-project-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%;
+  gap: 8px;
+}
+
+.edit-project-modal-actions {
   display: flex;
   width: 100%;
   justify-content: flex-end;

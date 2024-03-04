@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DeleteQuestionnaireModalComponent } from './questionnaire/modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
+import { EditQuestionnaireModalComponent } from './questionnaire/modal/edit-questionnaire-name-modal/edit-questionnaire-name-modal.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FeatureGroupComponent } from './feature-group/feature-group.component';
@@ -24,6 +25,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MenuComponent } from './menus/menu.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,7 +39,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarComponent,
     QuestionnaireComponent,
     DeleteQuestionnaireModalComponent,
-    FeatureGroupComponent
+    FeatureGroupComponent,
+    EditQuestionnaireModalComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

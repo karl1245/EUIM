@@ -1,0 +1,13 @@
+<div class="menu-component">
+  <button class="menu-button button-icon" (click)="toggleMenu()">
+    <span class="material-symbols-outlined icon">more_vert</span>
+  </button>
+  <div *ngIf=isToggled class="dropdown-menu">
+    <div *ngFor="let action of actions" class="menu-row">
+      <span class="material-symbols-outlined icon small-icon">{{action.icon | translate}}</span>
+      <button (click)="action.onClick()" class="menu-row-button">
+        {{action.name | translate}}
+      </button>
+    </div>
+  </div>
+</div>
