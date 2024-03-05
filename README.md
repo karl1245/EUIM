@@ -10,6 +10,12 @@
    * Launch4J 3.50
    * NPM
    * Node JS
+## JRE to project folder
+1. Download jdk-17.0.3.1 from https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+    * Download the Windows x64 Compressed Archive variant
+    * Extract the package and copy the inside of the jdk-17.0.3.1 folder to the path `installer creation/bin/jre`
+    * Should look like the following image:
+      ![Folder](readme pictures/jre ath.png)
 ## Installer compilation guide
 1. Create Jar by running the following commands in the project root folder
    * `./mvnw clean`
