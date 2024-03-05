@@ -4,6 +4,7 @@ import ee.ut.euim.domain.feature.persistence.Feature;
 import ee.ut.euim.domain.featuregroup.persistence.FeatureGroup;
 import ee.ut.euim.domain.featureprecondition.persistence.FeaturePrecondition;
 import ee.ut.euim.domain.questionnaire.persistence.Questionnaire;
+import ee.ut.euim.domain.stakeholder.persistence.Stakeholder;
 import ee.ut.euim.domain.validation.persistence.Validation;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -61,4 +62,8 @@ public class ValidationAnswer {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="feature_id")
   private Feature feature;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="stakeholder_id")
+  private Stakeholder stakeholder;
 }

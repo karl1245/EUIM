@@ -2,6 +2,7 @@ package ee.ut.euim.domain.validationanswer.api;
 
 import ee.ut.euim.domain.feature.api.FeatureMapper;
 import ee.ut.euim.domain.featureprecondition.api.FeaturePreconditionMapper;
+import ee.ut.euim.domain.stakeholder.api.StakeholderMapper;
 import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswer;
 import ee.ut.euim.domain.validationanswer.service.ValidationAnswerService;
 import lombok.AccessLevel;
@@ -22,7 +23,8 @@ public class ValidationAnswerMapper {
       validationAnswer.getValidationId(),
       validationAnswer.getFeaturePrecondition() != null ? validationAnswer.getFeaturePrecondition().getId() : null,
       validationAnswer.getFeatureGroupId(),
-      validationAnswer.getFeature().getId()
+      validationAnswer.getFeature().getId(),
+      validationAnswer.getStakeholder() != null ? validationAnswer.getStakeholder().getId() : null
     );
   }
 
@@ -39,7 +41,8 @@ public class ValidationAnswerMapper {
       validationAnswer.getQuestionnaire().getId(),
       validationAnswer.getFeatureGroup().getId(),
       FeaturePreconditionMapper.toResponse(validationAnswer.getFeaturePrecondition()),
-      FeatureMapper.toResponse(validationAnswer.getFeature())
+      FeatureMapper.toResponse(validationAnswer.getFeature()),
+      validationAnswer.getStakeholder() != null ? StakeholderMapper.toResponse(validationAnswer.getStakeholder()) : null
     );
   }
 }

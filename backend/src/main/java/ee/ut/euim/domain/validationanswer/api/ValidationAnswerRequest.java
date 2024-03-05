@@ -47,6 +47,9 @@ public class ValidationAnswerRequest {
   @Valid
   private FeatureRequest feature;
 
+  @Valid
+  private StakeholderRequest stakeholder;
+
   @Getter
   @Setter
   @ToString
@@ -74,6 +77,21 @@ public class ValidationAnswerRequest {
 
     @NotNull
     private String answer;
+  }
+
+  @Getter
+  @Setter
+  @ToString
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class StakeholderRequest {
+
+    @NotNull
+    @Positive
+    private Integer id;
+
+    @NotNull
+    private String name;
   }
 }
 
