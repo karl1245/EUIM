@@ -1,5 +1,6 @@
 import { FeatureResponse } from '../../feature/model/feature';
 import { FeaturePreCondition } from '../../feature/model/feature-pre-condition';
+import { StakeholderResponse } from '../../stakeholder/model/stakeholder-response';
 
 export interface ValidationAnswer {
 
@@ -12,4 +13,5 @@ export interface ValidationAnswer {
   featureGroupId: number;
   featurePrecondition: FeaturePreCondition;
   feature: FeatureResponse;
+  stakeholder: StakeholderResponse | null;
 }

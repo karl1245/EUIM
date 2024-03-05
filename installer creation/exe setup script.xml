@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>..\delivery\target\EUIM-0.5.0.jar</jar>
+  <outfile>executable\EUIM-0.5.0.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>https://www.java.com/en/download/</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>true</restartOnCrash>
+  <manifest></manifest>
+  <icon>business_ordering_pencil_table_2333.ico</icon>
+  <jre>
+    <path>bin</path>
+    <requiresJdk>true</requiresJdk>
+    <requires64Bit>true</requires64Bit>
+    <minVersion>17.0</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+  <versionInfo>
+    <fileVersion>0.5.0.0</fileVersion>
+    <txtFileVersion>EUIM</txtFileVersion>
+    <fileDescription>EUIM executable</fileDescription>
+    <copyright>Free use</copyright>
+    <productVersion>0.5.0.0</productVersion>
+    <txtProductVersion>EUIM</txtProductVersion>
+    <productName>EUIM</productName>
+    <companyName></companyName>
+    <internalName>EUIM</internalName>
+    <originalFilename>EUIM-0.5.0.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+</launch4jConfig>

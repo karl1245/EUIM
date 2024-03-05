@@ -2,6 +2,7 @@ package ee.ut.euim.domain.validationanswer.api;
 
 import ee.ut.euim.domain.feature.api.FeatureResponse;
 import ee.ut.euim.domain.featureprecondition.api.FeaturePreconditionResponse;
+import ee.ut.euim.domain.stakeholder.api.StakeholderResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,5 @@ public class ValidationAnswerResponse {
   private Integer featureGroupId;
   private FeaturePreconditionResponse featurePrecondition;
   private FeatureResponse feature;
+  private StakeholderResponse stakeholderResponse;
 }

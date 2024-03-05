@@ -4,6 +4,7 @@ import ee.ut.euim.domain.feature.service.FeatureService;
 import ee.ut.euim.domain.featuregroup.service.FeatureGroupService;
 import ee.ut.euim.domain.featureprecondition.service.FeaturePreconditionService;
 import ee.ut.euim.domain.questionnaire.service.QuestionnaireService;
+import ee.ut.euim.domain.stakeholder.service.StakeholderService;
 import ee.ut.euim.domain.validation.service.ValidationService;
 import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswer;
 import ee.ut.euim.domain.validationanswer.persistence.ValidationAnswerRepository;
@@ -29,20 +30,25 @@ public class ValidationAnswerService {
   private final FeaturePreconditionService featurePreconditionService;
   private final FeatureGroupService featureGroupService;
   private final FeatureService featureService;
+  private final StakeholderService stakeholderService;
 
   public ValidationAnswer save(SaveParameters params) {
-    return validationAnswerRepository.save(
-      new ValidationAnswer()
-        .setAnswer(params.answer())
-        .setId(params.id())
-        .setRowId(params.rowId())
-        .setType(params.type())
-        .setQuestionnaire(questionnaireService.get(params.questionnaireId()))
-        .setValidation(validationService.getById(params.validationId()))
-        .setFeatureGroup(featureGroupService.get(params.featureGroupId))
-        .setFeature(featureService.get(params.featureId))
-        .setFeaturePrecondition(featurePreconditionService.findOrCreatePrecondition(params.featurePreconditionId, params.answer()))
-    );
+    ValidationAnswer validationAnswer =  new ValidationAnswer()
+      .setAnswer(params.answer())
+      .setId(params.id())
+      .setRowId(params.rowId())
+      .setType(params.type())
+      .setQuestionnaire(questionnaireService.get(params.questionnaireId()))
+      .setValidation(validationService.getById(params.validationId()))
+      .setFeatureGroup(featureGroupService.get(params.featureGroupId))
+      .setFeature(featureService.get(params.featureId))
+      .setFeaturePrecondition(featurePreconditionService.findOrCreatePrecondition(params.featurePreconditionId, params.answer()));
+
+    if (params.stakeholderId != null) {
+      validationAnswer.setStakeholder(stakeholderService.get(params.stakeholderId));
+    }
+
+    return validationAnswerRepository.save(validationAnswer);
   }
 
   public List<ValidationAnswer> findByQuestionnaireId(Integer id) {
@@ -72,6 +78,7 @@ public class ValidationAnswerService {
     Integer validationId,
     Integer featurePreconditionId,
     Integer featureGroupId,
-    Integer featureId
+    Integer featureId,
+    Integer stakeholderId
   ) { }
 }

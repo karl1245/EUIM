@@ -1,6 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
 .mdc-tab.mat-mdc-tab:has(.fake-disabled){opacity: initial;  .mdc-tab__content {     pointer-events: all;   }  }
+
+.stakeholder-border {
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.stakeholder-pink {
+    border: 1px solid #701231;
+    background: #ECACC2;
+}
+
+.stakeholder-red {
+    border: 1px solid #58050C;
+    background: #E8857E;
+}
+
+.stakeholder-yellow {
+    border: 1px solid #5F4209;
+    background: #EED784;
+}
+
+
 :root {
     --text-color: #2C4935;
     --bg-color: #89A480;
@@ -30,13 +52,13 @@
 
 }
 
-html, body { 
+html, body {
     height: 100%;
-    width: 100vw; 
+    width: 100vw;
 }
 body {
-    margin: 0; 
-    font-family: Inter, sans-serif !important; 
+    margin: 0;
+    font-family: Inter, sans-serif !important;
     background-color: #89A480;
     color: var(--text-color);
 }
@@ -46,7 +68,7 @@ p {
     margin-bottom: 1rem;
     margin-left: 0;
     margin-right: 0;
-}	
+}
 
 h1 {
     color: var(--text-color);
@@ -112,13 +134,13 @@ h6 {
 
 .fcc {
     display: flex;
-    align-itrems: center;
+    align-itrems: center;  /*TODO tõrge siin */
     justify-content: center;
 }
 
 .fcl {
     display: flex;
-    align-itrems: center;
+    align-itrems: center; /*TODO tõrge siin */
     justify-content: flex-start;
 }
 

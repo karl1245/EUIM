@@ -20,24 +20,24 @@
   </div>
   <div>
     <mat-accordion>
-      <mat-expansion-panel #mep="matExpansionPanel">
+      <mat-expansion-panel #mepstakeholder="matExpansionPanel">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Add new stakeholder (translate) NOT IMPLEMENTED YET
+            Add new stakeholder (translate)
           </mat-panel-title>
         </mat-expansion-panel-header>
 
         <div>
           <h2>Existing stakeholders (translate)</h2>
-          <p>Lorem ipsum</p>
+          <label *ngFor="let stakeholder of stakeholders; index as i" class="stakeholder-border m-1" [ngClass]="getStakeholderColorClass(i)" >{{ stakeholder.name }}</label>
         </div>
 
         <mat-form-field>
           <mat-label>Stakeholder name (translate)</mat-label>
-          <input matInput placeholder="Enter stakeholder name (translate)">
+          <input [(ngModel)]="stakeholderName" matInput placeholder="Enter stakeholder name (translate)">
         </mat-form-field>
-        <button mat-raised-button (click)="mep.toggle()" color="secondary">Cancel (translate)</button>
-        <button mat-raised-button color="primary">Create (translate)</button>
+        <button mat-raised-button (click)="mepstakeholder.toggle()" color="secondary">Cancel (translate)</button>
+        <button mat-raised-button (click)="createNewStakeholder(stakeholderName)"  color="primary">Create (translate)</button>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -45,12 +45,7 @@
 <div>
   <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
     <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}">
-      <app-validation [featureGroup]="featureGroup"></app-validation>
-    </mat-tab>
-    <mat-tab disabled>
-      <ng-template  mat-tab-label>
-        <button class="fake-disabled" (click)="createFeature()" mat-raised-button color="primary"> <mat-icon>add_circle</mat-icon>Create (translate)</button>
-      </ng-template>
+      <app-validation [featureGroup]="featureGroup" [stakeholders]="stakeholders"></app-validation>
     </mat-tab>
   </mat-tab-group>
 </div>

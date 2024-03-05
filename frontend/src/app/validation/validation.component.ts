@@ -15,6 +15,7 @@ import { ValidationAnswer } from './model/validation-answer';
 import { FeatureRowSpan } from './model/feature-row-span';
 import { FeatureResponse } from '../feature/model/feature';
 import { FeatureToDisplay } from './model/feature-to-display';
+import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 
 @Component({
   selector: 'app-validation',
@@ -35,9 +36,11 @@ export class ValidationComponent implements OnInit{
   validationValues = Object.values(ValidationValue);
   featureRowSpans: FeatureRowSpan[] = [];
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
+  selectedStakeholder: StakeholderResponse;
 
   @Input() columns: string[] = [];
   @Input() featureGroup: FeatureGroupResponse;
+  @Input() stakeholders: StakeholderResponse[];
 
   constructor(
     private validationService: ValidationService,
@@ -153,16 +156,14 @@ export class ValidationComponent implements OnInit{
         questionnaireId: this.questionnaireId,
         featureGroupId: this.featureGroup.id,
         featurePrecondition: {answer: "", id: undefined},
-        feature: {answer: feature.answer, id: feature.id}
+        feature: {answer: feature.answer, id: feature.id},
+        stakeholder: null
         })
       );
       validationRow.push(answer);
     }
-    console.log(maxRowId)
-    console.log(this.validationRowValues, "enne");
     this.validationRowValues.push({answers: validationRow, rowId: maxRowId + 1});
     this.validationRowValues = this.validationRowValues.sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.rowId - b.rowId);
-    console.log(this.validationRowValues, "pärast");
 
     this.mapFeatureRowSpans();
   }
@@ -176,7 +177,7 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return validation.type === ValidationType.TEXT;
+    return validation.type === ValidationType.TEXT || validation.type === ValidationType.FEATURE_PRECONDITION; //TODO Remove this later
   }
 
   isValidationFeature(validation: Validation): boolean {
@@ -187,6 +188,14 @@ export class ValidationComponent implements OnInit{
     return validation.type === ValidationType.FILL;
   }
 
+  isValidationStakeholder(validation: Validation): boolean {
+    return validation.type === ValidationType.STAKEHOLDER;
+  }
+
+  isValidationFeaturePrecondition(validation: Validation): boolean {
+    return validation.type === ValidationType.FEATURE_PRECONDITION;
+  }
+
   async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
       validationRowAnswer.answer = eventValue;
     if (validation.type === ValidationType.FEATURE) {
@@ -194,6 +203,7 @@ export class ValidationComponent implements OnInit{
         this.featureService.update(validationRowAnswer.feature.id, eventValue)
       );
     }
+
     setTimeout(() => {
       this.validationService.saveValidationAnswer(validationRowAnswer).subscribe(
         next => {
@@ -382,5 +392,11 @@ export class ValidationComponent implements OnInit{
     }
 
     return '';
+  }
+
+  onStakeholderChange(stakeholder: any, validation: Validation, validationRowValue: ValidationRow) {
+    const validationAnswer = this.getValidationRowAnswer(validation, validationRowValue)
+    validationAnswer.stakeholder = stakeholder;
+    this.onValidationRowValueChange(stakeholder.name, validationAnswer, validation, validationRowValue);
   }
 }

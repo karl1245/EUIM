@@ -36,20 +36,28 @@
             </mat-form-field>
           </div>
           <div *ngIf="isValidationTextField(validation)">
-          <textarea
-            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-            class="overflow-auto w-100 border-0 textarea-min-height"
-          >
-          </textarea>
+            <textarea
+              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              class="overflow-auto w-100 border-0 textarea-min-height"
+            >
+            </textarea>
+          </div>
+          <div class="w-100 h-100" *ngIf="isValidationStakeholder(validation)">
+            <select style="width:18px; position: absolute; top: 0;right: 0" [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
+              <option *ngFor="let stakeholder of stakeholders; index as i" [ngValue]="stakeholder" value="stakeholder">{{stakeholder.name}}</option>
+            </select>
+            <p>
+              {{ getValidationRowAnswer(validation, validationRowValue).answer }}
+            </p>
           </div>
           <div  *ngIf="isValidationFeature(validation)">
-          <textarea
-            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-            class="overflow-auto w-100 border-0 textarea-min-height"
-          >
-          </textarea>
+            <textarea
+              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              class="overflow-auto w-100 border-0 textarea-min-height"
+            >
+            </textarea>
             <button
               (click)="addValidationRow(validationRowValue.answers[0].feature)"
               color="primary"

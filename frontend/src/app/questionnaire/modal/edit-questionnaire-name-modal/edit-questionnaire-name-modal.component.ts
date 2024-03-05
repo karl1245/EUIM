@@ -12,7 +12,7 @@ import { QuestionnaireService } from '../../service/questionnaire.service';
 export class EditQuestionnaireModalComponent {
   questionnaire: any = {};
   questionnairesList: QuestionnaireResponse[] = [];
-  // updateName: Function = () => {}; 
+  // updateName: Function = () => {};
   public onClose: Subject<{ editQuestionnaire: boolean}>;
 
   constructor(
@@ -30,11 +30,10 @@ export class EditQuestionnaireModalComponent {
   }
 
   updateName(event: any, id: number, questionnaires: QuestionnaireResponse[]) {
-    console.log(questionnaires)
     const selectedQuestionnaire = questionnaires.find(o => o.id === id);
 
     if (selectedQuestionnaire) {
-      selectedQuestionnaire.name = event.target.value; 
+      selectedQuestionnaire.name = event.target.value;
 
       this.questionnaireService.saveQuestionnaire({id: id, name: selectedQuestionnaire.name})
       .subscribe(next => {
