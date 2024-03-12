@@ -142,6 +142,8 @@ export class ValidationComponent implements OnInit{
 
 
   async addValidationRow(existingFeature?: FeatureResponse, existingPreCondition?: FeaturePreCondition, stakeholder?: StakeholderResponse) {
+    console.log(existingFeature, "featuur")
+    console.log(existingPreCondition, "precondition")
     let validationRow: ValidationAnswer[] = [];
     let maxRowId = 0;
     if (this.validationRowValues.length > 0) {
