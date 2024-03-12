@@ -1,5 +1,5 @@
 export interface FeatureRowSpan {
 
-  featureId: number;
+  featureId: number | undefined;
   rowIdsSpanningFeature: number[];
 }

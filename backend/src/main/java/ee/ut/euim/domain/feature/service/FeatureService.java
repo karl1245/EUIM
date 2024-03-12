@@ -31,7 +31,7 @@ public class FeatureService {
   public Feature update(Integer id, String answer) {
     return featureRepository.save(
       featureRepository.findById(id).orElseThrow(
-        () -> new NoSuchElementException("Feature group not found with id:" + id)
+        () -> new NoSuchElementException("Feature not found with id:" + id)
       ).setAnswer(answer)
     );
   }
