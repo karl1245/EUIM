@@ -13,5 +13,5 @@ export interface ValidationAnswer {
   featureGroupId: number;
   featurePrecondition: FeaturePreCondition;
   feature: FeatureResponse;
-  stakeholder: StakeholderResponse | null;
+  stakeholder: StakeholderResponse  | undefined;
 }

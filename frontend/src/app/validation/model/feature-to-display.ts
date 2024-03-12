@@ -1,4 +1,4 @@
 export interface FeatureToDisplay {
-  featureId: number;
+  featureId: number | undefined;
   rowIdToDisplayOn: number;
 }

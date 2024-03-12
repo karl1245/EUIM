@@ -16,6 +16,8 @@ import { FeatureRowSpan } from './model/feature-row-span';
 import { FeatureResponse } from '../feature/model/feature';
 import { FeatureToDisplay } from './model/feature-to-display';
 import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
+import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
+import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
 
 @Component({
   selector: 'app-validation',
@@ -35,7 +37,10 @@ export class ValidationComponent implements OnInit{
   validationValue2LabelMapping = ValidationValue2LabelMapping;
   validationValues = Object.values(ValidationValue);
   featureRowSpans: FeatureRowSpan[] = [];
+  featurePreConditionSpans: FeatureRowSpan[] = [];
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
+  featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
+
   selectedStakeholder: StakeholderResponse;
 
   @Input() columns: string[] = [];
@@ -47,7 +52,9 @@ export class ValidationComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private translateService: TranslateService,
-    private featureService: FeatureService
+    private featureService: FeatureService,
+    private featurePreconditionService: FeaturePreConditionService
+
   ) {}
 
   ngOnInit(): void {
@@ -134,7 +141,7 @@ export class ValidationComponent implements OnInit{
   }
 
 
-  async addValidationRow(existingFeature?: FeatureResponse) {
+  async addValidationRow(existingFeature?: FeatureResponse, existingPreCondition?: FeaturePreCondition, stakeholder?: StakeholderResponse) {
     let validationRow: ValidationAnswer[] = [];
     let maxRowId = 0;
     if (this.validationRowValues.length > 0) {
@@ -145,19 +152,23 @@ export class ValidationComponent implements OnInit{
     const feature = existingFeature ?? await firstValueFrom(
       this.featureService.create("")
     );
+    const featurePrecondition = existingPreCondition ?? await firstValueFrom(
+      this.featurePreconditionService.create("")
+    );
+
     for (const v of this.validations) {
       const answer = await firstValueFrom(
         this.validationService.saveValidationAnswer({
         id: null,
         rowId: maxRowId + 1,
         validationId: v.id,
-        answer: v.type === ValidationType.FEATURE ? feature.answer : '',
+        answer: this.getPrefilledValidationRowAnswer(v.type, feature, existingPreCondition),
         type: v.type,
         questionnaireId: this.questionnaireId,
         featureGroupId: this.featureGroup.id,
-        featurePrecondition: {answer: "", id: undefined},
+        featurePrecondition: featurePrecondition,
         feature: {answer: feature.answer, id: feature.id},
-        stakeholder: null
+        stakeholder: stakeholder
         })
       );
       validationRow.push(answer);
@@ -168,6 +179,20 @@ export class ValidationComponent implements OnInit{
     this.mapFeatureRowSpans();
   }
 
+  getPrefilledValidationRowAnswer(validationType: ValidationType, featureResponse?: FeatureResponse, featurePreCondition?: FeaturePreCondition, stakeholder?: StakeholderResponse): string {
+    if (validationType === ValidationType.FEATURE_PRECONDITION) {
+      return featurePreCondition?.answer ? featurePreCondition.answer : '';
+    }
+    if (validationType === ValidationType.FEATURE) {
+      return featureResponse?.answer ? featureResponse.answer : '';
+    }
+    if (validationType === ValidationType.STAKEHOLDER) {
+      return stakeholder?.name ? stakeholder.name : '';
+    }
+    return '';
+  }
+
+
   getValidationRowAnswer(validation: Validation, validationRowValue: ValidationRow) {
     return validationRowValue.answers.filter(answer => answer.validationId === validation.id)[0];
   }
@@ -177,7 +202,7 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return validation.type === ValidationType.TEXT || validation.type === ValidationType.FEATURE_PRECONDITION; //TODO Remove this later
+    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO;
   }
 
   isValidationFeature(validation: Validation): boolean {
@@ -204,6 +229,14 @@ export class ValidationComponent implements OnInit{
       );
     }
 
+    if (validation.type === ValidationType.FEATURE_PRECONDITION) {
+      await firstValueFrom(
+        this.featurePreconditionService.update(validationRowAnswer.featurePrecondition.id, eventValue)
+      );
+    }
+
+    this.setRelatedRowSpanAnswers(validation, validationRowAnswer, eventValue, validationRowValue);
+
     setTimeout(() => {
       this.validationService.saveValidationAnswer(validationRowAnswer).subscribe(
         next => {
@@ -211,6 +244,42 @@ export class ValidationComponent implements OnInit{
         }
       );
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
+  }
+
+  private setRelatedRowSpanAnswers(validation: Validation, validationRowAnswer: ValidationAnswer, eventValue: any, validationRowValue: ValidationRow) {
+    if (validation.type === ValidationType.DO || ValidationType.FEATURE_PRECONDITION || ValidationType.STAKEHOLDER) {
+      for (let validationRow of this.validationRowValues) {
+        for (let answer of validationRow.answers) {
+          if (answer.featurePrecondition.id === validationRowAnswer.featurePrecondition.id && answer.id !== validationRowAnswer.id) {
+            if (validation.type === ValidationType.FEATURE_PRECONDITION && answer.type === ValidationType.FEATURE_PRECONDITION) {
+              answer.answer = eventValue
+            }
+            if (validation.type === ValidationType.DO && answer.type === ValidationType.DO) {
+              if (this.translateService.currentLang === GlobalConstants.ET) {
+                answer.answer = "Kas"
+              } else {
+                answer.answer = "Do"
+              }
+            }
+
+            if (validation.type === ValidationType.STAKEHOLDER && answer.type === ValidationType.STAKEHOLDER) {
+              answer.stakeholder = validationRowAnswer.stakeholder
+              if (answer.stakeholder) {
+                answer.answer = answer.stakeholder.name
+              }
+            }
+
+            setTimeout(() => {
+              this.validationService.saveValidationAnswer(answer).subscribe(
+                next => {
+                  this.updateRelatedValidationAnswers(validation, validationRow);
+                }
+              );
+            }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
+          }
+        }
+      }
+    }
   }
 
   updateRelatedValidationAnswers(validation: Validation, validationRowValue: ValidationRow): void {
@@ -343,6 +412,7 @@ export class ValidationComponent implements OnInit{
 
   mapFeatureRowSpans():void {
     const featureRowSpans: FeatureRowSpan[] = [];
+    const featurePreConditionRowSpans: FeatureRowSpan[] = [];
     for (let validationRow of this.validationRowValues) {
       for (let validationAnswer of validationRow.answers) {
         if (!featureRowSpans.map(a => a.featureId).includes(validationAnswer.feature.id)){
@@ -353,29 +423,61 @@ export class ValidationComponent implements OnInit{
             featureRowSpan.rowIdsSpanningFeature.push(validationAnswer.rowId);
           }
         }
+
+        if (!featurePreConditionRowSpans.map(a => a.featureId).includes(validationAnswer.featurePrecondition.id)){
+          featurePreConditionRowSpans.push({featureId: validationAnswer.featurePrecondition.id, rowIdsSpanningFeature: [validationAnswer.rowId]});
+        } else {
+          const featureRowSpan = featurePreConditionRowSpans.find(o => o.featureId === validationAnswer.featurePrecondition.id);
+          if (featureRowSpan != null && !featureRowSpan.rowIdsSpanningFeature.includes(validationAnswer.rowId)) {
+            featureRowSpan.rowIdsSpanningFeature.push(validationAnswer.rowId);
+          }
+        }
       }
     }
+    this.featurePreConditionSpans = featurePreConditionRowSpans;
     this.featureRowSpans = featureRowSpans;
   }
 
 
-  getFeatureRowSpanAndMapAsDisplayed(validation: Validation, validationRow: ValidationRow): number {
+  getAnswerRowSpanAndMapAsDisplayed(validation: Validation, validationRow: ValidationRow): number {
     if (validation.type === ValidationType.FEATURE) {
       const featureId = validationRow.answers[0].feature.id;
       return this.featureRowSpans.find(a => a.featureId === featureId)?.rowIdsSpanningFeature.length ?? 1;
     }
+    if (validation.type === ValidationType.FEATURE_PRECONDITION || validation.type === ValidationType.STAKEHOLDER || validation.type === ValidationType.DO) {
+      const featureId = validationRow.answers[0].featurePrecondition.id;
+      return this.featurePreConditionSpans.find(a => a.featureId === featureId)?.rowIdsSpanningFeature.length ?? 1;
+    }
     return 1;
   }
 
-  isFeatureNotDisplayed(validation: Validation, validationRow: ValidationRow): boolean {
-    const featureId = validationRow.answers[0].feature.id;
+  isAnswerNotDisplayed(validation: Validation, validationRow: ValidationRow): boolean {
     if (validation.type === ValidationType.FEATURE) {
+      const featureId = validationRow.answers[0].feature.id;
       const existingFeatureToDisplay = this.featuresAlreadyDisplayed.find(f => f.featureId === featureId)
       if (!existingFeatureToDisplay) {
         this.featuresAlreadyDisplayed.push({featureId: featureId, rowIdToDisplayOn: validationRow.rowId});
         return true;
       }
       return existingFeatureToDisplay?.rowIdToDisplayOn === validationRow.rowId;
+    }
+    if (validation.type === ValidationType.FEATURE_PRECONDITION) {
+      const featureId = validationRow.answers[0].featurePrecondition.id;
+      const existingFeaturePreconditionToDisplay = this.featurePreconditionsAlreadyDisplayed.find(f => f.featureId === featureId)
+      if (!existingFeaturePreconditionToDisplay) {
+        this.featurePreconditionsAlreadyDisplayed.push({featureId: featureId, rowIdToDisplayOn: validationRow.rowId});
+        return true;
+      }
+      return existingFeaturePreconditionToDisplay?.rowIdToDisplayOn === validationRow.rowId;
+    }
+
+    if (validation.type === ValidationType.STAKEHOLDER || validation.type === ValidationType.DO) {
+      const featureId = validationRow.answers[0].featurePrecondition.id;
+      const existingFeaturePreconditionToDisplay = this.featurePreconditionsAlreadyDisplayed.find(f => f.featureId === featureId)
+      if (!existingFeaturePreconditionToDisplay) {
+        return true;
+      }
+      return existingFeaturePreconditionToDisplay?.rowIdToDisplayOn === validationRow.rowId;
     }
     return true;
   }

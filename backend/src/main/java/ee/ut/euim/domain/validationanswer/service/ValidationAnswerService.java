@@ -2,6 +2,7 @@ package ee.ut.euim.domain.validationanswer.service;
 
 import ee.ut.euim.domain.feature.service.FeatureService;
 import ee.ut.euim.domain.featuregroup.service.FeatureGroupService;
+import ee.ut.euim.domain.featureprecondition.persistence.FeaturePrecondition;
 import ee.ut.euim.domain.featureprecondition.service.FeaturePreconditionService;
 import ee.ut.euim.domain.questionnaire.service.QuestionnaireService;
 import ee.ut.euim.domain.stakeholder.service.StakeholderService;
@@ -33,6 +34,12 @@ public class ValidationAnswerService {
   private final StakeholderService stakeholderService;
 
   public ValidationAnswer save(SaveParameters params) {
+    FeaturePrecondition featurePrecondition = featurePreconditionService.get(params.featurePreconditionId);
+
+    if (params.type.equals("FEATURE_PRECONDITION") && (!featurePrecondition.getAnswer().equals(params.answer()))) {
+        featurePreconditionService.update(featurePrecondition.setAnswer(params.answer()));
+    }
+
     ValidationAnswer validationAnswer =  new ValidationAnswer()
       .setAnswer(params.answer())
       .setId(params.id())
@@ -42,7 +49,7 @@ public class ValidationAnswerService {
       .setValidation(validationService.getById(params.validationId()))
       .setFeatureGroup(featureGroupService.get(params.featureGroupId))
       .setFeature(featureService.get(params.featureId))
-      .setFeaturePrecondition(featurePreconditionService.findOrCreatePrecondition(params.featurePreconditionId, params.answer()));
+      .setFeaturePrecondition(featurePrecondition);
 
     if (params.stakeholderId != null) {
       validationAnswer.setStakeholder(stakeholderService.get(params.stakeholderId));

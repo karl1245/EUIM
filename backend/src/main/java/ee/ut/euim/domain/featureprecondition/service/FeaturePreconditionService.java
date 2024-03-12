@@ -24,6 +24,12 @@ public class FeaturePreconditionService {
     return featurePreconditionRepository.save(new FeaturePrecondition().setAnswer(answer));
   }
 
+  public FeaturePrecondition update(FeaturePrecondition featurePrecondition) {
+    log.info("Updating feature precondition to be: {}", featurePrecondition);
+
+    return featurePreconditionRepository.save(featurePrecondition);
+  }
+
   public FeaturePrecondition get(Integer id) {
     log.info("Getting feature precondition with id: {}", id);
 
@@ -39,5 +45,14 @@ public class FeaturePreconditionService {
     }
 
     return get(id);
+  }
+
+  public FeaturePrecondition update(Integer id, String answer) {
+
+    return featurePreconditionRepository.save(
+      featurePreconditionRepository.findById(id).orElseThrow(
+        () -> new NoSuchElementException("Feature precondition not found with id:" + id)
+      ).setAnswer(answer)
+    );
   }
 }
