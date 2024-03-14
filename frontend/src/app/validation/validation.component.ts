@@ -57,6 +57,10 @@ export class ValidationComponent implements OnInit{
 
   ) {}
 
+  getValidationValues(): ValidationValue[] {
+    return this.validationValues;
+  }    
+
   ngOnInit(): void {
     const questionnaireId = this.route.snapshot.queryParamMap.get('questionnaireId');
     if (!questionnaireId  || isNaN(Number(questionnaireId))) {
@@ -242,7 +246,7 @@ export class ValidationComponent implements OnInit{
         next => {
           this.updateRelatedValidationAnswers(validation, validationRowValue);
         }
-      );
+        );
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 
@@ -491,6 +495,20 @@ export class ValidationComponent implements OnInit{
       return 'content-cell-third-child'
     } else if (i === 3) {
       return 'content-cell-fourth-child'
+    } else if (i === 4) {
+      return 'content-cell-fifth-child'
+    } else if (i === 5) {
+      return 'content-cell-sixth-child'
+    } else if (i > 5 && i < 10) {
+      return 'content-cell-four-options'
+    } else if (i === 10) {
+      return 'content-cell-eleventh-child'
+    } else if (i === 11) {
+      return 'content-cell-twelveth-child'
+    } else if (i === 12) {
+      return 'content-cell-thirteenth-child'
+    } else if (i === 13) {
+      return 'content-cell-fourtteenh-child'
     }
 
     return '';

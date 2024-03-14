@@ -1,0 +1,80 @@
+mat-tab-group, mat-tab, app-validation {
+  	border: none !important;
+}
+
+mat-tab-group {
+  max-width: 113.75rem;
+}
+
+.page-body {
+  margin-top: 5rem;
+  gap: 5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modals {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects-wrapper {
+  height: fit-content;
+  width: fit-content;
+  padding: 2.5rem;
+  background-color: #729368;
+  border-radius: 0.625rem;
+  display: flex;
+  gap: 5rem;
+}
+
+.add-project {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--beige);
+  width: 37.5rem;
+  padding: 32px;
+  border-radius: 0.625rem;
+  gap: 32px;
+}
+
+.add-project-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-project-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.add-project-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.add-project-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: flex-end;
+  width: 100%;
+  gap: 1rem;
+}
+
+input {
+  border-radius: 8px;
+  padding: 8px;
+  height: 32px;
+}

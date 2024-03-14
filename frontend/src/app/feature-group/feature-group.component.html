@@ -41,11 +41,101 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-</div>
-<div>
-  <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
-    <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}">
-      <app-validation [featureGroup]="featureGroup" [stakeholders]="stakeholders"></app-validation>
-    </mat-tab>
-  </mat-tab-group>
+<div *ngIf="!loading" class="page-body">
+  <div class="modals">
+    <div class="projects-wrapper">
+      <div class="add-project">
+        <div class="add-project-header">
+          <h1>{{'Lisa uus feature grupp' | translate}}</h1>
+          <button (click)="toggleAddNewGroup()" class="button-icon">
+            <span *ngIf=!isToggledGroupAdding class="material-symbols-outlined icon">expand_more</span>    
+            <span *ngIf=isToggledGroupAdding class="material-symbols-outlined icon">expand_less</span>    
+          </button> 
+        </div>
+          <div *ngIf=isToggledGroupAdding class="add-project-row">
+            <div class="add-project-input">
+              <h2>{{'Grupi nimi' | translate}}</h2>
+              <!--  -->
+              <input placeholder="{{'Sisesta grupi nimi' | translate}}" id="featureGroupName" type="text" [(ngModel)]="featureGroupName"/>
+            </div>
+            <div class="add-project-buttons">
+              <button (click)="toggleAddNewGroup()" class="button cancel-button">{{'button.cancel' | translate}}</button>
+              <button  (click)="createNewFeatureGroup(featureGroupName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
+            </div> 
+        </div>
+      </div>
+    </div>
+    <div class="projects-wrapper">
+      <div class="add-project">
+        <div class="add-project-header">
+          <h1>{{'Lisa uus stakehodleri valik' | translate}}</h1>
+          <button (click)="toggleAddNewStakeholder()" class="button-icon">
+            <span *ngIf=!isToggledStakeholderAdding class="material-symbols-outlined icon">expand_more</span>    
+            <span *ngIf=isToggledStakeholderAdding class="material-symbols-outlined icon">expand_less</span>    
+          </button> 
+        </div>
+          <div *ngIf=isToggledStakeholderAdding class="add-project-row">
+            <div class="add-project-input">
+              <h2>{{'Stakeholderi nimi' | translate}}</h2> 
+              <!-- [(ngModel)]="featureGroupName"   [(ngModel)]="questionnaireName" -->
+              <input placeholder="{{'Sisesta stakeholderi nimi' | translate}}" id="questionnaireName" type="text"/>
+            </div>
+            <div class="add-project-buttons">
+              <button (click)="toggleAddNewStakeholder()" class="button cancel-button">{{'button.cancel' | translate}}</button>
+              <button  (click)="createNewFeatureGroup(featureGroupName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
+            </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div>
+      <mat-accordion>
+        <mat-expansion-panel #mep="matExpansionPanel">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Add new feature group (translate)
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <mat-label>Group name (translate)</mat-label>
+            <input [(ngModel)]="featureGroupName" matInput placeholder="Enter group name (translate)">
+          </mat-form-field>
+          <button mat-raised-button (click)="toggleAddNewQuistionnaire()" color="secondary">Cancel (translate)</button>
+          <button mat-raised-button (click)="createNewFeatureGroup(featureGroupName);mep.toggle()" color="primary">Create (translate)</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div>
+      <mat-accordion>
+        <mat-expansion-panel #mep="matExpansionPanel">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Add new stakeholder (translate) NOT IMPLEMENTED YET
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div>
+            <h2>Existing stakeholders (translate)</h2>
+            <p>Lorem ipsum</p>
+          </div>
+
+          <mat-form-field>
+            <mat-label>Stakeholder name (translate)</mat-label>
+            <input matInput placeholder="Enter stakeholder name (translate)">
+          </mat-form-field>
+          <button mat-raised-button (click)="toggleAddNewQuistionnaire()" color="secondary">Cancel (translate)</button>
+          <button mat-raised-button color="primary">Create (translate)</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div> -->
+  <div>
+    <!-- [(selectedIndex)]="defaultTabIndex"  -->
+    <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
+      <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}">
+        <app-validation [featureGroup]="featureGroup"></app-validation>
+      </mat-tab>
+    </mat-tab-group>
 </div>
