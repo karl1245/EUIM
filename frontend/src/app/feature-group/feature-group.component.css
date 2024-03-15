@@ -78,3 +78,13 @@ input {
   padding: 8px;
   height: 32px;
 }
+
+.stakeholders-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: left;
+  align-items: top;
+  width: 100%;
+  gap: 8px;
+}

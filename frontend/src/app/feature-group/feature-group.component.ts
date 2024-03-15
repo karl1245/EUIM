@@ -85,9 +85,8 @@ export class FeatureGroupComponent {
       .subscribe(next => this.stakeholders.push(next))
   }
 
-  getStakeholderColorClass(i: number) {
+  getStakeholderColorClass(i: number): string {
     let colorIndex = i % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
-
-    return 'stakeholder-' + GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
+    return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
   }
 }
