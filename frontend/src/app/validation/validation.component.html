@@ -65,25 +65,18 @@
             (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"   
           >
           </textarea>
-            <button
-              (click)="addValidationRow(validationRowValue.answers[0].feature)"
-              mat-icon-button>
-              <mat-icon>add_circle_outline</mat-icon>
-            </button>
           </div>
-          <div  *ngIf="isValidationFeaturePrecondition(validation)">
+          <div *ngIf="isValidationFeaturePrecondition(validation)">
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
-            <button
-              (click)="addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)"
-              color="primary"
-              mat-icon-button>
-              <mat-icon>add_circle_outline</mat-icon>
-            </button>
+            <app-menu [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)"></app-menu>
+          </div>
+          <div *ngIf="isValidationFeatureExample(validation)">
+            <app-menu [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
           </div>
           <div *ngIf="isValidationAutofill(validation)">
             {{getValidationRowAnswer(validation, validationRowValue).answer}}

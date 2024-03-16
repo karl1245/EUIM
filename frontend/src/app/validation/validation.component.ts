@@ -40,6 +40,7 @@ export class ValidationComponent implements OnInit{
   featurePreConditionSpans: FeatureRowSpan[] = [];
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
+  menuIcon: string = "arrow_drop_down";
 
   selectedStakeholder: StakeholderResponse;
 
@@ -223,6 +224,10 @@ export class ValidationComponent implements OnInit{
 
   isValidationFeaturePrecondition(validation: Validation): boolean {
     return validation.type === ValidationType.FEATURE_PRECONDITION;
+  }
+
+  isValidationFeatureExample(validation: Validation): boolean {
+    return validation.type === ValidationType.EXAMPLE;
   }
 
   async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
@@ -518,5 +523,24 @@ export class ValidationComponent implements OnInit{
     const validationAnswer = this.getValidationRowAnswer(validation, validationRowValue)
     validationAnswer.stakeholder = stakeholder;
     this.onValidationRowValueChange(stakeholder.name, validationAnswer, validation, validationRowValue);
+  }
+
+  getStakeholderActions():{name: string, icon: string, onClick: any}[] {
+    return [
+    ];
+  }
+
+  getPreconditionActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.addPrecondition", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
+      {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
+    ];
+  }
+
+  getExampleActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)},
+      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)},
+    ];
   }
 }

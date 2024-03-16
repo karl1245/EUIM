@@ -20,6 +20,7 @@ export class QuestionnaireComponent implements OnInit {
   validationPath = "/validation"
   // @ts-ignore
   modalRef: BsModalRef;
+  menuIcon: string = "more_vert";
 
 
   constructor(
@@ -104,6 +105,5 @@ export class QuestionnaireComponent implements OnInit {
       {name: "menu.delete", icon: 'delete', onClick: () => this.deleteQuestionnaire(questionnaire)},
     ];
   }
-  
   
 }

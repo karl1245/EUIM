@@ -11,6 +11,7 @@ table {
   border-radius: 0.625rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .add-project {
@@ -96,3 +97,4 @@ table {
 .see-more-button:hover {
   background-color: var(--green);
 }
+
