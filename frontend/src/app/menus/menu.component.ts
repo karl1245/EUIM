@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+  @Input() icon: string;
   @Input() actions: {name: string, icon: string, onClick: any}[] = [];
 
   isToggled: boolean = false;
