@@ -96,7 +96,7 @@
   <div>
     <!-- [(selectedIndex)]="defaultTabIndex"  -->
     <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
-      <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}">
+      <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}" class="tabs">
         <app-validation [featureGroup]="featureGroup"></app-validation>
       </mat-tab>
     </mat-tab-group>
