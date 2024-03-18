@@ -22,6 +22,7 @@
     background: #EED784;
 } */
 
+
 :root {
     --text-color: #2C4935;
     --bg-color: #89A480;
@@ -30,7 +31,6 @@
     --container: #729368;
     --highlight: #BCD6A9;
     --contrast_highlight: #4F7744;
-    --table-head: #CCD7BB;
     --light-red: #E8857E;
     --red:#EF6565;
     --dark-red:#58050C;
@@ -64,8 +64,6 @@ body {
 }
 p {
     display: block;
-    font-family: Inter, sans-serif; 
-    font-weight: normal;
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 0;
@@ -74,7 +72,7 @@ p {
 
 h1 {
     color: var(--text-color);
-    font-family: Libre Baskerville, serif;
+    font-family: Garamond;
     display: block;
     font-size: 2rem;
     margin-top: 0;
@@ -149,8 +147,8 @@ h6 {
 .button {
     min-width: 120px;
     width: fit-content;
-    padding: 0.25rem;
-    border-radius: 0.625rem;
+    padding: 4px;
+    border-radius: 10px;
     border-width: 2px;
     outline: none;
     height: fit-content;
@@ -198,7 +196,7 @@ h6 {
 
 .icon {
     justify-content: center;
-    font-size: 3rem;
+    font-size: 48px;
 }
 
 .small-icon {

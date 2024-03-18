@@ -3,23 +3,24 @@ table {
 }
 
 .projects-wrapper {
-  margin-top: 5rem;
+  margin-top: 80px;
   height: fit-content;
   width: fit-content;
-  padding: 2.5rem;
+  padding: 40px 40px 40px 40px;
   background-color: #729368;
-  border-radius: 0.625rem;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
+  gap: 80px;
 }
 
 .add-project {
   display: flex;
   flex-direction: column;
   background-color: var(--beige);
-  width: 62.5rem;
+  max-width: 1000px;
   padding: 32px 32px 32px 32px;
-  border-radius: 0.625rem;
+  border-radius: 10px;
   gap: 32px;
 }
 .add-project-header {
@@ -40,7 +41,7 @@ table {
   flex-direction: column;
   justify-content: left;
   width: 100%;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .add-project-buttons {
@@ -49,13 +50,12 @@ table {
   justify-content: right;
   align-items: flex-end;
   width: 100%;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .projects-table {
-  max-width: 100%;
-  border-radius: 0.625rem;
-  margin-top: 5rem;
+  max-width: 1000px;
+  border-radius: 10px;
 }
 
 .projects-table-row {
@@ -71,15 +71,15 @@ table {
 
 .project-cell {
   padding: 32px 32px 32px 32px;
-  width: 31.25rem;
+  width: 500px;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
 }
   
 .action-button-cell {
   padding: 32px 32px 32px 32px;
-  width: 31.25rem;
+  width: 500px;
   display: flex;
   align-items: center;
   justify-content: right;
@@ -88,8 +88,8 @@ table {
 .see-more-button {
   background-color: var(--highlight);
   text-decoration: none;
-  border-radius: 0.5rem;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
   color: var(--text);
 
 }

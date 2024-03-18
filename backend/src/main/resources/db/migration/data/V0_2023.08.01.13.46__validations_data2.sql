@@ -1,6 +1,6 @@
 INSERT INTO validation
 (name_en, name_et, weight)
-VALUES ('Feature description','Tunnuse kirjeldus',1);
+VALUES ('Features','TO-BE',1);
 
 INSERT INTO validation
 (name_en, name_et, weight)
