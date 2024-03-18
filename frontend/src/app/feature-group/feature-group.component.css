@@ -1,9 +1,76 @@
 mat-tab-group, mat-tab, app-validation {
-  	border: none !important;
+  border: none !important;
 }
 
 mat-tab-group {
   max-width: 113.75rem;
+}  
+
+:host ::ng-deep div[role='tab'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: fit-content;
+  min-width: 200px;
+  background-color: var(--table-head);
+  border: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  color: var(--text-color);
+  font: inherit;
+  letter-spacing: normal;
+}
+
+:host ::ng-deep div[role='tab']:hover {
+  background-color: var(--highlight);
+  color: var(--text-color);
+}
+
+:host ::ng-deep div[role='tab'].mdc-tab--active {
+  background-color: var(--beige);
+  color: var(--text-color);
+  border-width: 4px;
+}
+
+:host ::ng-deep div[role='tablist'] > .mat-mdc-tab-labels {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  gap: 4px;
+  background-color: none;
+}
+
+:host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled {
+  background-color: var(--container);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+}
+ 
+:host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled > .mat-mdc-tab-header-pagination.mat-mdc-tab-header-pagination-before.mat-ripple,
+:host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled > .mat-mdc-tab-header-pagination.mat-mdc-tab-header-pagination-after.mat-ripple {
+  background-color: var(--table-head);
+  color: var(--text-color);
+  width: fit-content;
+  height: 80px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 4px;
+  border: solid;
+  border-width: 2px;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .mdc-tab-indicator .mdc-tab-indicator__content {
+  border: none;
+}
+
+:host ::ng-deep .mat-mdc-tab .mdc-tab__text-label,
+:host ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: var(--text-color);
 }
 
 .page-body {
