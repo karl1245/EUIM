@@ -79,7 +79,7 @@
             >
             </textarea>
             <button
-              (click)="addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)"
+              (click)="addValidationRow(validationRowValue.answers[0].feature, getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)"
               color="primary"
               mat-icon-button>
               <mat-icon>add_circle_outline</mat-icon>
