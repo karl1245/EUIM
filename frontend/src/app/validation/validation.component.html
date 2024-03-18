@@ -23,8 +23,8 @@
         {{getTranslation(validation)}}
       </td>
     </tr>
-    <tr *ngFor="let validationRowValue of validationRowValues">
-      <td>{{ validationRowValue.rowId }}</td>
+    <tr *ngFor="let validationRowValue of validationRowValues; index as i">
+      <td>{{i + 1}}</td>
       <ng-container *ngFor="let validation of validations; index as i">
         <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" comment="[ngClass]=getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)"><!--TODO Remove this comment if sticky rows are not going to be used-->
           <div *ngIf="isValidationSelectable(validation)">
