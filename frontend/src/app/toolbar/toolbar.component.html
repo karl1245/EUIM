@@ -1,8 +1,8 @@
 <div class="nav">
   <h1>{{'toolbar.name' | translate}}</h1>
   <a class="toolbar-router fcc" [routerLink]="questionnairePath">{{'toolbar.projects' | translate}}</a>
-  <a class="toolbar-router fcc">{{'toolbar.method' | translate}}</a>
-  <a class="toolbar-router fcc">{{'toolbar.about' | translate}}</a>
+  <a class="toolbar-router fcc" [routerLink]="method" >{{'toolbar.method' | translate}}</a>
+  <a class="toolbar-router fcc" [routerLink]="about" >{{'toolbar.about' | translate}}</a>
   <div>
     <button (click)="setLang(language)" *ngFor="let language of languages" [value]="language" class="button-language" [class.language-active]="isLanguageSelected(language)">{{language}}</button>
   </div>

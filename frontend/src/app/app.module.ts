@@ -29,6 +29,8 @@ import { MenuComponent } from './menus/menu.component';
 import { SelectComponent } from './select/select.component';
 import { InfoComponent } from './info/info.component';
 import { StakeholderComponent } from './stakeholder/stakeholder.component';
+import { AboutComponent } from './about/about.component';
+import { MethodComponent } from './method/method.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,6 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SelectComponent,
     InfoComponent,
     StakeholderComponent,
+    AboutComponent,
+    MethodComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,8 @@ export class ToolbarComponent {
   constructor(private translate: TranslateService) {}
 
   questionnairePath = "/questionnaire"
+  method = "/method"
+  about = "/about"
   validationPath = "/validation"
 
   get currentLang(): string {
