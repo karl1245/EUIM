@@ -9,11 +9,7 @@
     "edit": "Muuda",
     "delete":"Kustuta",
     "copy": "Tee koopia",
-    "download": "Lae alla",
-    "addPrecondition": "Lisa eeltingimus",
-    "deletePrecondition": "Kustuta eeltingimus",
-    "addExample": "Lisa situatsioon",
-    "deleteExample": "Kustuta situatsioon"
+    "download": "Lae alla"
   },
   "toolbar": {
     "name": "EUIM",

@@ -41,24 +41,5 @@
   height: fit-content;
   width: fit-content;
   outline: none;
-  color: var(--text-color);
-}
-
-.arrow_drop_down {
-  width: fit-content;
-  height: fit-content;
-  max-width: 32px;
-  max-height: 32px;
-  color: var(--dark-green);
-  background-color: var(--light-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  border: solid;
-  border-width: 2px;
-}
-
-.arrow_drop_down:hover {
-  background-color: var(--green);
+  color: var(--text-color);;
 }
