@@ -3,6 +3,9 @@
   <table *ngIf="!loading" class="w-100 border-bottom-0">
     <thead>
     <tr>
+      <th>
+        ID
+      </th>
       <th style="min-width:200px" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
         {{getTranslation(validationSummary)}}
       </th>
@@ -13,13 +16,17 @@
     </thead>
     <tbody>
     <tr>
-      <td style="min-width:50px" *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
+      <td>
+         ID
+      </td>
+      <td style="min-width:50px" *ngFor="let validation of validations; index as i" comment="[ngClass]=getStickyClassByIndex(i)"><!--TODO Remove this if sticky rows are not going to be used-->
         {{getTranslation(validation)}}
       </td>
     </tr>
     <tr *ngFor="let validationRowValue of validationRowValues">
+      <td>{{ validationRowValue.rowId }}</td>
       <ng-container *ngFor="let validation of validations; index as i">
-        <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
+        <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" comment="[ngClass]=getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)"><!--TODO Remove this comment if sticky rows are not going to be used-->
           <div *ngIf="isValidationSelectable(validation)">
             <mat-form-field>
               <mat-label>{{'select.chooseOption' | translate}}</mat-label>
