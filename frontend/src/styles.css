@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "~bootstrap/dist/css/bootstrap.css"; */
-.mdc-tab.mat-mdc-tab:has(.fake-disabled){opacity: initial;  .mdc-tab__content {     pointer-events: all;   }  }
+/* .mdc-tab.mat-mdc-tab:has(.fake-disabled){opacity: initial;  .mdc-tab__content {     pointer-events: all;   }  }
 
 .stakeholder-border {
     border-radius: 8px;
@@ -20,7 +20,7 @@
 .stakeholder-yellow {
     border: 1px solid #5F4209;
     background: #EED784;
-}
+} */
 
 
 :root {
@@ -134,13 +134,13 @@ h6 {
 
 .fcc {
     display: flex;
-    align-itrems: center;  /*TODO tõrge siin */
+    align-items: center;  /*TODO tõrge siin */
     justify-content: center;
 }
 
 .fcl {
     display: flex;
-    align-itrems: center; /*TODO tõrge siin */
+    align-items: center; /*TODO tõrge siin */
     justify-content: flex-start;
 }
 

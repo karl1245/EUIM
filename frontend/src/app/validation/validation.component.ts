@@ -117,7 +117,7 @@ export class ValidationComponent implements OnInit{
           this.addValidationRow();
         } else {
           this.validationRowValues = this.mapValidationAnswersToRows(next)
-            .sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.rowId - b.rowId);
+            .sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.answers[0].featurePrecondition.id - b.answers[0].featurePrecondition.id || a.rowId - b.rowId);
           this.mapFeatureRowSpans();
         }
       }
@@ -175,10 +175,12 @@ export class ValidationComponent implements OnInit{
       );
       validationRow.push(answer);
     }
+
     this.validationRowValues.push({answers: validationRow, rowId: maxRowId + 1});
-    this.validationRowValues = this.validationRowValues.sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.rowId - b.rowId);
+    this.validationRowValues = this.validationRowValues.sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.answers[0].featurePrecondition.id - b.answers[0].featurePrecondition.id || a.rowId - b.rowId);
 
     this.mapFeatureRowSpans();
+    this.updateRelatedValidationAnswers(<Validation>this.validations.find(v => v.type === ValidationType.FEATURE_PRECONDITION), {answers: validationRow, rowId: maxRowId + 1})
   }
 
   getPrefilledValidationRowAnswer(validationType: ValidationType, featureResponse?: FeatureResponse, featurePreCondition?: FeaturePreCondition, stakeholder?: StakeholderResponse): string {
@@ -226,18 +228,18 @@ export class ValidationComponent implements OnInit{
   async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
       validationRowAnswer.answer = eventValue;
     if (validation.type === ValidationType.FEATURE) {
-      await firstValueFrom(
+      validationRowAnswer.feature = await firstValueFrom(
         this.featureService.update(validationRowAnswer.feature.id, eventValue)
       );
     }
 
     if (validation.type === ValidationType.FEATURE_PRECONDITION) {
-      await firstValueFrom(
+      validationRowAnswer.featurePrecondition = await firstValueFrom(
         this.featurePreconditionService.update(validationRowAnswer.featurePrecondition.id, eventValue)
       );
     }
 
-    this.setRelatedRowSpanAnswers(validation, validationRowAnswer, eventValue, validationRowValue);
+    this.setRelatedRowSpanAnswers(validation, validationRowAnswer, eventValue);
 
     setTimeout(() => {
       this.validationService.saveValidationAnswer(validationRowAnswer).subscribe(
@@ -248,7 +250,7 @@ export class ValidationComponent implements OnInit{
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 
-  private setRelatedRowSpanAnswers(validation: Validation, validationRowAnswer: ValidationAnswer, eventValue: any, validationRowValue: ValidationRow) {
+  private setRelatedRowSpanAnswers(validation: Validation, validationRowAnswer: ValidationAnswer, eventValue: any) {
     if (validation.type === ValidationType.DO || ValidationType.FEATURE_PRECONDITION || ValidationType.STAKEHOLDER) {
       for (let validationRow of this.validationRowValues) {
         for (let answer of validationRow.answers) {
@@ -333,6 +335,7 @@ export class ValidationComponent implements OnInit{
     }
 
     const answerToFill = validationRowValue.answers.find(a => a.validationId === validationFilledByAnswer.id);
+
     if (answerToFill) {
       answerToFill.answer = this.getAnswerToSet(answerValuesSortedByWeight);
       this.validationService.saveValidationAnswer(answerToFill).subscribe(next => {});
@@ -502,5 +505,9 @@ export class ValidationComponent implements OnInit{
     const validationAnswer = this.getValidationRowAnswer(validation, validationRowValue)
     validationAnswer.stakeholder = stakeholder;
     this.onValidationRowValueChange(stakeholder.name, validationAnswer, validation, validationRowValue);
+  }
+
+  getRowPreConditionAnswer(validationRow: ValidationRow): ValidationAnswer {
+    return <ValidationAnswer>validationRow.answers.find(a => a.type === ValidationType.FEATURE_PRECONDITION);
   }
 }

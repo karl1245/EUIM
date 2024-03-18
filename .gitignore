@@ -2,7 +2,7 @@
 /frontend/.angular/
 /frontend/node_modules/karma/config.tpl.js
 
-installer creation/bin/jre/*
+installer_creation/bin/jre/*
 .gradle
 /build/
 **/target/**
