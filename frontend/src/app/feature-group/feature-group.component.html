@@ -1,4 +1,46 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading" class="d-flex">
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel #mep="matExpansionPanel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add new feature group (translate)
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <mat-label>Group name (translate)</mat-label>
+          <input [(ngModel)]="featureGroupName" matInput placeholder="Enter group name (translate)">
+        </mat-form-field>
+        <button mat-raised-button (click)="mep.toggle()" color="secondary">Cancel (translate)</button>
+        <button mat-raised-button (click)="createNewFeatureGroup(featureGroupName);mep.toggle()" color="primary">Create (translate)</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel #mepstakeholder="matExpansionPanel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add new stakeholder (translate)
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div>
+          <h2>Existing stakeholders (translate)</h2>
+          <label *ngFor="let stakeholder of stakeholders; index as i" class="stakeholder-border m-1" [ngClass]="getStakeholderColorClass(i)" >{{ stakeholder.name }}</label>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Stakeholder name (translate)</mat-label>
+          <input [(ngModel)]="stakeholderName" matInput placeholder="Enter stakeholder name (translate)">
+        </mat-form-field>
+        <button mat-raised-button (click)="mepstakeholder.toggle()" color="secondary">Cancel (translate)</button>
+        <button mat-raised-button (click)="createNewStakeholder(stakeholderName)"  color="primary">Create (translate)</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 <div *ngIf="!loading" class="page-body">
   <div class="modals">
     <div class="projects-wrapper">
@@ -13,6 +55,7 @@
           <div *ngIf=isToggledGroupAdding class="add-project-row">
             <div class="add-project-input">
               <h2>{{'Grupi nimi' | translate}}</h2>
+              <!--  -->
               <input placeholder="{{'Sisesta grupi nimi' | translate}}" id="featureGroupName" type="text" [(ngModel)]="featureGroupName"/>
             </div>
             <div class="add-project-buttons">
@@ -32,19 +75,14 @@
           </button> 
         </div>
           <div *ngIf=isToggledStakeholderAdding class="add-project-row">
-            <div class="add-project-input">         
-              <div>
-                <h2>{{'Olemasolevad stakeholderid' | translate}}</h2>
-                <div class="stakeholders-list">
-                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder" [color]="getStakeholderColorClass(i)"></app-stakeholder>
-                </div>
-              </div>
+            <div class="add-project-input">
               <h2>{{'Stakeholderi nimi' | translate}}</h2> 
-              <input placeholder="{{'Sisesta stakeholderi nimi' | translate}}" id="questionnaireName" type="text" [(ngModel)]="stakeholderName"/>
+              <!-- [(ngModel)]="featureGroupName"   [(ngModel)]="questionnaireName" -->
+              <input placeholder="{{'Sisesta stakeholderi nimi' | translate}}" id="questionnaireName" type="text"/>
             </div>
             <div class="add-project-buttons">
               <button (click)="toggleAddNewStakeholder()" class="button cancel-button">{{'button.cancel' | translate}}</button>
-              <button (click)="createNewStakeholder(stakeholderName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
+              <button  (click)="createNewFeatureGroup(featureGroupName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
             </div> 
         </div>
       </div>

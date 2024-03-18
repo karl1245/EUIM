@@ -28,7 +28,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MenuComponent } from './menus/menu.component';
 import { SelectComponent } from './select/select.component';
 import { InfoComponent } from './info/info.component';
-import { StakeholderComponent } from './stakeholder/stakeholder.component';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,8 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditQuestionnaireModalComponent,
     MenuComponent,
     SelectComponent,
-    InfoComponent,
-    StakeholderComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
