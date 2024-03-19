@@ -6,9 +6,9 @@
         <div class="add-project-header">
           <h1>{{'Lisa uus feature grupp' | translate}}</h1>
           <button (click)="toggleAddNewGroup()" class="button-icon">
-            <span *ngIf=!isToggledGroupAdding class="material-symbols-outlined icon">expand_more</span>    
-            <span *ngIf=isToggledGroupAdding class="material-symbols-outlined icon">expand_less</span>    
-          </button> 
+            <span *ngIf=!isToggledGroupAdding class="material-symbols-outlined icon">expand_more</span>
+            <span *ngIf=isToggledGroupAdding class="material-symbols-outlined icon">expand_less</span>
+          </button>
         </div>
           <div *ngIf=isToggledGroupAdding class="add-project-row">
             <div class="add-project-input">
@@ -18,7 +18,7 @@
             <div class="add-project-buttons">
               <button (click)="toggleAddNewGroup()" class="button cancel-button">{{'button.cancel' | translate}}</button>
               <button  (click)="createNewFeatureGroup(featureGroupName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
-            </div> 
+            </div>
         </div>
       </div>
     </div>
@@ -27,25 +27,25 @@
         <div class="add-project-header">
           <h1>{{'Lisa uus stakehodleri valik' | translate}}</h1>
           <button (click)="toggleAddNewStakeholder()" class="button-icon">
-            <span *ngIf=!isToggledStakeholderAdding class="material-symbols-outlined icon">expand_more</span>    
-            <span *ngIf=isToggledStakeholderAdding class="material-symbols-outlined icon">expand_less</span>    
-          </button> 
+            <span *ngIf=!isToggledStakeholderAdding class="material-symbols-outlined icon">expand_more</span>
+            <span *ngIf=isToggledStakeholderAdding class="material-symbols-outlined icon">expand_less</span>
+          </button>
         </div>
           <div *ngIf=isToggledStakeholderAdding class="add-project-row">
-            <div class="add-project-input">         
+            <div class="add-project-input">
               <div>
                 <h2>{{'Olemasolevad stakeholderid' | translate}}</h2>
                 <div class="stakeholders-list">
                   <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder" [color]="getStakeholderColorClass(i)"></app-stakeholder>
                 </div>
               </div>
-              <h2>{{'Stakeholderi nimi' | translate}}</h2> 
+              <h2>{{'Stakeholderi nimi' | translate}}</h2>
               <input placeholder="{{'Sisesta stakeholderi nimi' | translate}}" id="questionnaireName" type="text" [(ngModel)]="stakeholderName"/>
             </div>
             <div class="add-project-buttons">
               <button (click)="toggleAddNewStakeholder()" class="button cancel-button">{{'button.cancel' | translate}}</button>
               <button (click)="createNewStakeholder(stakeholderName)" formtarget="_blank" class="button add-button">{{'button.add' | translate}}</button>
-            </div> 
+            </div>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
     <!-- [(selectedIndex)]="defaultTabIndex"  -->
     <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
       <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}" class="tabs">
-        <app-validation [featureGroup]="featureGroup"></app-validation>
+        <app-validation [featureGroup]="featureGroup" [stakeholders]="stakeholders"></app-validation>
       </mat-tab>
     </mat-tab-group>
 </div>
