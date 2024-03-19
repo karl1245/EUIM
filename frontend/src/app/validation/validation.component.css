@@ -10,12 +10,16 @@ table {
   border-radius: 0.625rem;
   background-color: var(--beige);
   border-color: var(--text-color);
+  border-collapse: separate;
+  border-spacing: 0;
 }
 thead {
   border: 1px;
   border-radius: 0.625rem;
   border-color: var(--text-color);
   background-color: var(--table-head);
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 th {
@@ -26,6 +30,8 @@ th {
   font-family: Garamond;
   font-weight: bold;
   height: 5rem;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .header {
@@ -40,22 +46,61 @@ td {
   padding: 1rem;
 }
 
+.background-beige {
+  background-color: var(--beige);
+}
+
 tfoot td { border: none; }
 
-.content-cell-first-child, .content-cell-four-options {
+tr>th:first-child/*,tr>td:first-child*/ {
+  width: 3rem;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.id-cell {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 3rem;
+}
+.content-cell-first-child {
+  position: sticky;
+  left: 3rem;
+  z-index: 1;
   width: 12.5rem;
 }
 
 .content-cell-second-child {
-  width: 3.75rem;
+  position: sticky;
+  left: 15.5rem;
+  z-index: 1;
+  width: 4.5rem;
 }
 
-.content-cell-third-child, .content-cell-twelveth-child {
+.content-cell-third-child {
+  position: sticky;
+  left: 20rem;
+  z-index: 1;
   width: 8.75rem;
 }
 
-.content-cell-fourth-child, .content-cell-eleventh-child, .content-cell-thirteenth-child  {
+.content-cell-fourth-child {
+  position: sticky;
+  left: 28.75rem;
+  z-index: 1;
   width: 16.25rem;
+}
+
+.content-cell-four-options {
+  width: 12.5rem;
+}
+.content-cell-eleventh-child, .content-cell-thirteenth-child  {
+  width: 16.25rem;
+}
+.content-cell-twelveth-child {
+  width: 8.75rem;
 }
 
 .content-cell-fifth-child {

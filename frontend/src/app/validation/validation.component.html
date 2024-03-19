@@ -3,6 +3,8 @@
   <table *ngIf="!loading">
     <thead>
       <tr>
+        <th>
+        </th>
         <th *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
           <div class="header">{{getTranslation(validation)}}
           <app-info></app-info></div>
@@ -10,9 +12,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let validationRowValue of validationRowValues">
-      <ng-container *ngFor="let validation of validations; index as i">
-        <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
+      <tr *ngFor="let validationRowValue of validationRowValues; index as i">
+        <td class="id-cell background-beige">{{ i  + 1 }}</td>
+        <ng-container *ngFor="let validation of validations; index as i">
+        <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" class="background-beige" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
           <div *ngIf="isValidationSelectable(validation)">
             <app-select
               (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
