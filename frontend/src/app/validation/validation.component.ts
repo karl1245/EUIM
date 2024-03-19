@@ -546,8 +546,8 @@ export class ValidationComponent implements OnInit{
 
   getExampleActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
     return [
-      {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)},
-      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)},
+      {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, this.getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)},
+      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, this.getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)},
     ];
   }
 }
