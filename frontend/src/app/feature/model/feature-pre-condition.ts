@@ -1,5 +1,5 @@
 export interface FeaturePreCondition {
 
-  id: number | undefined;
+  id: number;
   answer: string;
 }

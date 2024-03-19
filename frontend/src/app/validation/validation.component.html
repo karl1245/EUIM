@@ -19,7 +19,7 @@
             />
             <!-- <mat-form-field>
               <mat-label>{{'select.chooseOption' | translate}}</mat-label>
-              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer" 
+              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)">
                 <mat-option
                   *ngFor="let validationValue of validationValues"
@@ -62,7 +62,7 @@
           <div  *ngIf="isValidationFeature(validation)">
           <textarea
             [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"   
+            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
           >
           </textarea>
           </div>
