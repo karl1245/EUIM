@@ -40,6 +40,7 @@ export class ValidationComponent implements OnInit{
   featurePreConditionSpans: FeatureRowSpan[] = [];
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
+  menuIcon: string = "arrow_drop_down";
 
   selectedStakeholder: StakeholderResponse;
 
@@ -56,6 +57,10 @@ export class ValidationComponent implements OnInit{
     private featurePreconditionService: FeaturePreConditionService
 
   ) {}
+
+  getValidationValues(): ValidationValue[] {
+    return this.validationValues;
+  }    
 
   ngOnInit(): void {
     const questionnaireId = this.route.snapshot.queryParamMap.get('questionnaireId');
@@ -221,6 +226,10 @@ export class ValidationComponent implements OnInit{
     return validation.type === ValidationType.FEATURE_PRECONDITION;
   }
 
+  isValidationFeatureExample(validation: Validation): boolean {
+    return validation.type === ValidationType.EXAMPLE;
+  }
+
   async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
       validationRowAnswer.answer = eventValue;
     if (validation.type === ValidationType.FEATURE) {
@@ -242,7 +251,7 @@ export class ValidationComponent implements OnInit{
         next => {
           this.updateRelatedValidationAnswers(validation, validationRowValue);
         }
-      );
+        );
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 
@@ -491,6 +500,20 @@ export class ValidationComponent implements OnInit{
       return 'content-cell-third-child'
     } else if (i === 3) {
       return 'content-cell-fourth-child'
+    } else if (i === 4) {
+      return 'content-cell-fifth-child'
+    } else if (i === 5) {
+      return 'content-cell-sixth-child'
+    } else if (i > 5 && i < 10) {
+      return 'content-cell-four-options'
+    } else if (i === 10) {
+      return 'content-cell-eleventh-child'
+    } else if (i === 11) {
+      return 'content-cell-twelveth-child'
+    } else if (i === 12) {
+      return 'content-cell-thirteenth-child'
+    } else if (i === 13) {
+      return 'content-cell-fourtteenh-child'
     }
 
     return '';
@@ -500,5 +523,24 @@ export class ValidationComponent implements OnInit{
     const validationAnswer = this.getValidationRowAnswer(validation, validationRowValue)
     validationAnswer.stakeholder = stakeholder;
     this.onValidationRowValueChange(stakeholder.name, validationAnswer, validation, validationRowValue);
+  }
+
+  getStakeholderActions():{name: string, icon: string, onClick: any}[] {
+    return [
+    ];
+  }
+
+  getPreconditionActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.addPrecondition", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
+      {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
+    ];
+  }
+
+  getExampleActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)},
+      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, validationRowValue.answers[0].featurePrecondition, validationRowValue.answers[0].stakeholder)},
+    ];
   }
 }

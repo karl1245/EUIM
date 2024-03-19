@@ -1,0 +1,157 @@
+mat-tab-group, mat-tab, app-validation {
+  border: none !important;
+}
+
+mat-tab-group {
+  max-width: 113.75rem;
+}  
+
+:host ::ng-deep div[role='tab'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: fit-content;
+  min-width: 200px;
+  background-color: var(--table-head);
+  border: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  color: var(--text-color);
+  font: inherit;
+  letter-spacing: normal;
+}
+
+:host ::ng-deep div[role='tab']:hover {
+  background-color: var(--highlight);
+  color: var(--text-color);
+}
+
+:host ::ng-deep div[role='tab'].mdc-tab--active {
+  background-color: var(--beige);
+  color: var(--text-color);
+  border-width: 4px;
+}
+
+:host ::ng-deep div[role='tablist'] > .mat-mdc-tab-labels {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  gap: 4px;
+  background-color: none;
+}
+
+:host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled {
+  background-color: var(--container);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+}
+ 
+:host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled > .mat-mdc-tab-header-pagination.mat-mdc-tab-header-pagination-before.mat-ripple,
+:host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled > .mat-mdc-tab-header-pagination.mat-mdc-tab-header-pagination-after.mat-ripple {
+  background-color: var(--table-head);
+  color: var(--text-color);
+  width: fit-content;
+  height: 80px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 4px;
+  border: solid;
+  border-width: 2px;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .mdc-tab-indicator .mdc-tab-indicator__content {
+  border: none;
+}
+
+:host ::ng-deep .mat-mdc-tab .mdc-tab__text-label,
+:host ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: var(--text-color);
+}
+
+.page-body {
+  margin-top: 5rem;
+  gap: 5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modals {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects-wrapper {
+  height: fit-content;
+  width: fit-content;
+  padding: 2.5rem;
+  background-color: #729368;
+  border-radius: 0.625rem;
+  display: flex;
+  gap: 5rem;
+}
+
+.add-project {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--beige);
+  width: 37.5rem;
+  padding: 32px;
+  border-radius: 0.625rem;
+  gap: 32px;
+}
+
+.add-project-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-project-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.add-project-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.add-project-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: flex-end;
+  width: 100%;
+  gap: 1rem;
+}
+
+input {
+  border-radius: 8px;
+  padding: 8px;
+  height: 32px;
+}
+
+.stakeholders-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: left;
+  align-items: top;
+  width: 100%;
+  gap: 8px;
+}

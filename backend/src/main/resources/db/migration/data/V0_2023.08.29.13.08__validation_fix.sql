@@ -1,21 +1,21 @@
 UPDATE validation
-SET name_et = 'Vali 4 vastusevariandi seast',
-    name_en = 'Choose from 4 options'
+SET name_et = 'Sama sidusrühm?',
+    name_en = 'The same stakeholder?'
 WHERE
         id = 1;
 UPDATE validation
-SET name_et = 'Vali 4 vastusevariandi seast',
-    name_en = 'Choose from 4 options'
+SET name_et = 'Sama kontekst?',
+    name_en = 'The same context?'
 WHERE
         id = 2;
 UPDATE validation
-SET name_et = 'Vali 4 vastusevariandi seast',
-    name_en = 'Choose from 4 options'
+SET name_et = 'Eesmärgipärane kasutus?',
+    name_en = 'Purposeful use?'
 WHERE
         id = 3;
 UPDATE validation
-SET name_et = 'Vali 4 vastusevariandi seast',
-    name_en = 'Choose from 4 options'
+SET name_et = 'Lahendusega rahul?',
+    name_en = 'Satisfied with the solution?'
 WHERE
         id = 4;
 
@@ -25,12 +25,12 @@ SET name_et = 'Kas',
 WHERE
         id = 6;
 
-INSERT INTO validation(name_et, name_en, weight, type) VALUES('Kasutajad','Stakeholders', 63, 'TEXT');
-INSERT INTO validation(name_et, name_en, weight, type) VALUES('TO-BE eeldustingimused','Features prerequisties', 66, 'TEXT');
+INSERT INTO validation(name_et, name_en, weight, type) VALUES('Sidusrühm','Stakeholder', 63, 'TEXT');
+INSERT INTO validation(name_et, name_en, weight, type) VALUES('Tunnuse eeltingimus','Features precondition', 66, 'TEXT');
 
 UPDATE validation
-SET name_et = 'Analoognäited varasemast tegevusest',
-    name_en = 'Comparable example'
+SET name_et = 'Võrreldav situatsioon',
+    name_en = 'Comparable situation'
 WHERE
         id = 7;
 
@@ -52,7 +52,7 @@ SET name_et = 'Kombinatsioon vastustest',
 WHERE
         id = 9;
 
-INSERT INTO validation(name_et, name_en, weight, type) VALUES('Kasutajad','Stakeholders', 93, 'FILL');
+INSERT INTO validation(name_et, name_en, weight, type) VALUES('Sidusrühm','Stakeholder', 93, 'FILL');
 INSERT INTO validation(name_et, name_en, weight, type) VALUES('TO-BE eeldustingimus','Features precondition', 96, 'FILL');
 
 UPDATE validation
@@ -62,6 +62,6 @@ WHERE
         id = 9;
 UPDATE validation
 SET name_et = 'Tee järeldused ja loo tegevuskava',
-    name_en = 'Make conclusions and create an action plan'
+    name_en = 'Make a conclusions and create an action plan'
 WHERE
         id = 10;

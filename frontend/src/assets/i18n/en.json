@@ -9,7 +9,11 @@
     "edit": "Edit",
     "delete":"Delete",
     "copy": "Make a copy",
-    "download": "Download"
+    "download": "Download", 
+    "addPrecondition": "Add preconditon",
+    "deletePrecondition": "Delete preconditon",
+    "addExample": "Add example",
+    "deleteExample": "Delete example"
   },
   "toolbar": {
     "name": "EUIM",

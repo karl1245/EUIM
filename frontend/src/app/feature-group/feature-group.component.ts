@@ -18,6 +18,8 @@ export class FeatureGroupComponent {
 
   questionnaireId: number;
   loading: boolean = true;
+  isToggledGroupAdding: boolean = false;
+  isToggledStakeholderAdding: boolean = false;
   defaultTabIndex = 0;
   featureGroupName: string;
   stakeholderName: string;
@@ -40,6 +42,14 @@ export class FeatureGroupComponent {
     this.questionnaireId = +questionnaireId;
 
     this.getData();
+  }
+
+  toggleAddNewGroup(): void {
+    this.isToggledGroupAdding = !this.isToggledGroupAdding;
+  }
+
+  toggleAddNewStakeholder(): void {
+    this.isToggledStakeholderAdding = !this.isToggledStakeholderAdding;
   }
 
   getData(): void {
@@ -75,9 +85,8 @@ export class FeatureGroupComponent {
       .subscribe(next => this.stakeholders.push(next))
   }
 
-  getStakeholderColorClass(i: number) {
+  getStakeholderColorClass(i: number): string {
     let colorIndex = i % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
-
-    return 'stakeholder-' + GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
+    return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
   }
 }
