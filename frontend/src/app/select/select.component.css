@@ -39,6 +39,7 @@
   background: none;
   z-index: 2;
   color: var(--text-color);
+  overflow: hidden;
 }
 
 .select-option-button {  

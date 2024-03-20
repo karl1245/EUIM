@@ -73,34 +73,41 @@ tr>th:first-child/*,tr>td:first-child*/ {
 }
 
 .content-cell-second-child {
-  position: sticky;
   left: 15.5rem;
-  z-index: 1;
   width: 4.5rem;
+  border-right: none;
 }
 
 .content-cell-third-child {
-  position: sticky;
   left: 20rem;
-  z-index: 1;
   width: 8.75rem;
+  border-right: none;
+  border-left: none;
 }
 
 .content-cell-fourth-child {
-  position: sticky;
   left: 28.75rem;
-  z-index: 1;
   width: 16.25rem;
+  border-left: none;
 }
 
 .content-cell-four-options {
   width: 12.5rem;
 }
-.content-cell-eleventh-child, .content-cell-thirteenth-child  {
+.content-cell-eleventh-child {
   width: 16.25rem;
+  border-right: none;
 }
+
 .content-cell-twelveth-child {
   width: 8.75rem;
+  border-right: none;
+  border-left: none;
+}
+
+.content-cell-thirteenth-child  {
+  width: 16.25rem;
+  border-left: none;
 }
 
 .content-cell-fifth-child {
@@ -136,4 +143,31 @@ textarea {
   all: unset;
   width: 100%;
   height: 100%;
+}
+
+.content-cell-third-child .answer-stakeholder, .content-cell-twelveth-child .answer-stakeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 120px; 
+  gap: 4px;
+  padding: 4px 8px 4px 8px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+}
+
+.none {
+  display: none;
+  border: none !important;
+}
+
+.cell-with-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: right;
+  height: 100%; 
 }

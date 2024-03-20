@@ -10,6 +10,7 @@
     "delete":"Delete",
     "copy": "Make a copy",
     "download": "Download", 
+    "addStakeholder": "Add Stakeholder",
     "addPrecondition": "Add preconditon",
     "deletePrecondition": "Delete preconditon",
     "addExample": "Add example",

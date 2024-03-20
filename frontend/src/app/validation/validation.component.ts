@@ -38,6 +38,7 @@ export class ValidationComponent implements OnInit{
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
   menuIcon: string = "arrow_drop_down";
+  stakeholderListToggled: boolean = false;
 
   selectedStakeholder: StakeholderResponse;
 
@@ -505,7 +506,6 @@ export class ValidationComponent implements OnInit{
     } else if (i === 13) {
       return 'content-cell-fourtteenh-child'
     }
-
     return '';
   }
 
@@ -531,6 +531,7 @@ export class ValidationComponent implements OnInit{
   }
   getPreconditionActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
     return [
+      {name: "menu.addStakeholder", icon: 'add', onClick: () => this.openStakeholderSelection()},
       {name: "menu.addPrecondition", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
       {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.deleteFeaturePreCondition(validationRowValue.answers[0].featurePrecondition.id)},
     ];
@@ -549,5 +550,37 @@ export class ValidationComponent implements OnInit{
 
   deleteFeaturePreCondition(id: number) {
     this.featurePreconditionService.delete(id).subscribe(next => this.getData());
+  }
+
+  openStakeholderSelection(): void {
+    this.stakeholderListToggled = true;
+  }
+
+  getStakeholderColorClass(answer: any, column: any): string {
+    if (column == 2 || column == 11) {
+      let currentStakeholder: string = answer.trim();
+      let index = 0; 
+
+      if (currentStakeholder.length == 0) {
+        return "none";
+      }
+
+      for (let i = 0; i < this.stakeholders.length; i++) {
+        index = i;
+        console.log(this.stakeholders[i].name);
+        if (currentStakeholder === this.stakeholders[i].name) {
+          break;
+        }
+      }
+      let colorIndex = index % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
+      return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
+    }
+    else {
+      return "";
+    }
+  }
+
+  getStakeholderListActions(action: any): {name: string, onClick: any} {
+    return {name: "stakeholderList", onClick: () => action};
   }
 }

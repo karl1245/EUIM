@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { ValidationValue, ValidationValue2LabelMapping } from '../validation/model/validation-value';
 
 @Component({
@@ -13,6 +13,8 @@ export class SelectComponent {
   isToggled: boolean = false;
 
   @Output() selectionChange: EventEmitter<ValidationValue> = new EventEmitter<ValidationValue>();
+
+  constructor(private elementRef: ElementRef) {}
 
   toggleSelect(): void {
     this.isToggled = !this.isToggled;
@@ -29,5 +31,13 @@ export class SelectComponent {
     this.selectedValue = validationValue;
     this.selectionChange.emit(validationValue)
     this.toggleSelect();
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      // Clicked outside of the menu
+      this.isToggled = false;
+    }
   }
 }

@@ -10,6 +10,7 @@
     "delete":"Kustuta",
     "copy": "Tee koopia",
     "download": "Lae alla",
+    "addStakeholder": "Lisa sidusrühm",
     "addPrecondition": "Lisa eeltingimus",
     "deletePrecondition": "Kustuta eeltingimus",
     "deleteFeature": "Kustuta tunnus",

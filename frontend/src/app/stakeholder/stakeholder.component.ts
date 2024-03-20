@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ValidationValue, ValidationValue2LabelMapping } from '../validation/model/validation-value';
 
 @Component({
   selector: 'app-stakeholder',

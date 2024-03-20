@@ -1,13 +1,14 @@
 <div class="menu-component">
-  <button class="menu-button button-icon {{icon}}" (click)="toggleMenu()">
+  <button class="menu-button button-icon {{icon}} " (click)="toggleMenu()">
     <span class="material-symbols-outlined icon">{{icon}}</span>
   </button>
-  <div *ngIf=isToggled class="dropdown-menu">
-    <div *ngFor="let action of actions" class="menu-row">
+  <div *ngIf=isToggled class="dropdown-menu {{icon}}-menu">
+    <button *ngFor="let action of actions" (click)="action.onClick()" class="menu-row">
       <span class="material-symbols-outlined icon small-icon">{{action.icon | translate}}</span>
-      <button (click)="action.onClick()" class="menu-row-button">
-        {{action.name | translate}}
-      </button>
-    </div>
+      <span class="action-label">{{action.name | translate}}</span>
+    </button>
+  </div>
+  <div *ngIf=stakeholderListToggled>
+    <app-stakeholderselect [stakeholders]="stakeholders"></app-stakeholderselect>  
   </div>
 </div>

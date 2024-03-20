@@ -21,6 +21,38 @@
               (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
             />
           </div>
+          <div class="w-100 h-100" *ngIf="isValidationStakeholder(validation)">
+            <select [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
+              <option *ngFor="let stakeholder of stakeholders; index as i" [ngValue]="stakeholder" value="stakeholder">{{stakeholder.name}}</option>
+            </select>
+            <app-stakeholder 
+              class="{{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}" 
+              [stakeholder]="getValidationRowAnswer(validation, validationRowValue).answer" 
+              [color]="getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)"
+            >
+            </app-stakeholder>
+          </div>
+          <div *ngIf="isValidationFeature(validation)" class="cell-with-menu">
+            <app-menu [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
+            <textarea
+              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              class="overflow-auto w-100 border-0 textarea-min-height"
+            >
+            </textarea>
+          </div>
+          <div *ngIf="isValidationFeaturePrecondition(validation)" class="cell-with-menu">
+            <app-menu [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)"></app-menu>
+            <textarea
+              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              class="overflow-auto w-100 border-0 textarea-min-height"
+            >
+            </textarea>
+          </div>
+          <div *ngIf="isValidationExample(validation)" class="cell-with-menu">
+            <app-menu [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
+          </div>
           <div *ngIf="isValidationTextField(validation)">
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
@@ -29,39 +61,8 @@
             >
             </textarea>
           </div>
-          <div class="w-100 h-100" *ngIf="isValidationStakeholder(validation)">
-            <select style="width:18px; position: absolute; top: 0;right: 0" [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
-              <option *ngFor="let stakeholder of stakeholders; index as i" [ngValue]="stakeholder" value="stakeholder">{{stakeholder.name}}</option>
-            </select>
-            <p>
-              {{ getValidationRowAnswer(validation, validationRowValue).answer }}
-            </p>
-          </div>
-          <div  *ngIf="isValidationFeature(validation)">
-            <textarea
-              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-              class="overflow-auto w-100 border-0 textarea-min-height"
-            >
-            </textarea>
-          </div>
-          <div *ngIf="isValidationFeaturePrecondition(validation)">
-            <textarea
-              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-              class="overflow-auto w-100 border-0 textarea-min-height"
-            >
-            </textarea>
-            <app-menu [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)"></app-menu>
-          </div>
-          <div *ngIf="isValidationExample(validation)">
-            <app-menu [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
-          </div>
-          <div *ngIf="isValidationFeature(validation)">
-            <app-menu [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
-          </div>
           <div *ngIf="isValidationAutofill(validation)">
-            {{getValidationRowAnswer(validation, validationRowValue).answer}}
+            <span class="answer-stakeholder {{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}">{{getValidationRowAnswer(validation, validationRowValue).answer}}</span>
           </div>
         </td>
       </ng-container>

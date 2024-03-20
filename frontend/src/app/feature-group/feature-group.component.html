@@ -36,7 +36,7 @@
               <div>
                 <h2>{{'Olemasolevad stakeholderid' | translate}}</h2>
                 <div class="stakeholders-list">
-                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder" [color]="getStakeholderColorClass(i)"></app-stakeholder>
+                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder.name" [color]="getStakeholderColorClass(i)"></app-stakeholder>
                 </div>
               </div>
               <h2>{{'Stakeholderi nimi' | translate}}</h2>
