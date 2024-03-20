@@ -1,6 +1,6 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<div class="table-wrapper">
-  <table *ngIf="!loading">
+<div *ngIf="!loading" class="table-wrapper">
+  <table>
     <thead>
       <tr>
         <th>
@@ -20,18 +20,6 @@
             <app-select
               (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
             />
-            <!-- <mat-form-field>
-              <mat-label>{{'select.chooseOption' | translate}}</mat-label>
-              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)">
-                <mat-option
-                  *ngFor="let validationValue of validationValues"
-                  [value]="validationValue"
-                >
-                  {{'select.' + validationValue2LabelMapping[validationValue] | translate}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>   -->
           </div>
           <div *ngIf="isValidationTextField(validation)">
             <textarea
@@ -56,18 +44,6 @@
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
-          <textarea
-            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-          >
-          </textarea>
-          </div>
-          <div  *ngIf="isValidationFeature(validation)">
-          <textarea
-            [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-            (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-          >
-          </textarea>
           </div>
           <div *ngIf="isValidationFeaturePrecondition(validation)">
             <textarea
