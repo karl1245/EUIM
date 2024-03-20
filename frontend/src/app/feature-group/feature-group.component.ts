@@ -85,6 +85,16 @@ export class FeatureGroupComponent {
       .subscribe(next => this.stakeholders.push(next))
   }
 
+  deleteStakeholder(id: number) {
+    this.stakeholderService.deleteStakeholder(id)
+      .subscribe(next => this.stakeholders = this.stakeholders.filter(s => s.id !== id))
+  }
+
+  deleteFeatureGroup(id: number) {
+    this.featureGroupService.deleteFeatureGroup(id)
+      .subscribe(next => this.featureGroups = this.featureGroups.filter(fg => fg.id !== id))
+  }
+
   getStakeholderColorClass(i: number): string {
     let colorIndex = i % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
     return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];

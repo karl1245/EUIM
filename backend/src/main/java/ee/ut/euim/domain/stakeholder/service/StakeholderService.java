@@ -40,9 +40,5 @@ public class StakeholderService {
     );
   }
 
-  public void delete(Integer id) {
-    stakeholderRepository.deleteById(id);
-  }
-
   public record CreateParameters(String name, Integer questionnaireId) {}
 }

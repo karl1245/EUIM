@@ -76,6 +76,29 @@ public class ValidationAnswerService {
     validationAnswerRepository.delete(ValidationAnswerSpecification.questionnaireId(questionnaireId).and(rowId(rowId)));
   }
 
+  public void removeStakeHolderById(Integer id) {
+    log.info("Removing stakeholder with id: {} from all validation answers", id);
+    List<ValidationAnswer> validationAnswers = validationAnswerRepository.findAll(ValidationAnswerSpecification.stakeHolderId(id));
+    for (ValidationAnswer validationAnswer : validationAnswers) {
+      if (validationAnswer.getType().equals("STAKEHOLDER")) {
+        validationAnswer.setAnswer(null);
+      }
+      validationAnswer.setStakeholder(null);
+    }
+
+    validationAnswerRepository.saveAll(validationAnswers);
+  }
+
+  public void deleteByFeatureId(Integer id) {
+    log.info("Deleting all validation answers by feature id: {}", id);
+    validationAnswerRepository.deleteAll(validationAnswerRepository.findAll(ValidationAnswerSpecification.featureId(id)));
+  }
+
+  public void deleteByFeaturePreconditionId(Integer id) {
+    log.info("Deleting all validation answers by feature precondition id: {}", id);
+    validationAnswerRepository.deleteAll(validationAnswerRepository.findAll(ValidationAnswerSpecification.featurePreconditionId(id)));
+  }
+
   public record SaveParameters(
     Integer id,
     Integer rowId,

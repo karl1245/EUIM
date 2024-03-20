@@ -34,7 +34,6 @@ export class ValidationComponent implements OnInit{
   validationSummaries: ValidationSummary[] = [];
   validationRowValues: ValidationRow[] = [];
   validationCombinationResults: ValidationCombinationResult[] = [];
-  validationValue2LabelMapping = ValidationValue2LabelMapping;
   validationValues = Object.values(ValidationValue);
   featureRowSpans: FeatureRowSpan[] = [];
   featurePreConditionSpans: FeatureRowSpan[] = [];
@@ -74,6 +73,7 @@ export class ValidationComponent implements OnInit{
   }
 
   getData(): void {
+    this.loading = true;
     const finished = new Observable(subscriber => {
       this.getValidations(subscriber)
       this.getValidationSummaries(subscriber)
@@ -86,7 +86,6 @@ export class ValidationComponent implements OnInit{
         this.validationSummaries.length > 0
       ) {
         this.getValidationAnswers();
-        this.loading = false;
       }
     })
   }
@@ -209,7 +208,7 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO;
+    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO || validation.type === ValidationType.EXAMPLE;
   }
 
   isValidationFeature(validation: Validation): boolean {
@@ -228,7 +227,7 @@ export class ValidationComponent implements OnInit{
     return validation.type === ValidationType.FEATURE_PRECONDITION;
   }
 
-  isValidationFeatureExample(validation: Validation): boolean {
+  isValidationExample(validation: Validation): boolean {
     return validation.type === ValidationType.EXAMPLE;
   }
 
@@ -537,17 +536,30 @@ export class ValidationComponent implements OnInit{
     ];
   }
 
-  getPreconditionActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
+  getFeatureActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.deleteFeature", icon: 'delete', onClick: () => this.deleteFeature(validationRowValue.answers[0].feature.id)},
+    ];
+  }
+  getPreconditionActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
     return [
       {name: "menu.addPrecondition", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
-      {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
+      {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.deleteFeaturePreCondition(validationRowValue.answers[0].featurePrecondition.id)},
     ];
   }
 
-  getExampleActions(validationRowValue: any):{name: string, icon: string, onClick: any}[] {
+  getExampleActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
     return [
       {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, this.getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)},
-      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, this.getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)},
+      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.deleteRow(validationRowValue.rowId)}
     ];
+  }
+
+  deleteFeature(id: number) {
+    this.featureService.delete(id).subscribe(next => this.getData());
+  }
+
+  deleteFeaturePreCondition(id: number) {
+    this.featurePreconditionService.delete(id).subscribe(next => this.getData());
   }
 }

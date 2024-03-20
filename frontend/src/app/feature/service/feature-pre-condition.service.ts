@@ -24,4 +24,8 @@ export class FeaturePreConditionService {
       {answer: answer}
     );
   }
+
+  public delete(id: number): Observable<any> {
+    return this.http.delete(FeatureEndpointConstants.preConditionIdPath(id));
+  }
 }

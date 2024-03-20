@@ -12,6 +12,7 @@
     "download": "Lae alla",
     "addPrecondition": "Lisa eeltingimus",
     "deletePrecondition": "Kustuta eeltingimus",
+    "deleteFeature": "Kustuta tunnus",
     "addExample": "Lisa situatsioon",
     "deleteExample": "Kustuta situatsioon"
   },

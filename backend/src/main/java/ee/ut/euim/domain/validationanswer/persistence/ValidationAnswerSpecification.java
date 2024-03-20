@@ -1,7 +1,10 @@
 package ee.ut.euim.domain.validationanswer.persistence;
 
+import ee.ut.euim.domain.feature.persistence.Feature_;
 import ee.ut.euim.domain.featuregroup.persistence.FeatureGroup_;
+import ee.ut.euim.domain.featureprecondition.persistence.FeaturePrecondition_;
 import ee.ut.euim.domain.questionnaire.persistence.Questionnaire_;
+import ee.ut.euim.domain.stakeholder.persistence.Stakeholder_;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,5 +22,17 @@ public class ValidationAnswerSpecification {
 
   public static Specification<ValidationAnswer> rowId(Integer id) {
     return (root, query, builder) -> builder.equal(root.get(ValidationAnswer_.rowId), id);
+  }
+
+  public static Specification<ValidationAnswer> stakeHolderId(Integer id) {
+    return (root, query, builder) -> builder.equal(root.get(ValidationAnswer_.stakeholder).get(Stakeholder_.id), id);
+  }
+
+  public static Specification<ValidationAnswer> featureId(Integer id) {
+    return (root, query, builder) -> builder.equal(root.get(ValidationAnswer_.feature).get(Feature_.id), id);
+  }
+
+  public static Specification<ValidationAnswer> featurePreconditionId(Integer id) {
+    return (root, query, builder) -> builder.equal(root.get(ValidationAnswer_.featurePrecondition).get(FeaturePrecondition_.id), id);
   }
 }

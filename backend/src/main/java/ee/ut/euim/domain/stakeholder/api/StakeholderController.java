@@ -1,5 +1,6 @@
 package ee.ut.euim.domain.stakeholder.api;
 
+import ee.ut.euim.domain.stakeholder.service.StakeholderDeleteService;
 import ee.ut.euim.domain.stakeholder.service.StakeholderService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ import static ee.ut.euim.domain.stakeholder.api.StakeholderMapper.toResponse;
 public class StakeholderController {
 
   private final StakeholderService stakeholderService;
+  private final StakeholderDeleteService stakeholderDeleteService;
 
   @GetMapping("/questionnaire-id/{questionnaireId}")
   public List<StakeholderResponse> get(@PathVariable(value = "questionnaireId") @NotNull Integer id) {
@@ -49,6 +51,6 @@ public class StakeholderController {
   public void delete(@PathVariable(value = "id") @NotNull Integer id) {
     log.info("Deleting stakeholder with id: {}", id);
 
-    stakeholderService.delete(id);
+    stakeholderDeleteService.deleteAndRemoveFromValidationAnswers(id);
   }
 }
