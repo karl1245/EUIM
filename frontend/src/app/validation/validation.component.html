@@ -42,7 +42,7 @@
             </textarea>
           </div>
           <div *ngIf="isValidationFeaturePrecondition(validation)" class="cell-with-menu">
-            <app-menu [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)"></app-menu>
+            <app-menu [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [stakeholders]="stakeholders"></app-menu>
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
