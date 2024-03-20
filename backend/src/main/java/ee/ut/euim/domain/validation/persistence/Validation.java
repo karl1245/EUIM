@@ -1,7 +1,6 @@
 package ee.ut.euim.domain.validation.persistence;
 
 import ee.ut.euim.domain.validationautofill.persistence.ValidationAutofill;
-import ee.ut.euim.domain.validationsummary.persistence.ValidationSummary;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,9 +41,6 @@ public class Validation {
 
   @Column
   private String type;
-
-  @ManyToOne
-  private ValidationSummary summary;
 
   @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "validationToFill")
   private List<ValidationAutofill> validationAutofills = new ArrayList<>();

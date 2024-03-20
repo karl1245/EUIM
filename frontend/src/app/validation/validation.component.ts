@@ -4,8 +4,7 @@ import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
 import { ValidationCombinationResult } from './model/validation-combination-result';
 import { firstValueFrom, Observable } from 'rxjs';
-import { ValidationValue, ValidationValue2LabelMapping } from './model/validation-value';
-import { ValidationSummary } from './model/validation-summary';
+import { ValidationValue } from './model/validation-value';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { GlobalConstants } from '../constants/global-constants';
@@ -31,7 +30,6 @@ export class ValidationComponent implements OnInit{
   loading: boolean = true;
   translate: boolean = false;
   validations: Validation[] = [];
-  validationSummaries: ValidationSummary[] = [];
   validationRowValues: ValidationRow[] = [];
   validationCombinationResults: ValidationCombinationResult[] = [];
   validationValues = Object.values(ValidationValue);
@@ -76,14 +74,12 @@ export class ValidationComponent implements OnInit{
     this.loading = true;
     const finished = new Observable(subscriber => {
       this.getValidations(subscriber)
-      this.getValidationSummaries(subscriber)
       this.getValidationCombinationResults(subscriber);
     })
     finished.subscribe(_ => {
       if (
         this.validations.length > 0 &&
-        this.validationCombinationResults.length > 0 &&
-        this.validationSummaries.length > 0
+        this.validationCombinationResults.length > 0
       ) {
         this.getValidationAnswers();
       }
@@ -96,14 +92,6 @@ export class ValidationComponent implements OnInit{
       .subscribe((next) => {
         this.validations = next.sort((a,b) => a.weight - b.weight);
         subscriber.next(this.validations);
-      });
-  }
-  getValidationSummaries(subscriber: any): void {
-    this.validationService
-      .getValidationSummaries()
-      .subscribe((next) => {
-        this.validationSummaries = next.sort((a,b) => a.weight - b.weight);
-        subscriber.next(this.validationSummaries);
       });
   }
 

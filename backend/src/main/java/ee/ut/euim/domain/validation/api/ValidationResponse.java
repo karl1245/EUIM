@@ -20,7 +20,6 @@ public class ValidationResponse {
   private String nameEn;
   private Integer weight;
   private String type;
-  private Integer summaryId;
   private List<ValidationAutofill> validationAutofillList;
 
   @Getter
