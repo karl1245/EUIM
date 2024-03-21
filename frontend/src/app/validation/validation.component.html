@@ -25,14 +25,22 @@
             <select [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
               <option *ngFor="let stakeholder of stakeholders; index as i" [ngValue]="stakeholder" value="stakeholder">{{stakeholder.name}}</option>
             </select>
-            <app-stakeholder 
-              class="{{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}" 
-              [stakeholder]="getValidationRowAnswer(validation, validationRowValue).answer" 
+            <app-stakeholder
+              *ngIf="getValidationRowAnswer(validation, validationRowValue).answer !== null && getValidationRowAnswer(validation, validationRowValue).answer !== ''"
+              class="{{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}"
+              [stakeholder]="getValidationRowAnswer(validation, validationRowValue).answer"
               [color]="getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)"
+              [deleteAction]="getStakeHolderDeleteAction(validation, validationRowValue)"
             >
             </app-stakeholder>
           </div>
           <div *ngIf="isValidationFeature(validation)" class="cell-with-menu">
+            <textarea
+              [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
+              (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
+              class="overflow-auto w-100 border-0 textarea-min-height background-dark-beige"
+            >
+            </textarea>
             <app-menu [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"

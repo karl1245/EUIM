@@ -160,7 +160,7 @@ export class ValidationComponent implements OnInit{
         questionnaireId: this.questionnaireId,
         featureGroupId: this.featureGroup.id,
         featurePrecondition: featurePrecondition,
-        feature: {answer: feature.answer, id: feature.id},
+        feature: {answer: feature.answer, id: feature.id, customId: feature.customId},
         stakeholder: stakeholder
         })
       );
@@ -224,7 +224,7 @@ export class ValidationComponent implements OnInit{
       validationRowAnswer.answer = eventValue;
     if (validation.type === ValidationType.FEATURE) {
       validationRowAnswer.feature = await firstValueFrom(
-        this.featureService.update(validationRowAnswer.feature.id, eventValue)
+        this.featureService.update(validationRowAnswer.feature.id, eventValue, validationRowAnswer.feature.customId)
       );
     }
 
@@ -352,7 +352,7 @@ export class ValidationComponent implements OnInit{
   allRequiredAnswersFilled(validationFilledByAnswer: Validation, validationRowValue: ValidationRow): boolean {
     for (let validationFilledBy of validationFilledByAnswer.validationAutofillList) {
       const answer = validationRowValue.answers.find(a => a.validationId === validationFilledBy.validationFilledById);
-      if (answer == null || answer.answer == '' || answer.answer == null) {
+      if (answer == null  || answer.answer == null) {
         return false;
       }
     }
@@ -512,7 +512,7 @@ export class ValidationComponent implements OnInit{
   onStakeholderChange(stakeholder: any, validation: Validation, validationRowValue: ValidationRow) {
     const validationAnswer = this.getValidationRowAnswer(validation, validationRowValue)
     validationAnswer.stakeholder = stakeholder;
-    this.onValidationRowValueChange(stakeholder.name, validationAnswer, validation, validationRowValue);
+    this.onValidationRowValueChange(stakeholder ? stakeholder.name : '', validationAnswer, validation, validationRowValue);
   }
 
   getRowPreConditionAnswer(validationRow: ValidationRow): ValidationAnswer {
@@ -557,9 +557,9 @@ export class ValidationComponent implements OnInit{
   }
 
   getStakeholderColorClass(answer: any, column: any): string {
-    if (column == 2 || column == 11) {
+    if (answer !== null && (column == 2 || column == 11)) {
       let currentStakeholder: string = answer.trim();
-      let index = 0; 
+      let index = 0;
 
       if (currentStakeholder.length == 0) {
         return "none";
@@ -567,7 +567,6 @@ export class ValidationComponent implements OnInit{
 
       for (let i = 0; i < this.stakeholders.length; i++) {
         index = i;
-        console.log(this.stakeholders[i].name);
         if (currentStakeholder === this.stakeholders[i].name) {
           break;
         }
@@ -582,5 +581,15 @@ export class ValidationComponent implements OnInit{
 
   getStakeholderListActions(action: any): {name: string, onClick: any} {
     return {name: "stakeholderList", onClick: () => action};
+  }
+
+  getStakeHolderDeleteAction(validation: Validation, validationRowValue: ValidationRow): any {
+    return () => this.onStakeholderChange(null, validation, validationRowValue)
+  }
+
+  onFeatureCustomIdChange(customId: any, feature: FeatureResponse) {
+    setTimeout(() => {
+      this.featureService.update(feature.id, feature.answer, customId).subscribe(next => {});
+    }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 }

@@ -36,7 +36,7 @@
               <div>
                 <h2>{{'Olemasolevad stakeholderid' | translate}}</h2>
                 <div class="stakeholders-list">
-                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder.name" [color]="getStakeholderColorClass(i)"></app-stakeholder>
+                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder.name" [deleteAction]="getStakeHolderDeleteAction(stakeholder.id)" [color]="getStakeholderColorClass(i)"></app-stakeholder>
                 </div>
               </div>
               <h2>{{'Stakeholderi nimi' | translate}}</h2>
@@ -93,7 +93,7 @@
       </mat-accordion>
     </div>
   </div> -->
-  <div>
+  <div *ngIf="!tabsLoading">
     <!-- [(selectedIndex)]="defaultTabIndex"  -->
     <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
       <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}" class="tabs">

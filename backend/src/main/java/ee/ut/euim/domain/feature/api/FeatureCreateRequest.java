@@ -16,4 +16,6 @@ public class FeatureCreateRequest {
 
   @NotNull
   private String answer;
+
+  private String customId;
 }

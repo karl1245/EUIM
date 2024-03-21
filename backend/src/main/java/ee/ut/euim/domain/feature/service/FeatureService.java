@@ -28,11 +28,11 @@ public class FeatureService {
     );
   }
 
-  public Feature update(Integer id, String answer) {
+  public Feature update(Integer id, String answer, String customId) {
     return featureRepository.save(
       featureRepository.findById(id).orElseThrow(
         () -> new NoSuchElementException("Feature not found with id:" + id)
-      ).setAnswer(answer)
+      ).setAnswer(answer).setCustomId(customId)
     );
   }
 }

@@ -50,6 +50,10 @@ td {
   background-color: var(--beige);
 }
 
+.background-dark-beige {
+  background-color: #D8D2CB
+;
+}
 tfoot td { border: none; }
 
 tr>th:first-child/*,tr>td:first-child*/ {
@@ -151,7 +155,7 @@ textarea {
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  max-width: 120px; 
+  max-width: 120px;
   gap: 4px;
   padding: 4px 8px 4px 8px;
   border-style: solid;
@@ -169,5 +173,5 @@ textarea {
   flex-direction: column;
   align-items: end;
   justify-content: right;
-  height: 100%; 
+  height: 100%;
 }

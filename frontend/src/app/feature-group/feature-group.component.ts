@@ -6,6 +6,8 @@ import { MatTabGroup } from '@angular/material/tabs';
 import { StakeholderService } from '../stakeholder/service/stakeholder.service';
 import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { GlobalConstants } from '../constants/global-constants';
+import { Validation } from '../validation/model/validation';
+import { ValidationRow } from '../validation/model/validation-row';
 
 @Component({
   selector: 'app-feature-group',
@@ -18,6 +20,7 @@ export class FeatureGroupComponent {
 
   questionnaireId: number;
   loading: boolean = true;
+  tabsLoading: boolean = false;
   isToggledGroupAdding: boolean = false;
   isToggledStakeholderAdding: boolean = false;
   defaultTabIndex = 0;
@@ -86,17 +89,29 @@ export class FeatureGroupComponent {
   }
 
   deleteStakeholder(id: number) {
+    this.tabsLoading = true;
     this.stakeholderService.deleteStakeholder(id)
-      .subscribe(next => this.stakeholders = this.stakeholders.filter(s => s.id !== id))
+      .subscribe(next =>  {
+        this.stakeholders = this.stakeholders.filter(s => s.id !== id)
+        this.tabsLoading = false;
+      })
   }
 
   deleteFeatureGroup(id: number) {
+    this.tabsLoading = true;
     this.featureGroupService.deleteFeatureGroup(id)
-      .subscribe(next => this.featureGroups = this.featureGroups.filter(fg => fg.id !== id))
+      .subscribe(next => {
+        this.featureGroups = this.featureGroups.filter(fg => fg.id !== id)
+        this.tabsLoading = false;
+      })
   }
 
   getStakeholderColorClass(i: number): string {
     let colorIndex = i % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
     return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
+  }
+
+  getStakeHolderDeleteAction(id: number): any {
+    return () => this.deleteStakeholder(id)
   }
 }

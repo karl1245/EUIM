@@ -44,7 +44,7 @@ public class FeatureController {
   ) {
     log.info("Updating feature with id: {}, with values: {}",id, featureCreateRequest);
 
-    return toResponse(featureService.update(id, featureCreateRequest.getAnswer()));
+    return toResponse(featureService.update(id, featureCreateRequest.getAnswer(), featureCreateRequest.getCustomId()));
   }
 
   @DeleteMapping("/{id}")

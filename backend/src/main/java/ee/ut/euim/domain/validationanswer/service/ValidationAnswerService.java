@@ -81,7 +81,7 @@ public class ValidationAnswerService {
     List<ValidationAnswer> validationAnswers = validationAnswerRepository.findAll(ValidationAnswerSpecification.stakeHolderId(id));
     for (ValidationAnswer validationAnswer : validationAnswers) {
       if (validationAnswer.getType().equals("STAKEHOLDER")) {
-        validationAnswer.setAnswer(null);
+        validationAnswer.setAnswer("");
       }
       validationAnswer.setStakeholder(null);
     }

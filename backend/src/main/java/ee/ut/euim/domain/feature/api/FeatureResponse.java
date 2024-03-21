@@ -15,4 +15,5 @@ public class FeatureResponse {
 
   private Integer id;
   private String answer;
+  private String customId;
 }

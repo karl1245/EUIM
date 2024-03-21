@@ -19,10 +19,10 @@ export class FeatureService {
     );
   }
 
-  public update(id: number, answer: string): Observable<FeatureResponse> {
+  public update(id: number, answer: string, customId: string): Observable<FeatureResponse> {
     return this.http.put<FeatureResponse>(
       FeatureEndpointConstants.idPath(id),
-      {answer: answer}
+      {answer: answer, customId: customId}
     );
   }
 
