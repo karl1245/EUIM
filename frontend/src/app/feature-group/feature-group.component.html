@@ -12,6 +12,10 @@
         </div>
           <div *ngIf=isToggledGroupAdding class="add-project-row">
             <div class="add-project-input">
+              <h2>{{'Olemasolevad tunnusgrupid' | translate}}</h2>
+              <div class="stakeholders-list">
+                <app-stakeholder *ngFor="let featureGroup of featureGroups; index as i" [stakeholder]="featureGroup.name" [editAction]="getFeatureGroupEditAction(featureGroup)" [deleteAction]="getFeatureGroupDeleteAction(featureGroup)" [color]="getStakeholderColorClass(i)"></app-stakeholder>
+              </div>
               <h2>{{'Grupi nimi' | translate}}</h2>
               <input placeholder="{{'Sisesta grupi nimi' | translate}}" id="featureGroupName" type="text" [(ngModel)]="featureGroupName"/>
             </div>
@@ -36,7 +40,7 @@
               <div>
                 <h2>{{'Olemasolevad stakeholderid' | translate}}</h2>
                 <div class="stakeholders-list">
-                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder.name" [deleteAction]="getStakeHolderDeleteAction(stakeholder.id)" [color]="getStakeholderColorClass(i)"></app-stakeholder>
+                  <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder.name" [editAction]="getStakeholderEditAction(stakeholder)" [deleteAction]="getStakeholderDeleteAction(stakeholder)" [color]="getStakeholderColorClass(i)"></app-stakeholder>
                 </div>
               </div>
               <h2>{{'Stakeholderi nimi' | translate}}</h2>

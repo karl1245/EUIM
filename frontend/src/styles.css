@@ -138,6 +138,12 @@ h6 {
     font-weight: bold;
 }
 
+input {
+    border-radius: 8px;
+    padding: 8px;
+    height: 32px;
+}
+
 .fcc {
     display: flex;
     align-items: center;  /*TODO tõrge siin */

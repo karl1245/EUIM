@@ -4,7 +4,8 @@ mat-tab-group, mat-tab, app-validation {
 
 mat-tab-group {
   max-width: 113.75rem;
-}  
+  width: 91.16vw;
+}
 
 :host ::ng-deep div[role='tab'] {
   display: flex;
@@ -84,9 +85,17 @@ mat-tab-group {
 }
 
 .modals {
-  width: 90%;
+  max-width: 113.75rem;
+  width: 91.16vw;
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+
+  @media (max-width: 1500px) {
+    align-items: center;
+    gap: 40px;
+    flex-direction: column;
+  }
 }
 
 .projects-wrapper {
@@ -138,12 +147,6 @@ mat-tab-group {
   align-items: flex-end;
   width: 100%;
   gap: 1rem;
-}
-
-input {
-  border-radius: 8px;
-  padding: 8px;
-  height: 32px;
 }
 
 .stakeholders-list {

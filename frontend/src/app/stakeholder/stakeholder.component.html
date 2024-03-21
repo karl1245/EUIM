@@ -1,5 +1,5 @@
 <div class="stakeholder {{color}}">
-  <label>{{ stakeholder }}</label>
+  <label class="stakeholder-label" (click)="editAction()" role="button">{{ stakeholder }}</label>
   <button class="x-btn btn-{{color}}" (click)="deleteAction()">
     <span class="material-symbols-outlined">close</span>
   </button>

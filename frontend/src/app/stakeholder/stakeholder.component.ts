@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class StakeholderComponent {
   @Input() stakeholder: any;
   @Input() color: string;
+  @Input() editAction: any;
   @Input() deleteAction: any;
 
   isToggled: boolean = false;

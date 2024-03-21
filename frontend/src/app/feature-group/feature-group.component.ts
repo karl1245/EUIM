@@ -8,6 +8,9 @@ import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { GlobalConstants } from '../constants/global-constants';
 import { Validation } from '../validation/model/validation';
 import { ValidationRow } from '../validation/model/validation-row';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { DeleteModalComponent } from '../questionnaire/modal/delete-modal/delete-modal.component';
+import { EditModalComponent } from '../questionnaire/modal/edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-feature-group',
@@ -27,13 +30,17 @@ export class FeatureGroupComponent implements OnInit {
   featureGroupName: string;
   stakeholderName: string;
   @ViewChild('featureGroupTabs', {static: false}) tab: MatTabGroup;
+  modalRef: BsModalRef;
+  questionnaireService: any;
+  questionnaires: any;
 
   constructor(
     private featureGroupService: FeatureGroupService,
     private route: ActivatedRoute,
     private router: Router,
-    private stakeholderService: StakeholderService
-  ) {}
+    private stakeholderService: StakeholderService,
+    private modalService: BsModalService,
+    ) {}
 
   ngOnInit(): void {
     const questionnaireId = this.route.snapshot.queryParamMap.get('questionnaireId');
@@ -119,4 +126,58 @@ export class FeatureGroupComponent implements OnInit {
   getStakeHolderDeleteAction(id: number): any {
     return () => this.deleteStakeholder(id)
   }
+
+  openFeatureGroupDeleteModal(featureGroup: FeatureGroupResponse) {
+    this.modalRef = this.modalService.show(DeleteModalComponent, {
+      class: 'modal-box modal-md'
+    });
+    this.modalRef.content.onClose.subscribe((result: any) => {
+      if (result.deleteObject) {
+      }
+    });
+  }
+
+  openStakeholderDeleteModal(stakeholder: StakeholderResponse) {
+    this.modalRef = this.modalService.show(DeleteModalComponent, {
+      class: 'modal-box modal-md'
+    });
+    this.modalRef.content.onClose.subscribe((result: any) => {
+      if (result.deleteObject) {console.log(result);
+        this.deleteStakeholder(stakeholder.id);
+      }
+    });
+  }
+
+  openFeatureGroupEditModal(featureGroup: FeatureGroupResponse) {
+    const initialState = {
+    };
+    this.modalRef = this.modalService.show(EditModalComponent, {
+      class: 'modal-box modal-md', initialState
+    });
+  }
+
+  openStakeholderEditModal(stakeholder: StakeholderResponse) {
+    const initialState = {
+    };
+    this.modalRef = this.modalService.show(EditModalComponent, {
+      class: 'modal-box modal-md', initialState
+    });
+  }
+
+  getFeatureGroupEditAction(featureGroup: any):any {
+    return () => this.openFeatureGroupEditModal(featureGroup);
+  }
+
+  getFeatureGroupDeleteAction(featureGroup: any):any {
+    return () => this.openFeatureGroupDeleteModal(featureGroup);
+  }
+
+  getStakeholderEditAction(stakeholder: any):any {
+    return () => this.openStakeholderEditModal(stakeholder);
+  }
+
+  getStakeholderDeleteAction(stakeholder: any):any {
+    return () => this.openStakeholderDeleteModal(stakeholder);
+  }
+  //this.getStakeHolderDeleteAction(stakeholder.id)
 }

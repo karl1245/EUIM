@@ -1,22 +1,14 @@
-.edit-project-modal {
+.delete-modal {
   display: flex;
   flex-direction: column;
   width: 37.5rem;
   padding: 32px;
-  gap: 32px;
+  gap: 16px;
   background-color: var(--beige);
   border-radius: 0.625rem;
 }
 
-.edit-project-input {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  width: 100%;
-  gap: 0.5rem;
-}
-
-.edit-project-modal-actions {
+.delete-modal-actions {
   display: flex;
   width: 100%;
   justify-content: flex-end;

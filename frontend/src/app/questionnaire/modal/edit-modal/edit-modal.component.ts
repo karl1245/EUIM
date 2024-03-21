@@ -5,11 +5,11 @@ import { QuestionnaireResponse } from '../../model/questionnaire-response';
 import { QuestionnaireService } from '../../service/questionnaire.service';
 
 @Component({
-  selector: 'app-edit-questionnaire-modal',
-  templateUrl: './edit-questionnaire-name-modal.component.html',
-  styleUrls: ['./edit-questionnaire-name-modal.component.css']
+  selector: 'app-edit-modal',
+  templateUrl: './edit-modal.component.html',
+  styleUrls: ['./edit-modal.component.css']
 })
-export class EditQuestionnaireModalComponent {
+export class EditModalComponent {
   questionnaire: any = {};
   questionnairesList: QuestionnaireResponse[] = [];
   // updateName: Function = () => {};
