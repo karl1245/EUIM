@@ -39,10 +39,25 @@
     "title": "Delete projekt: {{name}}",
     "body": "Are you sure you want to delete the project?"
   },
+  "deleteFeatureGroupModal": {
+    "title": "Delete feature group",
+    "body": "Are you sure you want to delete the feature group?"
+  },
+  "deleteStakeholderModal": {
+    "title": "Delete stakeholder",
+    "body": "Are you sure you want to delete the stakeholder?"
+  },
   "editProjectModal": {
     "title": "Edit project name: {{name}}",
-    "input": "Project name",
-    "placeholder": "Project name"
+    "input": "Project name"
+  },
+  "editFeatureGroupModal": {
+    "title": "Edit feature group name",
+    "input": "Feature group name"
+  },
+  "editStakeholderModal": {
+    "title": "Edit stakeholder name",
+    "input": "Stakeholder name"
   },
   "table": {
     "newRow": "Add new row",

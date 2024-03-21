@@ -61,6 +61,7 @@ export class QuestionnaireComponent implements OnInit {
 
   deleteQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
+      isProject: true,
       questionnaireName: questionnaire.name
     };
     this.modalRef = this.modalService.show(DeleteModalComponent, {
@@ -81,6 +82,7 @@ export class QuestionnaireComponent implements OnInit {
 
   editQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
+      isProject: true,
       questionnaire: questionnaire,
       questionnairesList: this.questionnaires,
     };

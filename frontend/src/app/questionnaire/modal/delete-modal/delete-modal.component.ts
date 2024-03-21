@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 
@@ -8,6 +8,10 @@ import { Subject } from 'rxjs';
   styleUrls: ['./delete-modal.component.css']
 })
 export class DeleteModalComponent {
+  @Input() isProject: boolean;
+  @Input() isFeatureGroup: boolean;
+  @Input() isStakeholder: boolean;
+
   questionnaireName: string = '';
   public onClose: Subject<{ deleteObject: boolean}>;
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { QuestionnaireResponse } from '../../model/questionnaire-response';
@@ -10,6 +10,10 @@ import { QuestionnaireService } from '../../service/questionnaire.service';
   styleUrls: ['./edit-modal.component.css']
 })
 export class EditModalComponent {
+  @Input() isProject: boolean;
+  @Input() isFeatureGroup: boolean;
+  @Input() isStakeholder: boolean;
+
   questionnaire: any = {};
   questionnairesList: QuestionnaireResponse[] = [];
   // updateName: Function = () => {};

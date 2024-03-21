@@ -128,8 +128,11 @@ export class FeatureGroupComponent implements OnInit {
   }
 
   openFeatureGroupDeleteModal(featureGroup: FeatureGroupResponse) {
+    const initialState = {
+      isFeatureGroup: true
+    };
     this.modalRef = this.modalService.show(DeleteModalComponent, {
-      class: 'modal-box modal-md'
+      class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
       if (result.deleteObject) {
@@ -137,9 +140,21 @@ export class FeatureGroupComponent implements OnInit {
     });
   }
 
+  openFeatureGroupEditModal(featureGroup: FeatureGroupResponse) {
+    const initialState = {
+      isFeatureGroup: true
+    };
+    this.modalRef = this.modalService.show(EditModalComponent, {
+      class: 'modal-box modal-md', initialState
+    });
+  }
+
   openStakeholderDeleteModal(stakeholder: StakeholderResponse) {
+    const initialState = {
+      isStakeholder: true
+    };
     this.modalRef = this.modalService.show(DeleteModalComponent, {
-      class: 'modal-box modal-md'
+      class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
       if (result.deleteObject) {console.log(result);
@@ -148,16 +163,9 @@ export class FeatureGroupComponent implements OnInit {
     });
   }
 
-  openFeatureGroupEditModal(featureGroup: FeatureGroupResponse) {
-    const initialState = {
-    };
-    this.modalRef = this.modalService.show(EditModalComponent, {
-      class: 'modal-box modal-md', initialState
-    });
-  }
-
   openStakeholderEditModal(stakeholder: StakeholderResponse) {
     const initialState = {
+      isStakeholder: true
     };
     this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
