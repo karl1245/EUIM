@@ -3,6 +3,8 @@ export interface Validation {
   id: number;
   nameEt: string;
   nameEn: string;
+  tooltipEt: string;
+  tooltipEn: string;
   weight: number;
   type: ValidationType;
   summaryId: number;

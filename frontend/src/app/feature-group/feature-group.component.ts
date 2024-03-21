@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeatureGroupService } from './service/feature-group.service';
 import { FeatureGroupResponse } from './model/feature-group-response';
@@ -14,16 +14,16 @@ import { ValidationRow } from '../validation/model/validation-row';
   templateUrl: './feature-group.component.html',
   styleUrls: ['./feature-group.component.css']
 })
-export class FeatureGroupComponent {
+export class FeatureGroupComponent implements OnInit {
   featureGroups: FeatureGroupResponse[] = [];
   stakeholders: StakeholderResponse[] = [];
 
   questionnaireId: number;
+  tabIndex: number;
   loading: boolean = true;
   tabsLoading: boolean = false;
   isToggledGroupAdding: boolean = false;
   isToggledStakeholderAdding: boolean = false;
-  defaultTabIndex = 0;
   featureGroupName: string;
   stakeholderName: string;
   @ViewChild('featureGroupTabs', {static: false}) tab: MatTabGroup;
@@ -37,11 +37,14 @@ export class FeatureGroupComponent {
 
   ngOnInit(): void {
     const questionnaireId = this.route.snapshot.queryParamMap.get('questionnaireId');
+    const tabIndex = this.route.snapshot.queryParamMap.get('tabIndex');
     if (!questionnaireId  || isNaN(Number(questionnaireId))) {
       this.router.navigate(['questionnaire']);
       return;
     }
-
+    if (!(!tabIndex || isNaN(Number(tabIndex)))) {
+      this.tabIndex = +tabIndex;
+    }
     this.questionnaireId = +questionnaireId;
 
     this.getData();
@@ -62,7 +65,7 @@ export class FeatureGroupComponent {
         this.featureGroups = next.sort((a,b) => a.id - b.id);
         this.loading = false;
         setTimeout(() => {
-          this.tab.selectedIndex = 0;
+          this.tab.selectedIndex = this.tabIndex;
         });
       });
 
@@ -72,7 +75,7 @@ export class FeatureGroupComponent {
         this.stakeholders = next.sort((a,b) => a.id - b.id);
         this.loading = false;
         setTimeout(() => {
-          this.tab.selectedIndex = 0;
+          this.tab.selectedIndex = this.tabIndex;
         });
       });
   }
@@ -80,7 +83,9 @@ export class FeatureGroupComponent {
 
   createNewFeatureGroup(featureGroupName: string) {
     this.featureGroupService.createFeatureGroup(this.questionnaireId, featureGroupName)
-      .subscribe(next => this.featureGroups.push(next))
+      .subscribe(next => {
+        this.featureGroups.push(next);
+      })
   }
 
   createNewStakeholder(stakeholderName: string) {

@@ -33,6 +33,27 @@
 
 }
 
+mat-tooltip-component .mdc-tooltip__surface {
+    background-color: #2C4935 !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: fit-content !important;
+    width: fit-content !important;
+    max-width: 300px !important;
+    padding: 16px !important;
+    gap: 16px !important;
+    border-radius: 10px !important;
+    background-color: var(--text-color) !important;
+    color: var(--beige) !important;
+    z-index: 2 !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    line-height: 20px !important;
+    max-height: 100% !important;
+}
+
 html, body {
     height: 100%;
     width: 100vw;
@@ -195,31 +216,31 @@ h6 {
     color: var(--dark-red);
     border-color: var(--dark-red);
   }
-  
+
   .yellow {
     background-color: var(--light-yellow);
     color: var(--dark-yellow);
     border-color: var(--dark-yellow);
   }
-  
+
   .green {
     background-color: var(--light-green);
     color: var(--dark-green);
     border-color: var(--dark-green);
   }
-  
+
   .blue {
     background-color: var(--light-blue);
     color: var(--dark-blue);
     border-color: var(--dark-blue);
   }
-  
+
   .purple {
     background-color: var(--light-purple);
     color: var(--dark-purple);
     border-color: var(--dark-purple);
   }
-  
+
   .pink {
     background-color: var(--light-pink);
     color: var(--dark-pink);

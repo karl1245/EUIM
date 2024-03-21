@@ -94,10 +94,9 @@
     </div>
   </div> -->
   <div *ngIf="!tabsLoading">
-    <!-- [(selectedIndex)]="defaultTabIndex"  -->
-    <mat-tab-group [(selectedIndex)]="defaultTabIndex" mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
-      <mat-tab *ngFor="let featureGroup of featureGroups"  label="{{featureGroup.name}}" class="tabs">
-        <app-validation [featureGroup]="featureGroup" [stakeholders]="stakeholders"></app-validation>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" #featureGroupTabs>
+      <mat-tab *ngFor="let featureGroup of featureGroups; index as i"  label="{{featureGroup.name}}" class="tabs">
+        <app-validation [featureGroup]="featureGroup" [stakeholders]="stakeholders" [tabIndex]="i"></app-validation>
       </mat-tab>
     </mat-tab-group>
 </div>

@@ -37,6 +37,12 @@ public class Validation {
   private String nameEn;
 
   @Column
+  private String tooltipEt;
+
+  @Column
+  private String tooltipEn;
+
+  @Column
   private Integer weight;
 
   @Column

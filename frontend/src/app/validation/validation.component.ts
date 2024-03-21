@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
@@ -17,6 +17,7 @@ import { FeatureToDisplay } from './model/feature-to-display';
 import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
 import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
+import { HomepageComponent } from '../homepage/homepage.component';
 
 @Component({
   selector: 'app-validation',
@@ -39,9 +40,9 @@ export class ValidationComponent implements OnInit{
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
   menuIcon: string = "arrow_drop_down";
   stakeholderListToggled: boolean = false;
-
   selectedStakeholder: StakeholderResponse;
 
+  @Input() tabIndex: number;
   @Input() columns: string[] = [];
   @Input() featureGroup: FeatureGroupResponse;
   @Input() stakeholders: StakeholderResponse[];
@@ -113,9 +114,9 @@ export class ValidationComponent implements OnInit{
             .sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.answers[0].featurePrecondition.id - b.answers[0].featurePrecondition.id || a.rowId - b.rowId);
           this.mapFeatureRowSpans();
         }
+        this.loading = false;
       }
     );
-    this.loading = false;
   }
 
 
@@ -545,11 +546,19 @@ export class ValidationComponent implements OnInit{
   }
 
   deleteFeature(id: number) {
-    this.featureService.delete(id).subscribe(next => this.getData());
+    this.featureService.delete(id).subscribe(next => this.reloadComponent());
   }
 
   deleteFeaturePreCondition(id: number) {
-    this.featurePreconditionService.delete(id).subscribe(next => this.getData());
+    this.featurePreconditionService.delete(id).subscribe(next => this.reloadComponent());
+  }
+
+  reloadComponent() {
+    console.log(this.tabIndex)
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['validation'], { queryParams: {questionnaireId: this.questionnaireId, tabIndex: this.tabIndex}}).then(()=>{
+      });
+    });
   }
 
   openStakeholderSelection(): void {

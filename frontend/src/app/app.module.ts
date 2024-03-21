@@ -32,6 +32,7 @@ import { StakeholderComponent } from './stakeholder/stakeholder.component';
 import { StakeholderselectComponent } from './stakeholderselect/stakeholderselect.component';
 import { AboutComponent } from './about/about.component';
 import { MethodComponent } from './method/method.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
+    MatTooltipModule,
     ModalModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: 'et',

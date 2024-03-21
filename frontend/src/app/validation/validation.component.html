@@ -7,7 +7,9 @@
         </th>
         <th *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
           <div class="header">{{getTranslation(validation)}}
-          <app-info></app-info></div>
+          <app-info></app-info>
+          <mat-icon *ngIf="validation.tooltipEt"   matTooltip="{{isCurrentLangEt ? validation.tooltipEt : validation.tooltipEn}}"   matTooltipClass="tooltip" class="material-symbols-outlined">info</mat-icon>
+          </div>
         </th>
       </tr>
     </thead>
