@@ -1,5 +1,6 @@
 <div class="nav">
   <h1>{{'toolbar.name' | translate}}</h1>
+  <h1 *ngIf="questionnaireName">{{questionnaireName}}</h1>
   <a class="toolbar-router fcc" [routerLink]="questionnairePath">{{'toolbar.projects' | translate}}</a>
   <a class="toolbar-router fcc" [routerLink]="method" >{{'toolbar.method' | translate}}</a>
   <a class="toolbar-router fcc" [routerLink]="about" >{{'toolbar.about' | translate}}</a>

@@ -54,7 +54,6 @@ export class ValidationComponent implements OnInit{
     private translateService: TranslateService,
     private featureService: FeatureService,
     private featurePreconditionService: FeaturePreConditionService
-
   ) {}
 
   getValidationValues(): ValidationValue[] {
@@ -554,7 +553,6 @@ export class ValidationComponent implements OnInit{
   }
 
   reloadComponent() {
-    console.log(this.tabIndex)
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['validation'], { queryParams: {questionnaireId: this.questionnaireId, tabIndex: this.tabIndex}}).then(()=>{
       });

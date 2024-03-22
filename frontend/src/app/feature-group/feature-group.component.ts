@@ -6,8 +6,6 @@ import { MatTabGroup } from '@angular/material/tabs';
 import { StakeholderService } from '../stakeholder/service/stakeholder.service';
 import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { GlobalConstants } from '../constants/global-constants';
-import { Validation } from '../validation/model/validation';
-import { ValidationRow } from '../validation/model/validation-row';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DeleteModalComponent } from '../questionnaire/modal/delete-modal/delete-modal.component';
 import { EditModalComponent } from '../questionnaire/modal/edit-modal/edit-modal.component';
@@ -31,15 +29,13 @@ export class FeatureGroupComponent implements OnInit {
   stakeholderName: string;
   @ViewChild('featureGroupTabs', {static: false}) tab: MatTabGroup;
   modalRef: BsModalRef;
-  questionnaireService: any;
-  questionnaires: any;
 
   constructor(
     private featureGroupService: FeatureGroupService,
     private route: ActivatedRoute,
     private router: Router,
     private stakeholderService: StakeholderService,
-    private modalService: BsModalService,
+    private modalService: BsModalService
     ) {}
 
   ngOnInit(): void {
