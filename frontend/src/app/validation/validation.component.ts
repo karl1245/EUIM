@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
@@ -18,6 +18,7 @@ import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
 import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
 import { HomepageComponent } from '../homepage/homepage.component';
+import { MenuComponent } from '../menus/menu.component';
 
 @Component({
   selector: 'app-validation',
@@ -39,13 +40,18 @@ export class ValidationComponent implements OnInit{
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
   menuIcon: string = "arrow_drop_down";
-  stakeholderListToggled: boolean = false;
   selectedStakeholder: StakeholderResponse;
+  isToggled: boolean = false;
+  stakeholderListToggled: boolean = false;
+  colorListToggled:boolean = false;
+
+  @ViewChild('PreconditionMenu') menuComponent!: MenuComponent;
 
   @Input() tabIndex: number;
   @Input() columns: string[] = [];
   @Input() featureGroup: FeatureGroupResponse;
   @Input() stakeholders: StakeholderResponse[];
+  MenuComponent: any;
 
   constructor(
     private validationService: ValidationService,
@@ -504,7 +510,9 @@ export class ValidationComponent implements OnInit{
     } else if (i === 12) {
       return 'content-cell-thirteenth-child'
     } else if (i === 13) {
-      return 'content-cell-fourtteenh-child'
+      return 'content-cell-fourteenth-child'
+    } else if (i === 14) {
+      return 'content-cell-fifteenth-child'
     }
     return '';
   }
@@ -529,9 +537,12 @@ export class ValidationComponent implements OnInit{
       {name: "menu.deleteFeature", icon: 'delete', onClick: () => this.deleteFeature(validationRowValue.answers[0].feature.id)},
     ];
   }
+
+  toggleList() {
+  }
+
   getPreconditionActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
     return [
-      {name: "menu.addStakeholder", icon: 'add', onClick: () => this.openStakeholderSelection()},
       {name: "menu.addPrecondition", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
       {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.deleteFeaturePreCondition(validationRowValue.answers[0].featurePrecondition.id)},
     ];
@@ -600,3 +611,4 @@ export class ValidationComponent implements OnInit{
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 }
+

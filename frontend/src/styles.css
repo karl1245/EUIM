@@ -223,32 +223,38 @@ input {
     border-color: var(--dark-red);
   }
 
-  .yellow {
-    background-color: var(--light-yellow);
-    color: var(--dark-yellow);
-    border-color: var(--dark-yellow);
-  }
+.yellow {
+background-color: var(--light-yellow);
+color: var(--dark-yellow);
+border-color: var(--dark-yellow);
+}
 
-  .green {
-    background-color: var(--light-green);
-    color: var(--dark-green);
-    border-color: var(--dark-green);
-  }
+.green {
+background-color: var(--light-green);
+color: var(--dark-green);
+border-color: var(--dark-green);
+}
 
-  .blue {
-    background-color: var(--light-blue);
-    color: var(--dark-blue);
-    border-color: var(--dark-blue);
-  }
+.blue {
+background-color: var(--light-blue);
+color: var(--dark-blue);
+border-color: var(--dark-blue);
+}
 
-  .purple {
-    background-color: var(--light-purple);
-    color: var(--dark-purple);
-    border-color: var(--dark-purple);
-  }
+.purple {
+background-color: var(--light-purple);
+color: var(--dark-purple);
+border-color: var(--dark-purple);
+}
 
-  .pink {
-    background-color: var(--light-pink);
-    color: var(--dark-pink);
-    border-color: var(--dark-pink);
-  }
+.pink {
+background-color: var(--light-pink);
+color: var(--dark-pink);
+border-color: var(--dark-pink);
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

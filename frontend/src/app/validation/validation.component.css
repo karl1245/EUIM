@@ -122,7 +122,11 @@ tr>th:first-child/*,tr>td:first-child*/ {
   width: 6.25rem;
 }
 
-.content-cell-fourtteenh-child  {
+.content-cell-fourteenth-child  {
+  width: 25rem;
+}
+
+.content-cell-fifteenth-child  {
   width: 25rem;
 }
 

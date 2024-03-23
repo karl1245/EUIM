@@ -75,7 +75,15 @@
     "dontKnow": "Ei tea",
     "partly": "Osaliselt"
   },
-
+  "plan": {
+    "text": "Vali värv",
+    "green": "Toimib",
+    "red": "Ei toimi", 
+    "blue": "Testimisele",
+    "yellow": "Lisategevus",
+    "pink": "Täiendamisele",
+    "none": "Muu"
+  },
   "questionnaires": "Küsimustikud",
   "et": "EST",
   "en": "ENG"

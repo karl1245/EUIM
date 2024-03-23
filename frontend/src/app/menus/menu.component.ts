@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, ElementRef } from '@angular/core';
+import { Component, HostListener, Input, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -9,13 +9,31 @@ export class MenuComponent {
   @Input() icon: string;
   @Input() actions: {name: string, icon: string, onClick: any}[] = [];
   @Input() stakeholders: any;
+  @Input() toggle: string;
+  @Input() isStakeholdersCell:boolean;
 
   isToggled: boolean = false;
   stakeholderListToggled: boolean = false;
+  colorListToggled:boolean = false;
   constructor(private elementRef: ElementRef) {}
 
-  toggleMenu(): void {
-    this.isToggled = !this.isToggled;
+  toggleMenu(component: string): void {
+    if (component == "Menu"){
+      if(this.stakeholderListToggled == true){
+        this.isToggled = false;
+        this.stakeholderListToggled = !this.stakeholderListToggled;
+      }
+      else{
+        this.isToggled = !this.isToggled;
+      }
+    }
+    else if (component == "Stakeholders"){
+      this.isToggled = false;
+      this.stakeholderListToggled = !this.stakeholderListToggled;
+    }
+    else if (component == "Colors"){
+      this.colorListToggled = !this.colorListToggled;
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -23,14 +41,6 @@ export class MenuComponent {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       // Clicked outside of the menu
       this.isToggled = false;
-      this.stakeholderListToggled = false;
-    } else {
-      // Clicked inside the menu, check if it's the button
-      const clickedElement = event.target as HTMLElement;
-      if (clickedElement.classList.contains('stakeholderList')) {
-        // Clicked on a button with the specified class
-        this.stakeholderListToggled = true;
-      }
     }
   }
 }

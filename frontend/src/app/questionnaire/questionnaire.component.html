@@ -35,7 +35,7 @@
           <a [routerLink]="validationPath" [queryParams]="{questionnaireId: questionnaire.id}" class="see-more-button">{{'projectsTable.seeMore' | translate}}</a>
         </td>
         <td  class="action-button-cell">
-          <app-menu [icon]="menuIcon" [actions]="getActions(questionnaire)"></app-menu>
+          <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getActions(questionnaire)"></app-menu>
         </td>
       </tr>
       </tbody>

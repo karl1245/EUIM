@@ -1,4 +1,4 @@
-.stakeholder-selection {
+.color-selection {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -6,18 +6,19 @@
   background-color: var(--beige);
 }
 
-.stakeholders-list {
+.color-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
   width: fit-content;
 }
 
-.stakeholder {
+.option {
   display: flex;
-  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
   height: fit-content;
-  max-width: 120px; 
   gap: 4px;
   padding: 4px 8px 4px 8px;
   border-style: solid;
@@ -59,4 +60,10 @@
   background-color: var(--light-pink);
   color: var(--dark-pink);
   border-color: var(--dark-pink);
+}
+
+.none {
+  background-color: var(--beige);
+  color: var(--text-color);
+  border-color:  var(--text-color);
 }

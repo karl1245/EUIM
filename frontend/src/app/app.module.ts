@@ -30,6 +30,7 @@ import { SelectComponent } from './select/select.component';
 import { InfoComponent } from './info/info.component';
 import { StakeholderComponent } from './stakeholder/stakeholder.component';
 import { StakeholderselectComponent } from './stakeholderselect/stakeholderselect.component';
+import { ColorSelectComponent } from './colorSelect/color-select.component';
 import { AboutComponent } from './about/about.component';
 import { MethodComponent } from './method/method.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InfoComponent,
     StakeholderComponent,
     StakeholderselectComponent,
+    ColorSelectComponent,
     AboutComponent,
     MethodComponent,
   ],
