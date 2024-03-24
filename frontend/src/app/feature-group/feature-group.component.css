@@ -102,7 +102,7 @@ mat-tab-group {
   height: fit-content;
   width: fit-content;
   padding: 2.5rem;
-  background-color: #729368;
+  background-color: var(--container);
   border-radius: 0.625rem;
   display: flex;
   gap: 5rem;
@@ -114,6 +114,9 @@ mat-tab-group {
   background-color: var(--beige);
   width: 37.5rem;
   padding: 32px;
+  border: solid;
+  border-color: var(--text-color);
+  border-width: 2px;
   border-radius: 0.625rem;
   gap: 32px;
 }
@@ -129,7 +132,7 @@ mat-tab-group {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .add-project-input {
@@ -156,5 +159,5 @@ mat-tab-group {
   justify-content: left;
   align-items: top;
   width: 100%;
-  gap: 8px;
+  gap: 0.5rem;
 }

@@ -7,7 +7,6 @@
         </th>
         <th *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
           <div class="header">{{getTranslation(validation)}}
-          <app-info></app-info>
           <mat-icon *ngIf="validation.tooltipEt"   matTooltip="{{isCurrentLangEt ? validation.tooltipEt : validation.tooltipEn}}"   matTooltipClass="tooltip" class="material-symbols-outlined">info</mat-icon>
           </div>
         </th>
@@ -36,14 +35,16 @@
             >
             </app-stakeholder>
           </div>
-          <div *ngIf="isValidationFeature(validation)" class="cell-with-menu">
-            <textarea
-              [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
-              (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
-              class="overflow-auto w-100 border-0 textarea-min-height background-dark-beige"
-            >
-            </textarea>
-            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
+          <div *ngIf="isValidationFeature(validation)" class="feature-cell">
+            <div class="cell-with-menu">
+              <textarea
+                [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
+                (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
+                class="overflow-auto w-100 border-0 textarea-min-height custom-id"
+              >
+              </textarea>
+              <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
+            </div>
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
@@ -52,19 +53,19 @@
             </textarea>
           </div>
           <div *ngIf="isValidationFeaturePrecondition(validation)" class="cell-with-menu">
-            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [stakeholders]="stakeholders" [isStakeholdersCell]="true"></app-menu>
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
+            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [stakeholders]="stakeholders" [isStakeholdersCell]="true"></app-menu>
           </div>
           <div *ngIf="isValidationExample(validation)" class="cell-with-menu">
             <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
-            <app-menu [toggle]="'Colors'" [icon]="menuIcon"></app-menu>
+            <!-- <app-menu [toggle]="'Colors'" [icon]="menuIcon"></app-menu> -->
           </div>
-          <div *ngIf="isValidationTextField(validation)">
+          <div *ngIf="isValidationTextField(validation)" class="cell-with-menu">
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
@@ -85,7 +86,9 @@
     <tfoot >
     <tr >
       <td >
-        <button class="button add-button" (click)="addValidationRow()">{{'table.newRow' | translate}}</button>
+        <button class="add-row-button" (click)="addValidationRow()">
+          <span class="material-symbols-outlined icon small-icon">add</span>
+          {{'table.newRow' | translate}}</button>
       </td>
     </tr>
     </tfoot>

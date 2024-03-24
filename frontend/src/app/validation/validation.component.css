@@ -1,13 +1,17 @@
 .table-wrapper {
   border: none;
-  overflow-y: auto;
+  border: solid;
+  border-color: var(--text-color);
+  border-width: 2px;
+  border-radius: 4px;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 table {
   table-layout: fixed;
   width: fit-content;
   border: 1px;
-  border-radius: 0.625rem;
   background-color: var(--beige);
   border-color: var(--text-color);
   border-collapse: separate;
@@ -15,7 +19,6 @@ table {
 }
 thead {
   border: 1px;
-  border-radius: 0.625rem;
   border-color: var(--text-color);
   background-color: var(--table-head);
   border-collapse: separate;
@@ -24,7 +27,7 @@ thead {
 
 th {
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
   border-color: var(--text-color);
   background-color: var(--table-head);
   font-family: Garamond;
@@ -32,18 +35,22 @@ th {
   height: 5rem;
   border-collapse: separate;
   border-spacing: 0;
+  vertical-align: center;
 }
 
 .header {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
 td {
+  vertical-align: top;
+  text-align: left;
   border: 1px solid;
   border-color: var(--brown);
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .background-beige {
@@ -51,9 +58,9 @@ td {
 }
 
 .background-dark-beige {
-  background-color: #D8D2CB
-;
+  background-color: var(--brown);
 }
+
 tfoot td { border: none; }
 
 tr>th:first-child/*,tr>td:first-child*/ {
@@ -67,39 +74,48 @@ tr>th:first-child/*,tr>td:first-child*/ {
   position: sticky;
   left: 0;
   z-index: 1;
-  width: 3rem;
+  width: 56px;
 }
 .content-cell-first-child {
   position: sticky;
   left: 3rem;
   z-index: 1;
-  width: 12.5rem;
+  width: 12.25rem;
 }
 
 .content-cell-second-child {
   left: 15.5rem;
-  width: 4.5rem;
+  width: 56px;
   border-right: none;
 }
 
 .content-cell-third-child {
   left: 20rem;
-  width: 8.75rem;
+  width: 140px;
   border-right: none;
   border-left: none;
 }
 
 .content-cell-fourth-child {
   left: 28.75rem;
-  width: 16.25rem;
+  width: 16rem;
   border-left: none;
 }
 
+.content-cell-fifth-child {
+  width: 16rem;
+}
+
+.content-cell-sixth-child {
+  width: 6.25rem;
+}
+
 .content-cell-four-options {
-  width: 12.5rem;
+  justify-content: center !important;
+  width: 12.25rem;
 }
 .content-cell-eleventh-child {
-  width: 16.25rem;
+  width: 16rem;
   border-right: none;
 }
 
@@ -110,24 +126,12 @@ tr>th:first-child/*,tr>td:first-child*/ {
 }
 
 .content-cell-thirteenth-child  {
-  width: 16.25rem;
+  width: 16rem;
   border-left: none;
 }
 
-.content-cell-fifth-child {
-  width: 15rem;
-}
-
-.content-cell-sixth-child {
-  width: 6.25rem;
-}
-
-.content-cell-fourteenth-child  {
-  width: 25rem;
-}
-
-.content-cell-fifteenth-child  {
-  width: 25rem;
+.content-cell-fourteenth-child, .content-cell-fifteenth-child  {
+  width: 28rem;
 }
 
 .textarea-container {
@@ -174,8 +178,41 @@ textarea {
 
 .cell-with-menu {
   display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: right;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+
+.feature-cell {
+  display: flex;
   flex-direction: column;
   align-items: end;
   justify-content: right;
   height: 100%;
+}
+
+.custom-id {
+  border-radius: 0.25rem;
+  background-color: var(--table-head);
+}
+
+.add-row-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 236px;
+  height: fit-content;
+  border: solid;
+  border-radius: 8px;
+  padding: 1rem;
+  gap: 8px;
+  background-color: var(--light-green);
+  color: var(--dark-green);
+}
+
+.add-row-button:hover {
+  background-color: var(--green);
 }

@@ -42,6 +42,8 @@ a.toolbar-router {
   text-decoration: none;
   width: fit-content;
   height: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 a.toolbar-router:hover {

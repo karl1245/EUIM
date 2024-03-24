@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { GlobalConstants } from '../constants/global-constants';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-color-select',

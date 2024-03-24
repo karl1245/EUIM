@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, HostListener, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-menu',

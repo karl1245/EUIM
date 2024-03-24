@@ -6,12 +6,12 @@
 :root {
     --text-color: #2C4935;
     --bg-color: #89A480;
-    --beige: #F5EEE6;
-    --brown: #CAB89C;
     --container: #729368;
     --highlight: #BCD6A9;
     --contrast_highlight: #4F7744;
     --table-head: #CCD7BB;
+    --beige: #F5EEE6;
+    --brown: #CAB89C;
     --light-red: #E8857E;
     --red:#EF6565;
     --dark-red:#58050C;
@@ -30,27 +30,48 @@
     --light-pink: #ECACC2;
     --pink: #E982A3;
     --dark-pink: #701231;
+}
 
+.scheme1 {
+    --text-color: #2C4935;
+    --bg-color: #89A480;
+    --container: #729368;
+    --highlight: #BCD6A9;
+    --contrast_highlight: #4F7744;
+    --table-head: #CCD7BB;
+}
+
+.scheme2 {
+    --text-color: #2c3849;
+    --bg-color: #8091a4;
+    --container: #687d93;
+    --highlight: #a9c6d6;
+    --contrast_highlight: #446377;
+    --table-head: #bbccd7;
+}
+
+#content {
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 
 mat-tooltip-component .mdc-tooltip__surface {
-    background-color: #2C4935 !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
     height: fit-content !important;
     width: fit-content !important;
-    max-width: 300px !important;
-    padding: 16px !important;
-    gap: 16px !important;
-    border-radius: 10px !important;
+    max-width: 18rem !important;
+    padding: 1rem !important;
+    gap: 1rem !important;
+    border-radius: 0.5rem !important;
     background-color: var(--text-color) !important;
     color: var(--beige) !important;
     z-index: 2 !important;
     font-family: Inter, sans-serif !important;
-    font-size: 14px !important;
+    font-size: 0.875rem !important;
     font-weight: normal !important;
-    line-height: 20px !important;
+    line-height: 1rem !important;
     max-height: 100% !important;
 }
 
@@ -62,7 +83,7 @@ html, body {
 body {
     margin: 0;
     font-family: Inter, sans-serif !important;
-    background-color: #89A480;
+    background-color: var(--bg-color);
     color: var(--text-color);
 }
 
@@ -70,77 +91,73 @@ p {
     display: block;
     font-family: Inter, sans-serif;
     font-weight: normal;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 0;
-    margin-right: 0;
 }
 
 h1 {
     color: var(--text-color);
-    font-family: Libre Baskerville, serif;
+    font-family: Inter;
+    font-weight: 600;
     display: block;
     font-size: 2rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
 }
 
 h2 {
-    font-family: Garamond;
+    font-family: Inter;
+    font-weight: 600;
     display: block;
     font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
 }
 h3 {
-    font-family: Garamond;
+    font-family: Inter;
+    font-weight: 600;
     display: block;
     font-size: 1.17rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
 }
 h4 {
-    font-family: Garamond;
+    font-family: Inter;
+    font-weight: 600;
     display: block;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
 }
 h5 {
-    font-family: Garamond;
+    font-family: Inter;
+    font-weight: 600;
     display: block;
     font-size: .83rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
 }
 h6 {
-    font-family: Garamond;
+    font-family: Inter;
+    font-weight: 600;
     display: block;
     font-size: .67rem;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
 }
 
 input {
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
     height: 32px;
 }
 

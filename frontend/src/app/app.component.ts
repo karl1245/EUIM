@@ -13,4 +13,10 @@ export class AppComponent {
     translate.setDefaultLang('et');
     translate.use('et');
   }
+
+  currentColorScheme: string = 'scheme1';
+
+  toggleColorScheme() {
+    this.currentColorScheme = this.currentColorScheme === 'scheme1' ? 'scheme2' : 'scheme1';
+  }
 }

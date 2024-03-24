@@ -34,6 +34,8 @@ import { ColorSelectComponent } from './colorSelect/color-select.component';
 import { AboutComponent } from './about/about.component';
 import { MethodComponent } from './method/method.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SanitizeHtmlPipe } from '../sanitize-html.pipe'; // Import the pipe here
+import { ColorSchemeService } from '../color-scheme.service'; // Import your service here
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -58,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ColorSelectComponent,
     AboutComponent,
     MethodComponent,
+    SanitizeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -83,9 +86,16 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserModule
   ],
-  providers: [],
+  providers: [ColorSchemeService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor() {}
+
+  changeColorScheme(scheme: string) {
+    // Your color scheme toggle logic here
+  }
+}

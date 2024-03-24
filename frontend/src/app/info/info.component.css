@@ -13,8 +13,8 @@
   width: fit-content;
   max-width: 300px;
   position: absolute;
-  padding: 16px;
-  gap: 16px;
+  padding: 1rem;
+  gap: 1rem;
   border-radius: 10px;
   background-color: var(--text-color);
   color: var(--beige);

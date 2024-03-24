@@ -4,11 +4,11 @@
   </button>
   <div *ngIf=isToggled class="dropdown-menu {{icon}}-menu">
     <button *ngIf="isStakeholdersCell" class="menu-row" (click)="toggleMenu('Stakeholders')">
-      <span class="material-symbols-outlined icon small-icon">{{"add" | translate}}</span>
+      <span class="material-symbols-outlined icon small-icon">add</span>
       <span class="action-label">{{"menu.addStakeholder" | translate}}</span>
     </button>
     <button *ngFor="let action of actions" (click)="action.onClick()" class="menu-row {{action.name}}">
-      <span class="material-symbols-outlined icon small-icon">{{action.icon | translate}}</span>
+      <span class="material-symbols-outlined icon small-icon">{{action.icon}}</span>
       <span class="action-label">{{action.name | translate}}</span>
     </button>
   </div>
