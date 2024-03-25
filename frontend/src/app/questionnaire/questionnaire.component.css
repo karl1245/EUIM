@@ -56,6 +56,10 @@ table {
   gap: 1rem;
 }
 
+table {
+  border-radius: 0.625rem;
+}
+
 .projects-table {
   max-width: 100%;
   border-radius: 0.625rem;
@@ -63,7 +67,6 @@ table {
   border: solid;
   border-width: 2px;
   margin-top: 5rem;
-  overflow: hidden;
 }
 
 .projects-table-row {
