@@ -44,6 +44,7 @@ export class ValidationComponent implements OnInit{
   isToggled: boolean = false;
   stakeholderListToggled: boolean = false;
   colorListToggled:boolean = false;
+  isAddingNewRow: boolean = false;
 
   @ViewChild('PreconditionMenu') menuComponent!: MenuComponent;
 
@@ -141,6 +142,7 @@ export class ValidationComponent implements OnInit{
 
 
   async addValidationRow(existingFeature?: FeatureResponse, existingPreCondition?: FeaturePreCondition, stakeholder?: StakeholderResponse) {
+    this.isAddingNewRow = true;
     let validationRow: ValidationAnswer[] = [];
     let maxRowId = 0;
     if (this.validationRowValues.length > 0) {
@@ -178,6 +180,7 @@ export class ValidationComponent implements OnInit{
 
     this.mapFeatureRowSpans();
     this.updateRelatedValidationAnswers(<Validation>this.validations.find(v => v.type === ValidationType.FEATURE_PRECONDITION), {answers: validationRow, rowId: maxRowId + 1})
+    this.isAddingNewRow = false;
   }
 
   getPrefilledValidationRowAnswer(validationType: ValidationType, featureResponse?: FeatureResponse, featurePreCondition?: FeaturePreCondition, stakeholder?: StakeholderResponse): string {
