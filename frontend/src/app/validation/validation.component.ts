@@ -311,6 +311,41 @@ export class ValidationComponent implements OnInit{
     }
   }
 
+  private setNoExampleAnswer(validationRowValue: ValidationRow) { //TODO jätkuarendus
+    let exampleAnswer = '';
+    let combinationAnswer = '';
+
+    if (this.isCurrentLangEt) {
+      exampleAnswer = 'Näidet pole';
+      combinationAnswer = this.validationCombinationResults[this.validationCombinationResults.length-1].resultEt;
+    } else {
+      exampleAnswer = 'No example';
+      combinationAnswer = this.validationCombinationResults[this.validationCombinationResults.length-1].resultEn;
+    }
+
+    //Example answer
+    const exampleValidationAnswer = validationRowValue.answers.find(a => a.type === ValidationType.EXAMPLE);
+    const exampleValidation = this.validations.find(v => v.type === ValidationType.EXAMPLE);
+    if (exampleValidationAnswer && exampleValidation) {
+      this.onValidationRowValueChange(
+        exampleAnswer,
+        exampleValidationAnswer,
+        exampleValidation,
+        validationRowValue
+      )
+    }
+    //Combination anwer
+    const combinationValidation = this.validations.find(v => v.validationAutofillList.find(vafl => vafl.type === 'COMBINATION'));
+    const combinationValidationAnswer = validationRowValue.answers.find(a => a.validationId === combinationValidation?.id);
+    if (combinationValidation && combinationValidationAnswer) {
+      this.onValidationRowValueChange(
+        combinationAnswer,
+        combinationValidationAnswer,
+        combinationValidation,
+        validationRowValue
+      )
+    }
+  }
   private setAutoFillAnswers(validationFilledByAnswer: Validation, validationRowValue: ValidationRow) {
     if (!this.allRequiredAnswersFilled(validationFilledByAnswer, validationRowValue)) {
       return;
@@ -537,18 +572,10 @@ export class ValidationComponent implements OnInit{
     return <ValidationAnswer>validationRow.answers.find(a => a.type === ValidationType.FEATURE_PRECONDITION);
   }
 
-  getStakeholderActions():{name: string, icon: string, onClick: any}[] {
-    return [
-    ];
-  }
-
   getFeatureActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
     return [
       {name: "menu.deleteFeature", icon: 'delete', onClick: () => this.deleteFeature(validationRowValue.answers[0].feature.id)},
     ];
-  }
-
-  toggleList() {
   }
 
   getPreconditionActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
@@ -561,7 +588,8 @@ export class ValidationComponent implements OnInit{
   getExampleActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
     return [
       {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, this.getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)},
-      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.deleteRow(validationRowValue.rowId)}
+      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.deleteRow(validationRowValue.rowId)},
+      {name: "menu.noExample", icon: 'cancel', onClick: () => this.setNoExampleAnswer(validationRowValue)}
     ];
   }
 
@@ -578,10 +606,6 @@ export class ValidationComponent implements OnInit{
       this.router.navigate(['validation'], { queryParams: {questionnaireId: this.questionnaireId, tabIndex: this.tabIndex}}).then(()=>{
       });
     });
-  }
-
-  openStakeholderSelection(): void {
-    this.stakeholderListToggled = true;
   }
 
   getStakeholderColorClass(answer: any, column: any): string {

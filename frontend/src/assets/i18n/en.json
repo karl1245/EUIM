@@ -14,7 +14,8 @@
     "addPrecondition": "Add preconditon",
     "deletePrecondition": "Delete preconditon",
     "addExample": "Add example",
-    "deleteExample": "Delete example"
+    "deleteExample": "Delete example",
+    "noExample": "No example"
   },
   "toolbar": {
     "name": "EUIM",
