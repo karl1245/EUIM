@@ -1,0 +1,23 @@
+.YES  {
+  background-color: var(--light-green);
+  color: var(--dark-green);
+  border-color: var(--dark-green);
+}
+
+.NO {
+  background-color: var(--light-red);
+  color: var(--dark-red);
+  border-color: var(--dark-red);
+}
+
+.PARTLY {
+  background-color: var(--light-yellow);
+  color: var(--dark-yellow);
+  border-color: var(--dark-yellow);
+}
+
+.DONT_KNOW  {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  border-color: var(--dark-blue);
+}

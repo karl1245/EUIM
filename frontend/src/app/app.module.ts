@@ -35,7 +35,8 @@ import { AboutComponent } from './about/about.component';
 import { MethodComponent } from './method/method.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SanitizeHtmlPipe } from '../sanitize-html.pipe'; // Import the pipe here
-import { ColorSchemeService } from '../color-scheme.service'; // Import your service here
+import { ColorSchemeService } from '../color-scheme.service';
+import { CombinationViewComponent } from './combination-view/combination-view.component'; // Import your service here
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -61,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboutComponent,
     MethodComponent,
     SanitizeHtmlPipe,
+    CombinationViewComponent,
   ],
   imports: [
     BrowserModule,

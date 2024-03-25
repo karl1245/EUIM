@@ -1,0 +1,21 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+    <tr>
+      <th *ngFor="let header of headers" class="projects-table-head">
+        <h1>{{header}}</h1>
+      </th>
+    </tr>
+    </thead>
+  </table>
+  <tbody>
+    <tr *ngFor="let validationCombinationResult of validationCombinationResults">
+      <td *ngFor="let validationCombination of validationCombinationResult.validationCombinations" [ngClass]="validationCombination.validationValue">
+        {{ 'methodCombinations.' + validationCombination.validationValue | translate}}
+      </td>
+      <td>
+        {{ getValidationCombinationResultValueTranslationKey(validationCombinationResult) | translate}}
+      </td>
+    </tr>
+  </tbody>
+</div>

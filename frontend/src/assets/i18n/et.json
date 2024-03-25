@@ -75,10 +75,16 @@
     "dontKnow": "Ei tea",
     "partly": "Osaliselt"
   },
+  "methodCombinations": {
+    "YES": "Jah",
+    "NO": "Ei",
+    "DONT_KNOW": "Ei tea",
+    "PARTLY": "Osaliselt"
+  },
   "plan": {
     "text": "Vali värv",
     "green": "Toimib",
-    "red": "Ei toimi", 
+    "red": "Ei toimi",
     "blue": "Testimisele",
     "yellow": "Lisategevus",
     "pink": "Täiendamisele",
@@ -155,7 +161,7 @@
     },
     "step4": {
       "header": "Etapp 4. Määra näite ühtivus eeldusega ja hinda sidusrühma tegevust võrdluseks toodud näites",
-      "text": "Järgnevad etapid 4.1 ja 4.2. hindavad, mil määral on funktsionaalsuse eeltingimus ja näite situatsioon võrreldavad lähtuvalt sidusrühmast ja kontekstist. Etapid 4.3 ja 4.4 hindavad, kas sidusrühma käitumine võrreldavas näites oli eesmärgipärane ning milline oli seejuures sidusrühma rahulolu. (vt joonis 5)<br></br>Selle etapi täitmiseks leiab infot erinevatest allikatest: avaldatud uuringud ja statistika, teadusartiklid, sotsiaalmeedias kajastuvad arvamused, teenuse osutaja poolt varasemalt kogutud kasutaja käitumise ja tagasiside teave, nõuete analüüsi läbiviija enda teadmised, mis on ajapikku kogunenud nii avalikest allikatest kui ka töökogemuse käigus.", 
+      "text": "Järgnevad etapid 4.1 ja 4.2. hindavad, mil määral on funktsionaalsuse eeltingimus ja näite situatsioon võrreldavad lähtuvalt sidusrühmast ja kontekstist. Etapid 4.3 ja 4.4 hindavad, kas sidusrühma käitumine võrreldavas näites oli eesmärgipärane ning milline oli seejuures sidusrühma rahulolu. (vt joonis 5)<br></br>Selle etapi täitmiseks leiab infot erinevatest allikatest: avaldatud uuringud ja statistika, teadusartiklid, sotsiaalmeedias kajastuvad arvamused, teenuse osutaja poolt varasemalt kogutud kasutaja käitumise ja tagasiside teave, nõuete analüüsi läbiviija enda teadmised, mis on ajapikku kogunenud nii avalikest allikatest kui ka töökogemuse käigus.",
       "subheading1": "Etapp 4.1. Sama sidusrühm?",
       "text1": "Hinnake, kas eelduses nimetatud sidusrühm on sama, keda olete silmas pidanud näites kirjeldatud situatsioonis.<br></br>Kui sidusrühm on sama ja kõik selle sidusrühma liikmed on kogenud näites nimetatud situatsiooni, siis on vastus “Jah”. Kui ainult pooled või osad sidusrühma kuuluvatest kasutajatest on kogenud näites kirjeldatud situatsiooni, on vastus “Osaliselt”. Kui eeltingimuse juures nimetatud sidusrühm ei ole kogenud näidissituatsiooni, on vastus “Ei”. Kui teil on teada, et on olemas mingi sidusrühm, kes seda näitesituatsiooni on kogenud, kuid te ei oska neid täpsemalt identifitseerida, valige vastuseks “Ei tea”. ",
       "subheading2": "Etapp 4.2. Sama kontekst?",
