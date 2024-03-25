@@ -1,3 +1,39 @@
+table{
+  width: 100%;
+}
+
+.id {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  height: auto;
+  width: 8%;
+  border: solid;
+  border-width: 1px;
+}
+
+.answer {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  height: auto;
+  width: 16%;
+  border: solid;
+  border-width: 1px;
+  word-break: normal;
+  overflow: hidden;
+}
+
+.explanation {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  height: auto;
+  width: 28%;
+  border: solid;
+  border-width: 1px;
+}
+
 .YES  {
   background-color: var(--light-green);
   color: var(--dark-green);
