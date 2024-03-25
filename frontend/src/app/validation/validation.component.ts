@@ -193,6 +193,12 @@ export class ValidationComponent implements OnInit{
     if (validationType === ValidationType.STAKEHOLDER) {
       return stakeholder?.name ? stakeholder.name : '';
     }
+    if (validationType === ValidationType.DO) {
+      if (this.translateService.currentLang === GlobalConstants.ET) {
+        return 'Kas';
+      }
+      return 'Do';
+    }
     return '';
   }
 
