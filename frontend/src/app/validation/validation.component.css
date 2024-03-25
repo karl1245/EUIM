@@ -106,14 +106,16 @@ tr>th:first-child/*,tr>td:first-child*/ {
   width: 16rem;
 }
 
-.content-cell-sixth-child {
-  width: 6.25rem;
-}
 
 .content-cell-four-options {
   justify-content: center !important;
   width: 12.25rem;
 }
+
+.content-cell-tenth-child {
+  width: 6.25rem;
+}
+
 .content-cell-eleventh-child {
   width: 16rem;
   border-right: none;

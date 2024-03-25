@@ -502,10 +502,10 @@ export class ValidationComponent implements OnInit{
       return 'content-cell-fourth-child'
     } else if (i === 4) {
       return 'content-cell-fifth-child'
-    } else if (i === 5) {
-      return 'content-cell-sixth-child'
-    } else if (i > 5 && i < 10) {
+    } else if (i > 4 && i < 9) {
       return 'content-cell-four-options'
+    } else if (i === 9) {
+      return 'content-cell-tenth-child'
     } else if (i === 10) {
       return 'content-cell-eleventh-child'
     } else if (i === 11) {
