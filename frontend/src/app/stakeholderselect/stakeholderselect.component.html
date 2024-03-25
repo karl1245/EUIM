@@ -1,6 +1,6 @@
 <div class="stakeholder-selection">
   <div class="stakeholders-list">
-    <button *ngFor="let stakeholder of stakeholders; index as i" class="stakeholder {{getStakeholderColorClass(i)}}">
+    <button *ngFor="let stakeholder of stakeholders; index as i" (click)="action.onClick(stakeholder)" class="stakeholder {{getStakeholderColorClass(i)}}">
       <span>{{ stakeholder.name }}</span>
     </button>
   </div>
