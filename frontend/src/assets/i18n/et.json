@@ -15,7 +15,8 @@
     "deletePrecondition": "Kustuta eeltingimus",
     "deleteFeature": "Kustuta tunnus",
     "addExample": "Lisa situatsioon",
-    "deleteExample": "Kustuta situatsioon"
+    "deleteExample": "Kustuta situatsioon",
+    "noExample": "Näidet pole"
   },
   "toolbar": {
     "name": "EUIM",
