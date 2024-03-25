@@ -153,7 +153,7 @@ export class FeatureGroupComponent implements OnInit {
       class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
-      if (result.deleteObject) {console.log(result);
+      if (result.deleteObject) {
         this.deleteStakeholder(stakeholder.id);
       }
     });
