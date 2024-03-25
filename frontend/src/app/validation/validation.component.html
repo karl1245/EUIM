@@ -86,7 +86,7 @@
     <tfoot >
     <tr >
       <td >
-        <button class="add-row-button" (click)="addValidationRow()">
+        <button [disabled]="isAddingNewRow" class="add-row-button" (click)="addValidationRow()">
           <span class="material-symbols-outlined icon small-icon">add</span>
           {{'table.newRow' | translate}}</button>
       </td>
