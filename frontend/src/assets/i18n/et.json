@@ -42,8 +42,8 @@
     "body": "Kas oled kindel, et soovid projekti kustutada?"
   },
   "deleteFeatureGroupModal": {
-    "title": "Kustuta tunnusgrupp",
-    "body": "Kas oled kindel, et soovid tunnusgruppi kustutada?"
+    "title": "Kustuta grupp",
+    "body": "Kas oled kindel, et soovid gruppi kustutada?"
   },
   "deleteStakeholderModal": {
     "title": "Kustuta sidusrühm",
@@ -54,12 +54,24 @@
     "input": "Projekti nimi"
   },
   "editFeatureGroupModal": {
-    "title": "Muuda tunnusgrupi nime",
-    "input": "Tunnusgrupi nimi"
+    "title": "Muuda grupi nimetust",
+    "input": "Funktsionaalsuste grupi nimetus"
   },
   "editStakeholderModal": {
-    "title": "Muuda sidusrühma nime",
-    "input": "Sidusrühma nimi"
+    "title": "Muuda sidusrühma nimetust",
+    "input": "Sidusrühma nimetus"
+  },
+  "addGroup": {
+    "title": "Lisa funktsionaalsuste grupp",
+    "list": "Olemasolevad funktsionaalsuste grupid",
+    "input": "Funktsionaalsuste grupi nimetus",
+    "placeholder": "Sisesta tunnuse ID või lühend"
+  },
+  "addStakeholder": {
+    "title": "Lisa uus sidusrühm",
+    "list": "Olemasolevad sidusrühmad",
+    "input": "Sidusrühma nimetus",
+    "placeholder": "Sisesta nimetus mitmuses"
   },
   "table": {
     "newRow": "Lisa uus rida",

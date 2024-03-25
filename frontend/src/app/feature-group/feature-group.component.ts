@@ -24,7 +24,9 @@ export class FeatureGroupComponent implements OnInit {
   loading: boolean = true;
   tabsLoading: boolean = false;
   isToggledGroupAdding: boolean = false;
+  isToggledGroupList: boolean = true;
   isToggledStakeholderAdding: boolean = false;
+  isToggledStakeholderList: boolean = true;
   featureGroupName: string;
   stakeholderName: string;
   @ViewChild('featureGroupTabs', {static: false}) tab: MatTabGroup;
@@ -57,8 +59,16 @@ export class FeatureGroupComponent implements OnInit {
     this.isToggledGroupAdding = !this.isToggledGroupAdding;
   }
 
+  toggleGroupList(): void {
+    this.isToggledGroupList = !this.isToggledGroupList;
+  }
+
   toggleAddNewStakeholder(): void {
     this.isToggledStakeholderAdding = !this.isToggledStakeholderAdding;
+  }
+
+  toggleStakeholderList(): void {
+    this.isToggledStakeholderList = !this.isToggledStakeholderList;
   }
 
   getData(): void {
@@ -88,12 +98,17 @@ export class FeatureGroupComponent implements OnInit {
     this.featureGroupService.createFeatureGroup(this.questionnaireId, featureGroupName)
       .subscribe(next => {
         this.featureGroups.push(next);
+        this.featureGroupName = "";
       })
+    
   }
 
   createNewStakeholder(stakeholderName: string) {
     this.stakeholderService.createStakeholder(this.questionnaireId, stakeholderName)
-      .subscribe(next => this.stakeholders.push(next))
+      .subscribe(next => {
+        this.stakeholders.push(next);
+        this.stakeholderName = "";
+      })
   }
 
   deleteStakeholder(id: number) {

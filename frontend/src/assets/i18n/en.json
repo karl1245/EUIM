@@ -59,6 +59,18 @@
   "editStakeholderModal": {
     "title": "Edit stakeholder name",
     "input": "Stakeholder name"
+  },  
+  "addGroup": {
+    "title": "Add a new feature group",
+    "list": "Existing feature groups",
+    "input": "Feature group name",
+    "placeholder": "Enter feature ID or abbreviation"
+  },
+  "addStakeholder": {
+    "title": "Add a new stakeholder",
+    "list": "Existing stakeholders",
+    "input": "Stakeholder name",
+    "placeholder": "Enter the name in plural"
   },
   "table": {
     "newRow": "Add new row",

@@ -132,7 +132,7 @@ mat-tab-group {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .add-project-input {
@@ -140,7 +140,7 @@ mat-tab-group {
   flex-direction: column;
   justify-content: left;
   width: 100%;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .add-project-buttons {
