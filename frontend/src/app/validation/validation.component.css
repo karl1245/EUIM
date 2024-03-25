@@ -1,10 +1,5 @@
 .table-wrapper {
   border: none;
-  border: solid;
-  border-color: var(--text-color);
-  border-width: 2px;
-  border-radius: 4px;
-  overflow-y: hidden;
   overflow-x: scroll;
 }
 
@@ -16,6 +11,10 @@ table {
   border-color: var(--text-color);
   border-collapse: separate;
   border-spacing: 0;
+  border: solid;
+  border-color: var(--text-color);
+  border-width: 2px;
+  border-radius: 4px;
 }
 thead {
   border: 1px;
@@ -209,6 +208,8 @@ textarea {
   height: fit-content;
   border: solid;
   border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   padding: 1rem;
   gap: 8px;
   background-color: var(--light-green);
