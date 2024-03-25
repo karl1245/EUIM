@@ -9,7 +9,7 @@
     "edit": "Edit",
     "delete":"Delete",
     "copy": "Make a copy",
-    "download": "Download", 
+    "download": "Download",
     "addStakeholder": "Add Stakeholder",
     "addPrecondition": "Add preconditon",
     "deletePrecondition": "Delete preconditon",
@@ -73,6 +73,12 @@
     "no": "No",
     "dontKnow": "Don't know",
     "partly": "Partly"
+  },
+  "methodCombinations": {
+    "YES": "Yes",
+    "NO": "No",
+    "DONT_KNOW": "Don't know",
+    "PARTLY": "Partly"
   },
   "plan": {
     "": ""
@@ -148,7 +154,7 @@
     },
     "step4": {
       "header": "",
-      "text": "", 
+      "text": "",
       "subheading1": "",
       "text1": "",
       "subheading2": "",

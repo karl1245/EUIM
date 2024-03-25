@@ -6,7 +6,7 @@ import { ValidationCombinationResult } from './model/validation-combination-resu
 import { firstValueFrom, Observable } from 'rxjs';
 import { ValidationValue } from './model/validation-value';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { GlobalConstants } from '../constants/global-constants';
 import { FeatureGroupResponse } from '../feature-group/model/feature-group-response';
 import { FeatureService } from '../feature/service/feature.service';
@@ -60,10 +60,13 @@ export class ValidationComponent implements OnInit{
     private translateService: TranslateService,
     private featureService: FeatureService,
     private featurePreconditionService: FeaturePreConditionService
-  ) {}
-
-  getValidationValues(): ValidationValue[] {
-    return this.validationValues;
+  ) {
+    this.onLanguageChanged();
+  }
+  onLanguageChanged() {
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      //this.reloadComponent();
+    });
   }
 
   ngOnInit(): void {
@@ -200,7 +203,6 @@ export class ValidationComponent implements OnInit{
     }
     return '';
   }
-
 
   getValidationRowAnswer(validation: Validation, validationRowValue: ValidationRow) {
     return validationRowValue.answers.filter(answer => answer.validationId === validation.id)[0];
