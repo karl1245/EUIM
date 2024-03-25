@@ -3,6 +3,8 @@ export interface Validation {
   id: number;
   nameEt: string;
   nameEn: string;
+  tooltipEt: string;
+  tooltipEn: string;
   weight: number;
   type: ValidationType;
   summaryId: number;
@@ -24,5 +26,6 @@ export enum ValidationType {
   FEATURE = "FEATURE",
   STAKEHOLDER = "STAKEHOLDER",
   FEATURE_PRECONDITION = "FEATURE_PRECONDITION",
-  DO = "DO"
+  DO = "DO",
+  EXAMPLE = "EXAMPLE"
 }

@@ -27,4 +27,7 @@ public class Feature {
 
   @Column
   private String answer;
+
+  @Column
+  private String customId;
 }

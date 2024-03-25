@@ -1,0 +1,23 @@
+.wrapper {
+  margin-top: 80px;
+  height: fit-content;
+  width: fit-content;
+  padding: 2.5rem;
+  background-color: var(--container);
+  border-radius: 0.625rem;
+  display: flex;
+  gap: 5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--beige);
+  width: 1000px;
+  padding: 32px;
+  border: solid;
+  border-color: var(--text-color);
+  border-width: 2px;
+  border-radius: 0.625rem;
+  gap: 32px;
+}

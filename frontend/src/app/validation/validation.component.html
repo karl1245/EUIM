@@ -1,104 +1,94 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<div class="table-wrapper">
-  <table *ngIf="!loading" class="w-100 border-bottom-0">
+<div *ngIf="!loading" class="table-wrapper">
+  <table>
     <thead>
-    <tr>
-      <th>
-        ID
-      </th>
-      <th style="min-width:200px" [attr.colspan]="validationSummary.validationIds.length" *ngFor="let validationSummary of validationSummaries">
-        {{getTranslation(validationSummary)}}
-      </th>
-      <th>
-        {{'table.deleteRow' | translate}}
-      </th>
-    </tr>
+      <tr>
+        <th>
+        </th>
+        <th *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i)">
+          <div class="header">{{getTranslation(validation)}}
+          <mat-icon *ngIf="validation.tooltipEt"   matTooltip="{{isCurrentLangEt ? validation.tooltipEt : validation.tooltipEn}}"   matTooltipClass="tooltip" class="material-symbols-outlined">info</mat-icon>
+          </div>
+        </th>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>
-         ID
-      </td>
-      <td style="min-width:50px" *ngFor="let validation of validations; index as i" comment="[ngClass]=getStickyClassByIndex(i)"><!--TODO Remove this if sticky rows are not going to be used-->
-        {{getTranslation(validation)}}
-      </td>
-    </tr>
-    <tr *ngFor="let validationRowValue of validationRowValues; index as i">
-      <td>{{i + 1}}</td>
-      <ng-container *ngFor="let validation of validations; index as i">
-        <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" comment="[ngClass]=getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)"><!--TODO Remove this comment if sticky rows are not going to be used-->
+      <tr *ngFor="let validationRowValue of validationRowValues; index as i">
+        <td class="id-cell background-beige">{{ i  + 1 }}</td>
+        <ng-container *ngFor="let validation of validations; index as i">
+        <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" class="background-beige" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
           <div *ngIf="isValidationSelectable(validation)">
-            <mat-form-field>
-              <mat-label>{{'select.chooseOption' | translate}}</mat-label>
-              <mat-select [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-                          (selectionChange)="onValidationRowValueChange($event.value, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-              >
-                <mat-option
-                  *ngFor="let validationValue of validationValues"
-                  [value]="validationValue"
-                >
-                  {{'select.' + validationValue2LabelMapping[validationValue] | translate}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div *ngIf="isValidationTextField(validation)">
-            <textarea
-              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-              class="overflow-auto w-100 border-0 textarea-min-height"
-            >
-            </textarea>
+            <app-select
+              (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+            />
           </div>
           <div class="w-100 h-100" *ngIf="isValidationStakeholder(validation)">
-            <select style="width:18px; position: absolute; top: 0;right: 0" [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
+            <select [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
               <option *ngFor="let stakeholder of stakeholders; index as i" [ngValue]="stakeholder" value="stakeholder">{{stakeholder.name}}</option>
             </select>
-            <p>
-              {{ getValidationRowAnswer(validation, validationRowValue).answer }}
-            </p>
+            <app-stakeholder
+              *ngIf="getValidationRowAnswer(validation, validationRowValue).answer !== null && getValidationRowAnswer(validation, validationRowValue).answer !== ''"
+              class="{{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}"
+              [stakeholder]="getValidationRowAnswer(validation, validationRowValue).answer"
+              [color]="getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)"
+              [deleteAction]="getStakeHolderDeleteAction(validation, validationRowValue)"
+            >
+            </app-stakeholder>
           </div>
-          <div  *ngIf="isValidationFeature(validation)">
+          <div *ngIf="isValidationFeature(validation)" class="feature-cell">
+            <div class="cell-with-menu">
+              <textarea
+                [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
+                (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
+                class="overflow-auto w-100 border-0 textarea-min-height custom-id"
+              >
+              </textarea>
+              <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
+            </div>
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
-            <button
-              (click)="addValidationRow(validationRowValue.answers[0].feature)"
-              color="primary"
-              mat-icon-button>
-              <mat-icon>add_circle_outline</mat-icon>
-            </button>
           </div>
-          <div  *ngIf="isValidationFeaturePrecondition(validation)">
+          <div *ngIf="isValidationFeaturePrecondition(validation)" class="cell-with-menu">
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
               (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
-            <button
-              (click)="addValidationRow(validationRowValue.answers[0].feature, getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)"
-              color="primary"
-              mat-icon-button>
-              <mat-icon>add_circle_outline</mat-icon>
-            </button>
+            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [stakeholders]="stakeholders" [isStakeholdersCell]="true"></app-menu>
+          </div>
+          <div *ngIf="isValidationExample(validation)" class="cell-with-menu">
+            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
+            <!-- <app-menu [toggle]="'Colors'" [icon]="menuIcon"></app-menu> -->
+          </div>
+          <div *ngIf="isValidationTextField(validation)" class="cell-with-menu">
+            <textarea
+              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              class="overflow-auto w-100 border-0 textarea-min-height"
+            >
+            </textarea>
           </div>
           <div *ngIf="isValidationAutofill(validation)">
-            {{getValidationRowAnswer(validation, validationRowValue).answer}}
+            <span class="answer-stakeholder {{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}">{{getValidationRowAnswer(validation, validationRowValue).answer}}</span>
           </div>
         </td>
       </ng-container>
-
-      <td><button (click)="deleteRow(validationRowValue.rowId)">{{'table.delete' | translate}}</button></td>
+      <td>
+        <button (click)="deleteRow(validationRowValue.rowId)">{{'table.delete' | translate}}</button>
+      </td>
     </tr>
     </tbody>
     <tfoot >
-    <tr colspan="100%">
-      <td colspan="100%">
-        <button class="w-100" (click)="addValidationRow()">{{'table.newRow' | translate}}</button>
+    <tr >
+      <td >
+        <button class="add-row-button" (click)="addValidationRow()">
+          <span class="material-symbols-outlined icon small-icon">add</span>
+          {{'table.newRow' | translate}}</button>
       </td>
     </tr>
     </tfoot>

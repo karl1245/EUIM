@@ -11,7 +11,8 @@ public class FeatureMapper {
   public static FeatureResponse toResponse(Feature feature) {
     return new FeatureResponse(
       feature.getId(),
-      feature.getAnswer()
+      feature.getAnswer(),
+      feature.getCustomId()
     );
   }
 }

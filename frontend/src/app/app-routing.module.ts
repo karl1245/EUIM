@@ -4,6 +4,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PageMeta } from './common/page-meta';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { AboutComponent } from './about/about.component';
+import { MethodComponent } from './method/method.component';
 
 interface EuimRouteData extends Data {
   meta?: PageMeta;
@@ -35,7 +37,29 @@ const validationRoutes: EuimRoute[] = [
         }
       }
     }
-  }
+  },
+  {
+    path: 'method',
+    component: MethodComponent,
+    data: {
+      meta: {
+        title: {
+          value: 'nontranslatedpagemeta'
+        }
+      }
+    }
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    data: {
+      meta: {
+        title: {
+          value: 'nontranslatedpagemeta'
+        }
+      }
+    }
+  },
 ];
 
 

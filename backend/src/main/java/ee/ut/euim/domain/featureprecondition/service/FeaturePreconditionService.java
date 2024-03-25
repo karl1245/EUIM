@@ -2,7 +2,6 @@ package ee.ut.euim.domain.featureprecondition.service;
 
 import ee.ut.euim.domain.featureprecondition.persistence.FeaturePrecondition;
 import ee.ut.euim.domain.featureprecondition.persistence.FeaturePreconditionRepository;
-import ee.ut.euim.domain.validationanswer.service.ValidationAnswerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -36,15 +35,6 @@ public class FeaturePreconditionService {
     return featurePreconditionRepository.findById(id).orElseThrow(
       () -> new NoSuchElementException("Feature precondition not found with id:" + id)
     );
-  }
-
-  public FeaturePrecondition findOrCreatePrecondition(Integer id, String answer) {
-    log.info("Finding or creating feature precondition with Id: {} and answer: {}", id, answer);
-    if (id == null) {
-      return create(answer);
-    }
-
-    return get(id);
   }
 
   public FeaturePrecondition update(Integer id, String answer) {

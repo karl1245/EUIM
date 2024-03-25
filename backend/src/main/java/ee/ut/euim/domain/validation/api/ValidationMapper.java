@@ -19,9 +19,10 @@ public class ValidationMapper {
       validation.getId(),
       validation.getNameEt(),
       validation.getNameEn(),
+      validation.getTooltipEt(),
+      validation.getTooltipEn(),
       validation.getWeight(),
       validation.getType(),
-      validation.getSummary().getId(),
       validation.getValidationAutofills().stream().map(ValidationMapper::toResponse).toList()
     );
   }

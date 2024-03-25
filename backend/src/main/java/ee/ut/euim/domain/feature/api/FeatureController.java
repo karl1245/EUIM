@@ -1,5 +1,6 @@
 package ee.ut.euim.domain.feature.api;
 
+import ee.ut.euim.domain.feature.service.FeatureDeleteService;
 import ee.ut.euim.domain.feature.service.FeatureService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,6 +28,7 @@ import static ee.ut.euim.domain.feature.api.FeatureMapper.toResponse;
 public class FeatureController {
 
   private final FeatureService featureService;
+  private final FeatureDeleteService featureDeleteService;
 
   @PostMapping
   public FeatureResponse create(@RequestBody @Valid FeatureCreateRequest featureCreateRequest) {
@@ -41,6 +44,15 @@ public class FeatureController {
   ) {
     log.info("Updating feature with id: {}, with values: {}",id, featureCreateRequest);
 
-    return toResponse(featureService.update(id, featureCreateRequest.getAnswer()));
+    return toResponse(featureService.update(id, featureCreateRequest.getAnswer(), featureCreateRequest.getCustomId()));
+  }
+
+  @DeleteMapping("/{id}")
+  public void delete(
+    @PathVariable(value = "id") @NotNull Integer id
+  ) {
+    log.info("Deleting feature with id: {}",id);
+
+    featureDeleteService.deleteAndRemoveValidationAnswersRelatedToFeature(id);
   }
 }

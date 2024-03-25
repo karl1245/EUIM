@@ -9,7 +9,12 @@
     "edit": "Edit",
     "delete":"Delete",
     "copy": "Make a copy",
-    "download": "Download"
+    "download": "Download", 
+    "addStakeholder": "Add Stakeholder",
+    "addPrecondition": "Add preconditon",
+    "deletePrecondition": "Delete preconditon",
+    "addExample": "Add example",
+    "deleteExample": "Delete example"
   },
   "toolbar": {
     "name": "EUIM",
@@ -34,10 +39,25 @@
     "title": "Delete projekt: {{name}}",
     "body": "Are you sure you want to delete the project?"
   },
+  "deleteFeatureGroupModal": {
+    "title": "Delete feature group",
+    "body": "Are you sure you want to delete the feature group?"
+  },
+  "deleteStakeholderModal": {
+    "title": "Delete stakeholder",
+    "body": "Are you sure you want to delete the stakeholder?"
+  },
   "editProjectModal": {
     "title": "Edit project name: {{name}}",
-    "input": "Project name",
-    "placeholder": "Project name"
+    "input": "Project name"
+  },
+  "editFeatureGroupModal": {
+    "title": "Edit feature group name",
+    "input": "Feature group name"
+  },
+  "editStakeholderModal": {
+    "title": "Edit stakeholder name",
+    "input": "Stakeholder name"
   },
   "table": {
     "newRow": "Add new row",
@@ -53,6 +73,117 @@
     "no": "No",
     "dontKnow": "Don't know",
     "partly": "Partly"
+  },
+  "plan": {
+    "": ""
+  },
+  "about": {
+    "header": "About",
+    "section1Heading": "EbA Method",
+    "section1Text": "The motivation for creating the Experience-based Analysis (EbA) method is to make the development of digital products and services more cost effective, since EbA method provides an early indication in digital product or e-service development of whether the solution will function efficiently in terms of stakeholders' behavior and habits, and identify potential risks that may arise. The EbA method was invented by Anu Piirisild, who first described the method in 2021. in his master's thesis, but continues to research and improve the method in his doctoral studies at the University of Tartu. The method is currently in the testing phase. We would appreciate it if you could share with us your experience with the EbA method and the tool. Please send your feedback to the e-mail address ",
+    "section2Heading": "EbA method tool EBA-UIM tool",
+    "section2Text": "<b>The EBA-UIM tool</b> was created to make using the Experience-based Analysis (EbA) method easier. The tool helps structure the information and automatically displays the descriptions predicting the usability of the product/e-service under development.<br></br>In the tool, you can create projects, make copies, and download them in Excel format. You can visually modify the analyzed information in the downloaded Excel file according to your needs. The tool also contains a fictional example project, a description of the EbA method, and a guide to using the method. Currently, the tool is available in two languages: Estonian and English.<br></br><b>EBA-UIM tool</b> is an offline desktop application that stores the data on the user’s own machine. The application is hosted in the High Performance Computing Center of the University of Tartu. The application is free of charge to be used by anyone. EbA meetodi ja töövahendi ÕIGUSED KUULUVAD….<br></br>The tool is planned to be updated, so we recommend you visit the updated version occasionally. Information about the updated version and download can be found on the page of the High Performance Computing Center of the University of Tartu:.....",
+    "section3Heading": "The EBA-UIM tool team",
+    "section3Text": "<b>EBA-UIM tool</b> application is a improved version of the previous MVP (minimum viable product) version of the EbA method tool. <b>EBA-UIM tool</b> rakenduse on arendanud Tartu Ülikooli …. eriala tudengid Iris Kreinin ja Karl Olaf Kuldmaa oma bakalaureuse lõputöö raames. Iris Kreinin lõi rakenduse ………………………... Karl Olaf Kuldmaa …………………………. Anu Piirisild created the EbA method guide, texts explaining the method, and an example project.",
+    "contact": "Contact",
+    "address": "University of Tartu<br></br>Institute of Computer Science<br></br>Narva mnt 18<br></br>51009 Tartu, Estonia"
+  },
+  "combinations": {
+    "header": "Combined answers",
+    "section1Heading": "Combinations",
+    "section1Text": "In the table below, you can find all the combinations of four questions and four answers. There are 256 combinations in total. One more description has been added to the 256 combinations in case a previously experienced example has not been found for comparison.<br></br>An interpretation is provided for each combination that forms a part of the sentence to which the stakeholder's name is added to the sentence along with the feature precondition (see under label “EbA Method“) . Combined into one sentence, the sentence provides an indication to what extent the stakeholders' actions meet the expectations described in the precondition.<br></br>The combinations are interpreted by the creator of the EbA method, Anu Piirisild.<br></br>Variants of combinations and their wording are as follows:",
+    "section2Heading": "Interpretation of combinations",
+    "section2SubHeading": "2.1. How to read the answers of the combinations in the EbA method tool",
+    "section2Text": "The results can be read in different ways, according to which one feels more applicable:<br></br><ol><li>Look at the triple column “To what extent the preconditions are met“, where each part of the sentence is listed in a separate column: interpretation of the combination of answers + stakeholder + feature precondition. Such a sentence display is preferred for those who want to read the result as a whole sentence but, at the same time, keep each part of the sentence in a separate column.</li><li>Look at the 3-part sentence joined together. In the EbA method tool, the sentence is located after the triple column “To what extent the preconditions are met“. This sentence display is intended for those who want to read the result as a complete sentence without separating the parts of the sentence. We recommend using this column when the results of the analysis are included in the project documentation, and there is a desire to indicate the input for the decisions of the action plan, i.e., what the result of the EbA analysis was. In the EbA tool, this sentence column can be hidden.</li><li>Look at the yes-partly-no-don't know answers to the four questions independently, without the interpretation, and the included stakeholder group with the feature precondition, and give your own interpretation of the situation.</li></ol>",
+    "section2SubHeading2": "2.2. The principles of creating the formulation for combinations",
+    "section2Text2": "When interpreting the combinations, it has been ensured that i) the sentence contains the most essential aspects of the situation and the result gives meaningful information; ii) syntax of the sentence would allow linking to it the stakeholder and feature precondition without changing the wording; iii) the sentence can be used for different types of preconditions; iiii) repeated elements can be used in the sentence.<br></br>The answers are intended to cover different types of assumptions universally, e.g., knowledge, awareness, attitudes, skills, emotions, and availability of tools or activities. Therefore, the answers should be read with some abstraction.<br></br>The following the principles of interpretation and repeated elements used in the sentences are described.",
+    "selection1Heading": "2.2.1. The same stakeholder? – interpreting the answers in a sentence",
+    "selection1Yes": "In the case of the answer “Yes”, the stakeholder is not mentioned in the sentence because the answer describing the situation gives itself the concept that the information applies to the entire stakeholder group.",
+    "selection1Partly": "The answer “Partly” means that the example of the previous experience situation provided for comparison in the EbA method applies to some of the stakeholders' representatives. Therefore, we can draw conclusions about some stakeholder representatives only. The word “some“ is used in this case in the sentence. However, an exception is made if the answer to the purposeful use is “No“ or “Don't know“. In such a case, the answer is generalized to the entire stakeholder group of the situation because even if the smaller number of the whole stakeholder group did not act according to the purpose (answer “No”), or the result of the action was not known (answer “Don't know”), we cannot assume that the action in the created product will be purposeful.",
+    "selection1No": "If the answer is “No”, the sentence indicates that “there is a different stakeholder” about whom we have information, which should direct the reader to look at the actions of another stakeholder group to learn from there. However, the sentence reminds us that we don't know about the actual stakeholder, whether the prerequisite is met or not.",
+    "selection1DontKnow": "If the answer is “Don't know”, the sentence indicates that “there is a stakeholder” about whom we have information, although this stakeholder cannot be defined at the moment. The answer should direct the reader to define the stakeholder more precisely, if necessary, to learn from the experience there. However, the sentence reminds us that we don't know about the actual stakeholder, whether the prerequisite is met or not.",
+    "selection2Heading": "2.2.2. The same context? – interpreting the answers in a sentence",
+    "selection2Yes": "In the case of the answer “Yes”, the context exactness is not mentioned in the sentence because the answer gives itself the concept that there are no differences in context.",
+    "selection2Partly": "The answer “Partly” indicates that the information applies to a “slightly different context”.",
+    "selection2No": "If the answer is “No”, the sentence uses the expression “in another context”, which should direct the reader to look at these other contexts to take a good or a warning example from there.",
+    "selection2DontKnow": "If the answer is “Don't know”, the sentence uses the expression “in an unknown context”, which should direct the reader to learn more about this unknown context to take a good or a warning example from there.",
+    "selection3Heading": "2.2.3. Purposeful use? – interpreting the answers in a sentence",
+    "selection3Yes": " In the case of the answer “Yes”, the action outcome is not mentioned in the sentence if the stakeholder is the same (answer “Yes”), or partly the same (answer “Partly”). It is expressed this way because the answer gives itself the concept that the action outcome is purposeful. If the answer to the question “The same stakeholder?” is “No”, or “Don't know”, the action outcome is shown in the sentence as purposeful.",
+    "selection3Partly": "The answer “Partly” is expressed in the sentence with the wording “to an extent”, which means that the scope, quality, or activity of the action meets the expectations only partially.",
+    "selection3No": "If the answer is “No”, the sentence uses the expression “the action outcome is incorrect”. If the answer is “no”, the sentence also contains a reminder that based on the current information, we cannot assume that the actions will be purposeful while using the new product. This, in turn, means that the purposefulness of the stakeholder's actions must either be analyzed further or prepared for testing.",
+    "selection3DontKnow": "The answer “Don't know” is expressed in the sentence with the wording “the action outcome is unknown”. If the action outcome is not known, the sentence also contains a reminder that based on the current information, we cannot assume that the actions will be purposeful while using the new product. This, in turn, means that the purposefulness of the stakeholder's actions must either be analyzed further or prepared for testing.",
+    "selection4Heading": "2.2.4. Satisfied with the solution? – interpreting the answers in a sentence",
+    "selection4Yes": " In the case of the answer “Yes”, satisfaction is not mentioned in the sentence because the answer describing the situation gives the concept that there is no problem with satisfaction.",
+    "selection4Partly": "The answer “Partly” is expressed in the sentence with the wording “there is somewhat dissatisfaction with this precondition”, which means that there are some problems with satisfaction.",
+    "selection4No": "If the answer is “No”, the sentence uses the expression “there is dissatisfaction with this precondition”. Such information should direct the reader to find a different solution, with which the probability of satisfaction would be higher.",
+    "selection4DontKnow": "The answer “Don't know” is expressed in the sentence with the wording “satisfaction with this precondition is unknown”. Such information should direct the reader to determine satisfaction either through further analysis or testing with users."
+  },
+  "method": {
+    "general": {
+      "example": "Näide"
+    },
+    "intro": {
+      "title": "",
+      "header": "",
+      "text": ""
+    },
+    "step1": {
+      "header": "",
+      "text": "",
+      "example": "",
+      "text2": ""
+    },
+    "step2": {
+      "header": "",
+      "text": "",
+      "example": "",
+      "text2": "",
+      "example2": ""
+    },
+    "step3": {
+      "header": "",
+      "text": "",
+      "text2": "",
+      "example": ""
+    },
+    "step4": {
+      "header": "",
+      "text": "", 
+      "subheading1": "",
+      "text1": "",
+      "subheading2": "",
+      "text2": "",
+      "subheading3": "",
+      "text3": "",
+      "subheading4": "",
+      "text4": "",
+      "example": ""
+    },
+    "step5": {
+      "header": "",
+      "text": ""
+    },
+    "step6": {
+      "header": "",
+      "text": "",
+      "text2": "",
+      "example": ""
+    },
+    "step7": {
+      "header": "",
+      "text": "",
+      "plan1": "",
+      "plan2": "",
+      "plan3": "",
+      "plan4": "",
+      "plan5": "",
+      "plan6": "",
+      "example": ""
+    },
+    "nb": {
+      "header": "",
+      "text": ""
+    }
   },
   "questionnaires": "Questionnaires",
   "et": "EST",

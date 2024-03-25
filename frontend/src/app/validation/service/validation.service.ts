@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ValidationEndpointConstants } from '../../constants/validation-endpoint-constants';
 import { Validation } from '../model/validation';
-import { ValidationSummary } from '../model/validation-summary';
 import { ValidationAnswer } from '../model/validation-answer';
 
 @Injectable({
@@ -16,12 +15,6 @@ export class ValidationService {
   public getValidations(): Observable<Validation[]> {
     return this.http.get<Validation[]>(
       ValidationEndpointConstants.getValidationUri()
-    );
-  }
-
-  public getValidationSummaries(): Observable<ValidationSummary[]> {
-    return this.http.get<ValidationSummary[]>(
-      ValidationEndpointConstants.getValidationSummaryUri()
     );
   }
 

@@ -18,9 +18,10 @@ public class ValidationResponse {
   private Integer id;
   private String nameEt;
   private String nameEn;
+  private String tooltipEt;
+  private String tooltipEn;
   private Integer weight;
   private String type;
-  private Integer summaryId;
   private List<ValidationAutofill> validationAutofillList;
 
   @Getter

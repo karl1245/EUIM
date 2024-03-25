@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './service/questionnaire.service';
 import { QuestionnaireResponse } from './model/questionnaire-response';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { DeleteQuestionnaireModalComponent } from './modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
-import { EditQuestionnaireModalComponent } from './modal/edit-questionnaire-name-modal/edit-questionnaire-name-modal.component';
+import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
+import { EditModalComponent } from './modal/edit-modal/edit-modal.component';
+
 @Component({
   selector: 'app-questionnaire',
   templateUrl: './questionnaire.component.html',
@@ -20,6 +21,7 @@ export class QuestionnaireComponent implements OnInit {
   validationPath = "/validation"
   // @ts-ignore
   modalRef: BsModalRef;
+  menuIcon: string = "more_vert";
 
 
   constructor(
@@ -59,13 +61,14 @@ export class QuestionnaireComponent implements OnInit {
 
   deleteQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
+      isProject: true,
       questionnaireName: questionnaire.name
     };
-    this.modalRef = this.modalService.show(DeleteQuestionnaireModalComponent, {
+    this.modalRef = this.modalService.show(DeleteModalComponent, {
       class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
-      if (result.deleteQuestionnaire) {
+      if (result.deleteObject) {
         this.loading = true;
         this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
           this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
@@ -79,14 +82,15 @@ export class QuestionnaireComponent implements OnInit {
 
   editQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
+      isProject: true,
       questionnaire: questionnaire,
       questionnairesList: this.questionnaires,
     };
-    this.modalRef = this.modalService.show(EditQuestionnaireModalComponent, {
+    this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
-      if (result.deleteQuestionnaire) {
+      if (result.deleteObject) {
         this.loading = true;
         this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
           this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
@@ -104,6 +108,4 @@ export class QuestionnaireComponent implements OnInit {
       {name: "menu.delete", icon: 'delete', onClick: () => this.deleteQuestionnaire(questionnaire)},
     ];
   }
-  
-  
 }

@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
 import { ValidationCombinationResult } from './model/validation-combination-result';
 import { firstValueFrom, Observable } from 'rxjs';
-import { ValidationValue, ValidationValue2LabelMapping } from './model/validation-value';
-import { ValidationSummary } from './model/validation-summary';
+import { ValidationValue } from './model/validation-value';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { GlobalConstants } from '../constants/global-constants';
@@ -18,6 +17,8 @@ import { FeatureToDisplay } from './model/feature-to-display';
 import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
 import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
+import { HomepageComponent } from '../homepage/homepage.component';
+import { MenuComponent } from '../menus/menu.component';
 
 @Component({
   selector: 'app-validation',
@@ -31,21 +32,26 @@ export class ValidationComponent implements OnInit{
   loading: boolean = true;
   translate: boolean = false;
   validations: Validation[] = [];
-  validationSummaries: ValidationSummary[] = [];
   validationRowValues: ValidationRow[] = [];
   validationCombinationResults: ValidationCombinationResult[] = [];
-  validationValue2LabelMapping = ValidationValue2LabelMapping;
   validationValues = Object.values(ValidationValue);
   featureRowSpans: FeatureRowSpan[] = [];
   featurePreConditionSpans: FeatureRowSpan[] = [];
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
-
+  menuIcon: string = "arrow_drop_down";
   selectedStakeholder: StakeholderResponse;
+  isToggled: boolean = false;
+  stakeholderListToggled: boolean = false;
+  colorListToggled:boolean = false;
 
+  @ViewChild('PreconditionMenu') menuComponent!: MenuComponent;
+
+  @Input() tabIndex: number;
   @Input() columns: string[] = [];
   @Input() featureGroup: FeatureGroupResponse;
   @Input() stakeholders: StakeholderResponse[];
+  MenuComponent: any;
 
   constructor(
     private validationService: ValidationService,
@@ -54,8 +60,11 @@ export class ValidationComponent implements OnInit{
     private translateService: TranslateService,
     private featureService: FeatureService,
     private featurePreconditionService: FeaturePreConditionService
-
   ) {}
+
+  getValidationValues(): ValidationValue[] {
+    return this.validationValues;
+  }
 
   ngOnInit(): void {
     const questionnaireId = this.route.snapshot.queryParamMap.get('questionnaireId');
@@ -69,19 +78,17 @@ export class ValidationComponent implements OnInit{
   }
 
   getData(): void {
+    this.loading = true;
     const finished = new Observable(subscriber => {
       this.getValidations(subscriber)
-      this.getValidationSummaries(subscriber)
       this.getValidationCombinationResults(subscriber);
     })
     finished.subscribe(_ => {
       if (
         this.validations.length > 0 &&
-        this.validationCombinationResults.length > 0 &&
-        this.validationSummaries.length > 0
+        this.validationCombinationResults.length > 0
       ) {
         this.getValidationAnswers();
-        this.loading = false;
       }
     })
   }
@@ -92,14 +99,6 @@ export class ValidationComponent implements OnInit{
       .subscribe((next) => {
         this.validations = next.sort((a,b) => a.weight - b.weight);
         subscriber.next(this.validations);
-      });
-  }
-  getValidationSummaries(subscriber: any): void {
-    this.validationService
-      .getValidationSummaries()
-      .subscribe((next) => {
-        this.validationSummaries = next.sort((a,b) => a.weight - b.weight);
-        subscriber.next(this.validationSummaries);
       });
   }
 
@@ -120,9 +119,9 @@ export class ValidationComponent implements OnInit{
             .sort((a, b) => a.answers[0].feature.id - b.answers[0].feature.id || a.answers[0].featurePrecondition.id - b.answers[0].featurePrecondition.id || a.rowId - b.rowId);
           this.mapFeatureRowSpans();
         }
+        this.loading = false;
       }
     );
-    this.loading = false;
   }
 
 
@@ -167,7 +166,7 @@ export class ValidationComponent implements OnInit{
         questionnaireId: this.questionnaireId,
         featureGroupId: this.featureGroup.id,
         featurePrecondition: featurePrecondition,
-        feature: {answer: feature.answer, id: feature.id},
+        feature: {answer: feature.answer, id: feature.id, customId: feature.customId},
         stakeholder: stakeholder
         })
       );
@@ -204,7 +203,7 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO;
+    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO || validation.type === ValidationType.EXAMPLE;
   }
 
   isValidationFeature(validation: Validation): boolean {
@@ -223,11 +222,15 @@ export class ValidationComponent implements OnInit{
     return validation.type === ValidationType.FEATURE_PRECONDITION;
   }
 
+  isValidationExample(validation: Validation): boolean {
+    return validation.type === ValidationType.EXAMPLE;
+  }
+
   async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
       validationRowAnswer.answer = eventValue;
     if (validation.type === ValidationType.FEATURE) {
       validationRowAnswer.feature = await firstValueFrom(
-        this.featureService.update(validationRowAnswer.feature.id, eventValue)
+        this.featureService.update(validationRowAnswer.feature.id, eventValue, validationRowAnswer.feature.customId)
       );
     }
 
@@ -355,7 +358,7 @@ export class ValidationComponent implements OnInit{
   allRequiredAnswersFilled(validationFilledByAnswer: Validation, validationRowValue: ValidationRow): boolean {
     for (let validationFilledBy of validationFilledByAnswer.validationAutofillList) {
       const answer = validationRowValue.answers.find(a => a.validationId === validationFilledBy.validationFilledById);
-      if (answer == null || answer.answer == '' || answer.answer == null) {
+      if (answer == null  || answer.answer == null) {
         return false;
       }
     }
@@ -494,18 +497,118 @@ export class ValidationComponent implements OnInit{
       return 'content-cell-third-child'
     } else if (i === 3) {
       return 'content-cell-fourth-child'
+    } else if (i === 4) {
+      return 'content-cell-fifth-child'
+    } else if (i === 5) {
+      return 'content-cell-sixth-child'
+    } else if (i > 5 && i < 10) {
+      return 'content-cell-four-options'
+    } else if (i === 10) {
+      return 'content-cell-eleventh-child'
+    } else if (i === 11) {
+      return 'content-cell-twelveth-child'
+    } else if (i === 12) {
+      return 'content-cell-thirteenth-child'
+    } else if (i === 13) {
+      return 'content-cell-fourteenth-child'
+    } else if (i === 14) {
+      return 'content-cell-fifteenth-child'
     }
-
     return '';
   }
 
   onStakeholderChange(stakeholder: any, validation: Validation, validationRowValue: ValidationRow) {
     const validationAnswer = this.getValidationRowAnswer(validation, validationRowValue)
     validationAnswer.stakeholder = stakeholder;
-    this.onValidationRowValueChange(stakeholder.name, validationAnswer, validation, validationRowValue);
+    this.onValidationRowValueChange(stakeholder ? stakeholder.name : '', validationAnswer, validation, validationRowValue);
   }
 
   getRowPreConditionAnswer(validationRow: ValidationRow): ValidationAnswer {
     return <ValidationAnswer>validationRow.answers.find(a => a.type === ValidationType.FEATURE_PRECONDITION);
   }
+
+  getStakeholderActions():{name: string, icon: string, onClick: any}[] {
+    return [
+    ];
+  }
+
+  getFeatureActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.deleteFeature", icon: 'delete', onClick: () => this.deleteFeature(validationRowValue.answers[0].feature.id)},
+    ];
+  }
+
+  toggleList() {
+  }
+
+  getPreconditionActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.addPrecondition", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature)},
+      {name: "menu.deletePrecondition", icon: 'delete', onClick: () => this.deleteFeaturePreCondition(validationRowValue.answers[0].featurePrecondition.id)},
+    ];
+  }
+
+  getExampleActions(validationRowValue: ValidationRow):{name: string, icon: string, onClick: any}[] {
+    return [
+      {name: "menu.addExample", icon: 'add', onClick: () => this.addValidationRow(validationRowValue.answers[0].feature, this.getRowPreConditionAnswer(validationRowValue).featurePrecondition, validationRowValue.answers[0].stakeholder)},
+      {name: "menu.deleteExample", icon: 'delete', onClick: () => this.deleteRow(validationRowValue.rowId)}
+    ];
+  }
+
+  deleteFeature(id: number) {
+    this.featureService.delete(id).subscribe(next => this.reloadComponent());
+  }
+
+  deleteFeaturePreCondition(id: number) {
+    this.featurePreconditionService.delete(id).subscribe(next => this.reloadComponent());
+  }
+
+  reloadComponent() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['validation'], { queryParams: {questionnaireId: this.questionnaireId, tabIndex: this.tabIndex}}).then(()=>{
+      });
+    });
+  }
+
+  openStakeholderSelection(): void {
+    this.stakeholderListToggled = true;
+  }
+
+  getStakeholderColorClass(answer: any, column: any): string {
+    if (answer !== null && (column == 2 || column == 11)) {
+      let currentStakeholder: string = answer.trim();
+      let index = 0;
+
+      if (currentStakeholder.length == 0) {
+        return "none";
+      }
+
+      for (let i = 0; i < this.stakeholders.length; i++) {
+        index = i;
+        if (currentStakeholder === this.stakeholders[i].name) {
+          break;
+        }
+      }
+      let colorIndex = index % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
+      return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
+    }
+    else {
+      return "";
+    }
+  }
+
+  getStakeholderListActions(action: any): {name: string, onClick: any} {
+    return {name: "stakeholderList", onClick: () => action};
+  }
+
+  getStakeHolderDeleteAction(validation: Validation, validationRowValue: ValidationRow): any {
+    return () => this.onStakeholderChange(null, validation, validationRowValue)
+  }
+
+  onFeatureCustomIdChange(customId: any, feature: FeatureResponse) {
+    setTimeout(() => {
+      this.featureService.update(feature.id, feature.answer, customId).subscribe(next => {});
+    }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
+  }
 }
+
