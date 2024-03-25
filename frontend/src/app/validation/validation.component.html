@@ -23,15 +23,12 @@
             />
           </div>
           <div class="w-100 h-100" *ngIf="isValidationStakeholder(validation)">
-            <select [ngModel]="selectedStakeholder" (ngModelChange)="onStakeholderChange($event, validation, validationRowValue)" name="stakeholders" id="stakeholder">
-              <option *ngFor="let stakeholder of stakeholders; index as i" [ngValue]="stakeholder" value="stakeholder">{{stakeholder.name}}</option>
-            </select>
             <app-stakeholder
               *ngIf="getValidationRowAnswer(validation, validationRowValue).answer !== null && getValidationRowAnswer(validation, validationRowValue).answer !== ''"
               class="{{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}"
               [stakeholder]="getValidationRowAnswer(validation, validationRowValue).answer"
               [color]="getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)"
-              [deleteAction]="getStakeHolderDeleteAction(validation, validationRowValue)"
+              [deleteAction]="getStakeHolderAction(validation,validationRowValue)"
             >
             </app-stakeholder>
           </div>
@@ -59,11 +56,10 @@
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
-            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [stakeholders]="stakeholders" [isStakeholdersCell]="true"></app-menu>
+            <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [returnAction]="getStakeHolderMenuAction(validationRowValue)" [stakeholders]="stakeholders" [isStakeholdersCell]="true"></app-menu>
           </div>
           <div *ngIf="isValidationExample(validation)" class="cell-with-menu">
             <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
-            <!-- <app-menu [toggle]="'Colors'" [icon]="menuIcon"></app-menu> -->
           </div>
           <div *ngIf="isValidationTextField(validation)" class="cell-with-menu">
             <textarea

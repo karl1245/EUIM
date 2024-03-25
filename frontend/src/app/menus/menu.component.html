@@ -13,7 +13,7 @@
     </button>
   </div>
   <div class="dropdown-menu {{icon}}-menu stakeholderList" *ngIf=stakeholderListToggled>
-    <app-stakeholderselect [stakeholders]="stakeholders"></app-stakeholderselect>  
+    <app-stakeholderselect [stakeholders]="stakeholders" [closeAction]="stakeHolderCloseAction()" [action]="stakeHolderAction()"></app-stakeholderselect>
   </div>
   <div *ngIf=colorListToggled class="dropdown-menu color-menu color-selection">
     <app-color-select></app-color-select>

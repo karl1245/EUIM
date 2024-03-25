@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
@@ -17,7 +17,6 @@ import { FeatureToDisplay } from './model/feature-to-display';
 import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
 import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
-import { HomepageComponent } from '../homepage/homepage.component';
 import { MenuComponent } from '../menus/menu.component';
 
 @Component({
@@ -606,12 +605,15 @@ export class ValidationComponent implements OnInit{
     }
   }
 
-  getStakeholderListActions(action: any): {name: string, onClick: any} {
-    return {name: "stakeholderList", onClick: () => action};
+  getStakeHolderAction(validation: Validation, validationRowValue: ValidationRow): any {
+    return (stakeHolder: StakeholderResponse) => this.onStakeholderChange(stakeHolder, validation, validationRowValue)
   }
 
-  getStakeHolderDeleteAction(validation: Validation, validationRowValue: ValidationRow): any {
-    return () => this.onStakeholderChange(null, validation, validationRowValue)
+  getStakeHolderMenuAction(validationRowValue: ValidationRow): any {
+    const validationForStakeHolder = this.validations.find(v => v.type === ValidationType.STAKEHOLDER);
+    if (validationForStakeHolder) {
+      return this.getStakeHolderAction(validationForStakeHolder, validationRowValue);
+    }
   }
 
   onFeatureCustomIdChange(customId: any, feature: FeatureResponse) {
@@ -619,5 +621,6 @@ export class ValidationComponent implements OnInit{
       this.featureService.update(feature.id, feature.answer, customId).subscribe(next => {});
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
+
 }
 
