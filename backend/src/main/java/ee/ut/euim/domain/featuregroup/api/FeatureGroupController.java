@@ -1,6 +1,7 @@
 package ee.ut.euim.domain.featuregroup.api;
 
 import ee.ut.euim.domain.featuregroup.service.FeatureGroupService;
+import ee.ut.euim.domain.featuregroup.service.FeatureGroupUpdateService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ import static ee.ut.euim.domain.featuregroup.api.FeatureGroupMapper.toResponse;
 public class FeatureGroupController {
 
   private final FeatureGroupService featureGroupService;
+  private final FeatureGroupUpdateService featureGroupUpdateService;
 
   @GetMapping("/questionnaire-id/{questionnaireId}")
   public List<FeatureGroupResponse> get(@PathVariable(value = "questionnaireId") @NotNull Integer id) {
@@ -44,6 +46,16 @@ public class FeatureGroupController {
     log.info("Creating feature group: {}", featureGroup);
 
     return toResponse(featureGroupService.create(toCreateParams(featureGroup)));
+  }
+
+  @PutMapping("/{id}")
+  public FeatureGroupResponse put(
+    @PathVariable(value = "id") @NotNull Integer id,
+    @RequestBody @Valid FeatureGroupUpdateRequest featureGroup
+  ) {
+    log.info("Updating feature group with id: {} to feature group: {}",id , featureGroup);
+
+    return toResponse(featureGroupUpdateService.update(id, featureGroup.getName()));
   }
 
   @DeleteMapping("/{id}")

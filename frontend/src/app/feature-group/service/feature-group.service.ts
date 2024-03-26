@@ -25,6 +25,10 @@ export class FeatureGroupService {
   }
 
   public deleteFeatureGroup(id: number): Observable<any> {
-    return this.http.delete<any>(FeatureGroupEndpointConstants.deleteById(id));
+    return this.http.delete<any>(FeatureGroupEndpointConstants.idPath(id));
+  }
+
+  public updateFeatureGroup(id: number, name: string): Observable<FeatureGroupResponse> {
+    return this.http.put<FeatureGroupResponse>(FeatureGroupEndpointConstants.idPath(id), {name: name});
   }
 }
