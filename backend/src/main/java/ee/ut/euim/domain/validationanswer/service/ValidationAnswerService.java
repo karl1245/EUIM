@@ -99,6 +99,16 @@ public class ValidationAnswerService {
     validationAnswerRepository.deleteAll(validationAnswerRepository.findAll(ValidationAnswerSpecification.featurePreconditionId(id)));
   }
 
+  public void updateStakeHolderAnswers(Integer stakeholderId, String stakeholderName) {
+    List<ValidationAnswer> validationAnswers = validationAnswerRepository.findAll(ValidationAnswerSpecification.stakeHolderId(stakeholderId));
+    for (ValidationAnswer validationAnswer : validationAnswers) {
+      if (validationAnswer.getType().equals("STAKEHOLDER")) {
+        validationAnswer.setAnswer(stakeholderName);
+        validationAnswerRepository.save(validationAnswer);
+      }
+    }
+  }
+
   public record SaveParameters(
     Integer id,
     Integer rowId,

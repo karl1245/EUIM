@@ -10,7 +10,7 @@ export class StakeholderEndpointConstants {
     return this.rootUri() + '/questionnaire-id/' + questionnaireId;
   }
 
-  static deleteById(id: number): string {
+  static idPath(id: number): string {
     return this.rootUri() + '/' + id;
   }
 }

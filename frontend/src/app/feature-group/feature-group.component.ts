@@ -100,7 +100,7 @@ export class FeatureGroupComponent implements OnInit {
         this.featureGroups.push(next);
         this.featureGroupName = "";
       })
-    
+
   }
 
   createNewStakeholder(stakeholderName: string) {
@@ -120,6 +120,18 @@ export class FeatureGroupComponent implements OnInit {
       })
   }
 
+  updateStakeHolder(id: number, name: string) {
+    this.tabsLoading = true;
+    this.stakeholderService.update(id, name)
+      .subscribe(next =>  {
+        const stakeholderToEdit = this.stakeholders.find(s => s.id === id);
+        if (stakeholderToEdit) {
+          stakeholderToEdit.name = name;
+        }
+        this.tabsLoading = false;
+      })
+  }
+
   deleteFeatureGroup(id: number) {
     this.tabsLoading = true;
     this.featureGroupService.deleteFeatureGroup(id)
@@ -132,10 +144,6 @@ export class FeatureGroupComponent implements OnInit {
   getStakeholderColorClass(i: number): string {
     let colorIndex = i % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
     return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
-  }
-
-  getStakeHolderDeleteAction(id: number): any {
-    return () => this.deleteStakeholder(id)
   }
 
   openFeatureGroupDeleteModal(featureGroup: FeatureGroupResponse) {
@@ -153,7 +161,9 @@ export class FeatureGroupComponent implements OnInit {
 
   openFeatureGroupEditModal(featureGroup: FeatureGroupResponse) {
     const initialState = {
-      isFeatureGroup: true
+      name: featureGroup.name,
+      titleTranslationKey: 'editFeatureGroupModal.title',
+      inputTranslationKey: 'editFeatureGroupModal.input',
     };
     this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
@@ -176,10 +186,17 @@ export class FeatureGroupComponent implements OnInit {
 
   openStakeholderEditModal(stakeholder: StakeholderResponse) {
     const initialState = {
-      isStakeholder: true
+      name: stakeholder.name,
+      titleTranslationKey: 'editStakeholderModal.title',
+      inputTranslationKey: 'editStakeholderModal.input',
     };
     this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
+    });
+    this.modalRef.content.onClose.subscribe((result: any) => {
+      if (result?.edit) {
+        this.updateStakeHolder(stakeholder.id, result?.newValue);
+      }
     });
   }
 
@@ -198,5 +215,4 @@ export class FeatureGroupComponent implements OnInit {
   getStakeholderDeleteAction(stakeholder: any):any {
     return () => this.openStakeholderDeleteModal(stakeholder);
   }
-  //this.getStakeHolderDeleteAction(stakeholder.id)
 }

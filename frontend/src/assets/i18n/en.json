@@ -49,7 +49,7 @@
     "body": "Are you sure you want to delete the stakeholder?"
   },
   "editProjectModal": {
-    "title": "Edit project name: {{name}}",
+    "title": "Edit project name",
     "input": "Project name"
   },
   "editFeatureGroupModal": {
@@ -59,7 +59,7 @@
   "editStakeholderModal": {
     "title": "Edit stakeholder name",
     "input": "Stakeholder name"
-  },  
+  },
   "addGroup": {
     "title": "Add a new feature group",
     "list": "Existing feature groups",

@@ -50,11 +50,11 @@ export class QuestionnaireComponent implements OnInit {
       }
     )
   }
-  
+
   toggleAddNewQuistionnaire(): void {
     this.isToggled = !this.isToggled;
   }
-  
+
   openActionButtonsMenu(): void {
     this.isOpen = !this.isOpen;
   }
@@ -82,18 +82,21 @@ export class QuestionnaireComponent implements OnInit {
 
   editQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
-      isProject: true,
-      questionnaire: questionnaire,
-      questionnairesList: this.questionnaires,
+      name: questionnaire.name,
+      titleTranslationKey: 'editProjectModal.title',
+      inputTranslationKey: 'editProjectModal.input',
     };
     this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
-      if (result.deleteObject) {
+      if (result?.edit) {
         this.loading = true;
-        this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
-          this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
+        this.questionnaireService.saveQuestionnaire({id: questionnaire.id, name: result.newValue}).subscribe( next => {
+          const questionnaireToEdit = this.questionnaires.find(q => q.id === questionnaire.id);
+          if (questionnaireToEdit){
+            questionnaireToEdit.name = result.newValue;
+          }
           this.loading = false;
 
           }, () => this.loading = false

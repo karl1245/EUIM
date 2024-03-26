@@ -2,6 +2,7 @@ package ee.ut.euim.domain.stakeholder.api;
 
 import ee.ut.euim.domain.stakeholder.service.StakeholderDeleteService;
 import ee.ut.euim.domain.stakeholder.service.StakeholderService;
+import ee.ut.euim.domain.stakeholder.service.StakeholderUpdateService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +34,7 @@ public class StakeholderController {
 
   private final StakeholderService stakeholderService;
   private final StakeholderDeleteService stakeholderDeleteService;
+  private final StakeholderUpdateService stakeholderUpdateService;
 
   @GetMapping("/questionnaire-id/{questionnaireId}")
   public List<StakeholderResponse> get(@PathVariable(value = "questionnaireId") @NotNull Integer id) {
@@ -41,10 +44,20 @@ public class StakeholderController {
   }
 
   @PostMapping
-  public StakeholderResponse create(@RequestBody @Valid StakeholderCreateRequest featureGroup) {
-    log.info("Creating stakeholder: {}", featureGroup);
+  public StakeholderResponse create(@RequestBody @Valid StakeholderCreateRequest stakeholder) {
+    log.info("Creating stakeholder: {}", stakeholder);
 
-    return toResponse(stakeholderService.create(toCreateParams(featureGroup)));
+    return toResponse(stakeholderService.create(toCreateParams(stakeholder)));
+  }
+
+  @PutMapping("/{id}")
+  public StakeholderResponse put(
+    @PathVariable(value = "id") @NotNull Integer id,
+    @RequestBody @Valid StakeholderUpdateRequest stakeholder
+  ) {
+    log.info("Updating stakeholder with id: {}, to :{}", id, stakeholder);
+
+    return toResponse(stakeholderUpdateService.update(id, stakeholder.getName()));
   }
 
   @DeleteMapping("/{id}")

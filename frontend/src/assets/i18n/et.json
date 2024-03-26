@@ -50,7 +50,7 @@
     "body": "Kas oled kindel, et soovid sidusrühma kustutada?"
   },
   "editProjectModal": {
-    "title": "Muuda projekti nime: {{name}}",
+    "title": "Muuda projekti nime",
     "input": "Projekti nimi"
   },
   "editFeatureGroupModal": {
