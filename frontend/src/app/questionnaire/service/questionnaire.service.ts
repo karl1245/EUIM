@@ -28,8 +28,8 @@ export class QuestionnaireService {
     return this.http.delete(QuestionnaireEndpointConstants.getQuestionnaireUri(id));
   }
 
-  public saveQuestionnaire(body: QuestionnaireRequest): Observable<any> {
-    return this.http.put<any>(
+  public saveQuestionnaire(body: QuestionnaireRequest): Observable<QuestionnaireResponse> {
+    return this.http.put<QuestionnaireResponse>(
       QuestionnaireEndpointConstants.saveQuestionnaireUri(),
       body
     );

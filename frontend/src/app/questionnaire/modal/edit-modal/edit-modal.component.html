@@ -1,60 +1,18 @@
-<div *ngIf="isProject" class="edit-modal">
-  <h1 translate>{{ 'editProjectModal.title' | translate: {name: questionnaire.name} }}</h1>
+<div  class="edit-modal">
+  <h1>{{ titleTranslationKey | translate}}</h1>
   <div class="edit-input">
-    <h2>{{'editProjectModal.input' | translate}}</h2>
-    <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id, questionnairesList)" />
+    <h2>{{inputTranslationKey | translate}}</h2>
+    <input [(ngModel)]="name" value="{{name}}" type="text"/>
 </div>
   <div class="edit-modal-actions">
     <button
-      (click)="close(false)"
+      (click)="close()"
       type="button"
       class="button cancel-button">
       {{'button.cancel' | translate}}
     </button>
     <button
-    (click)="close(true)"
-    type="button"
-    class="button edit-button">
-    {{'button.edit' | translate}}
-  </button>
-  </div>
-</div>
-<div *ngIf="isFeatureGroup" class="edit-modal">
-  <h1 translate>{{ 'editFeatureGroupModal.title' | translate: {name: questionnaire.name} }}</h1>
-  <div class="edit-input">
-    <h2>{{'editFeatureGroupModal.input' | translate}}</h2>
-    <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id, questionnairesList)" />
-</div>
-  <div class="edit-modal-actions">
-    <button
-      (click)="close(false)"
-      type="button"
-      class="button cancel-button">
-      {{'button.cancel' | translate}}
-    </button>
-    <button
-    (click)="close(true)"
-    type="button"
-    class="button edit-button">
-    {{'button.edit' | translate}}
-  </button>
-  </div>
-</div>
-<div *ngIf="isStakeholder" class="edit-modal">
-  <h1 translate>{{ 'editStakeholderModal.title' | translate: {name: questionnaire.name} }}</h1>
-  <div class="edit-input">
-    <h2>{{'editStakeholderModal.input' | translate}}</h2>
-    <input value="{{questionnaire.name}}" id="{{questionnaire.id}}" type="text" (change)="updateName($event, questionnaire.id, questionnairesList)" />
-</div>
-  <div class="edit-modal-actions">
-    <button
-      (click)="close(false)"
-      type="button"
-      class="button cancel-button">
-      {{'button.cancel' | translate}}
-    </button>
-    <button
-    (click)="close(true)"
+    (click)="closeAndEdit()"
     type="button"
     class="button edit-button">
     {{'button.edit' | translate}}

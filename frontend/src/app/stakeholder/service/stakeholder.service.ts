@@ -18,6 +18,13 @@ export class StakeholderService {
     );
   }
 
+  public update(stakeHolderId: number, name: string): Observable<StakeholderResponse> {
+    return this.http.put<StakeholderResponse>(
+      StakeholderEndpointConstants.idPath(stakeHolderId),
+      {name: name}
+    );
+  }
+
   public getStakeholdersByQuestionnaireId(questionnaireId: number): Observable<StakeholderResponse[]> {
     return this.http.get<StakeholderResponse[]>(
       StakeholderEndpointConstants.getByQuestionnaireId(questionnaireId)
@@ -25,6 +32,6 @@ export class StakeholderService {
   }
 
   public deleteStakeholder(id: number): Observable<any> {
-    return this.http.delete<any>(StakeholderEndpointConstants.deleteById(id));
+    return this.http.delete<any>(StakeholderEndpointConstants.idPath(id));
   }
 }
