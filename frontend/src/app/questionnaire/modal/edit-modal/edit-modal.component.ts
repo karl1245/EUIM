@@ -12,7 +12,6 @@ export class EditModalComponent implements OnInit{
   @Input() titleTranslationKey: string;
   @Input() inputTranslationKey: string;
 
-  // updateName: Function = () => {};
   public onClose: Subject<{edit: boolean, newValue: string}>;
 
   constructor(private modalRef: BsModalRef) {}
