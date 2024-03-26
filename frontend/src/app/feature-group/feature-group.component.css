@@ -74,6 +74,17 @@ mat-tab-group {
   color: var(--text-color);
 }
 
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+  --mat-tab-header-active-ripple-color: var(--highlight);
+  --mat-tab-header-inactive-ripple-color: var(--highlight);
+  --mat-tab-header-active-focus-label-text-color: var(--text-color);
+  --mat-tab-header-active-hover-label-text-color: var(--text-color);
+  --mat-tab-header-inactive-focus-label-text-color: none;
+  --mat-tab-header-inactive-hover-label-text-color: none;
+  --mat-tab-header-active-focus-indicator-color: none;
+  --mat-tab-header-active-hover-indicator-color: none;
+}
+
 .page-body {
   padding-top: 5rem;
   gap: 5rem;
