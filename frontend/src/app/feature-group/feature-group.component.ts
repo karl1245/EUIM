@@ -141,6 +141,18 @@ export class FeatureGroupComponent implements OnInit {
       })
   }
 
+  updateFeatureGroup(id: number, name: string) {
+    this.tabsLoading = true;
+    this.featureGroupService.updateFeatureGroup(id, name)
+      .subscribe(next => {
+        const featureGroupToEdit = this.featureGroups.find(fg => fg.id === id)
+        if (featureGroupToEdit) {
+          featureGroupToEdit.name = name;
+        }
+        this.tabsLoading = false;
+      })
+  }
+
   getStakeholderColorClass(i: number): string {
     let colorIndex = i % GlobalConstants.STAKEHOLDER_COLOR_ORDER.length;
     return GlobalConstants.STAKEHOLDER_COLOR_ORDER[colorIndex];
@@ -155,6 +167,7 @@ export class FeatureGroupComponent implements OnInit {
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
       if (result.deleteObject) {
+        this.deleteFeatureGroup(featureGroup.id)
       }
     });
   }
@@ -167,6 +180,12 @@ export class FeatureGroupComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
+    });
+
+    this.modalRef.content.onClose.subscribe((result: any) => {
+      if (result?.edit) {
+        this.updateFeatureGroup(featureGroup.id, result?.newValue);
+      }
     });
   }
 
