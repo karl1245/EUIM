@@ -44,7 +44,7 @@
             </div>
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
@@ -55,7 +55,7 @@
           <div *ngIf="isValidationFeaturePrecondition(validation)" class="cell-with-menu">
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
@@ -66,7 +66,7 @@
           <div *ngIf="isValidationTextField(validation)" class="cell-with-menu">
             <textarea
               [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+              (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               class="overflow-auto w-100 border-0 textarea-min-height"
             >
             </textarea>
