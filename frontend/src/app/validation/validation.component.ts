@@ -3,8 +3,7 @@ import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
 import { ValidationCombinationResult } from './model/validation-combination-result';
-import { firstValueFrom, Observable } from 'rxjs';
-import { ValidationValue } from './model/validation-value';
+import { debounceTime, firstValueFrom, Observable, Subject, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { GlobalConstants } from '../constants/global-constants';
@@ -18,6 +17,7 @@ import { StakeholderResponse } from '../stakeholder/model/stakeholder-response';
 import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
 import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
 import { MenuComponent } from '../menus/menu.component';
+import { TextareaInputChange } from './model/textarea-input-change';
 
 @Component({
   selector: 'app-validation',
@@ -33,17 +33,17 @@ export class ValidationComponent implements OnInit{
   validations: Validation[] = [];
   validationRowValues: ValidationRow[] = [];
   validationCombinationResults: ValidationCombinationResult[] = [];
-  validationValues = Object.values(ValidationValue);
   featureRowSpans: FeatureRowSpan[] = [];
   featurePreConditionSpans: FeatureRowSpan[] = [];
   featuresAlreadyDisplayed: FeatureToDisplay[] = [];
   featurePreconditionsAlreadyDisplayed: FeatureToDisplay[] = [];
   menuIcon: string = "arrow_drop_down";
-  selectedStakeholder: StakeholderResponse;
   isToggled: boolean = false;
-  stakeholderListToggled: boolean = false;
   colorListToggled:boolean = false;
   isAddingNewRow: boolean = false;
+  private inputSubject: Subject<TextareaInputChange> = new Subject<TextareaInputChange>();
+  private inputSubscription: Subscription;
+
 
   @ViewChild('PreconditionMenu') menuComponent!: MenuComponent;
 
@@ -65,7 +65,7 @@ export class ValidationComponent implements OnInit{
   }
   onLanguageChanged() {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      //this.reloadComponent();
+      this.reloadComponent();
     });
   }
 
@@ -78,6 +78,10 @@ export class ValidationComponent implements OnInit{
 
     this.questionnaireId = +questionnaireId;
     this.getData();
+
+    this.inputSubscription = this.inputSubject.pipe(debounceTime(300)).subscribe(searchTerm => {
+      this.onValidationRowValueChange(searchTerm.inputValue, searchTerm.validationRowAnswer, searchTerm.validation, searchTerm.validationRowValue);
+    });
   }
 
   getData(): void {
@@ -234,6 +238,16 @@ export class ValidationComponent implements OnInit{
 
   isValidationExample(validation: Validation): boolean {
     return validation.type === ValidationType.EXAMPLE;
+  }
+
+
+  textAreaValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow){
+    this.inputSubject.next({
+      inputValue: eventValue,
+      validationRowAnswer: validationRowAnswer,
+      validation: validation,
+      validationRowValue: validationRowValue
+    })
   }
 
   async onValidationRowValueChange(eventValue: any, validationRowAnswer: ValidationAnswer, validation: Validation, validationRowValue: ValidationRow) {
