@@ -217,7 +217,7 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO || validation.type === ValidationType.EXAMPLE;
+    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO; // || validation.type === ValidationType.EXAMPLE;
   }
 
   isValidationFeature(validation: Validation): boolean {
@@ -662,5 +662,10 @@ export class ValidationComponent implements OnInit{
     }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
   }
 
+  autoGrow(event: Event) {
+    const element = event.target as HTMLTextAreaElement;
+    element.style.height = '5px';
+    element.style.height = (element.scrollHeight) + 'px';
+  }  
 }
 
