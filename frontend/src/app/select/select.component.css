@@ -45,7 +45,7 @@
 .select-option-button {  
   display: block;
   display: inline-block;
-  padding: 1rem;
+  padding: 0.5rem;
   width: 7.5rem;
   border: none;
   z-index: 1;

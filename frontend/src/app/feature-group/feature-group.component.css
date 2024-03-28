@@ -1,10 +1,16 @@
 mat-tab-group, mat-tab, app-validation {
   border: none !important;
+  margin-bottom: 5rem;
+  overflow-y: visible;
 }
 
 mat-tab-group {
   max-width: 113.75rem;
   width: 91.16vw;
+}
+
+:host ::ng-deep .mat-mdc-tab-body.mat-mdc-tab-body-active {
+  overflow-y: visible !important;
 }
 
 :host ::ng-deep div[role='tab'] {
