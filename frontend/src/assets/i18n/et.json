@@ -151,6 +151,7 @@
     "intro": {
       "title": "EbA meetod",
       "header": "Kogemuse-põhine analüüsi (EbA) meetod / Experience-based Analysis (EbA) Method",
+      "area": "Mis on EbA meetod?<br></br>Kuidas EbA meetodit rakendada?<br></br>Mida tuleks arvestada EbA meetodi kasutamisel?",
       "text": "Kogemuse-põhine analüüs (EbA) meetodina on loodud eesmärgiga saada digitoodete või e-teenuse (edaspidi: toode) arendamise võimalikult varases faasis aimu, kas lahendus kavandatud moel hakkab toimima ja millised on võimalikud riskid – seda just lähtuvalt kasutajate käitumise ja harjumuste seisukohast. Kui nõuete valideerimise käigus keskendutakse tavaliselt sellele, et teada saada, kas arendatav toode vastab sidusrühmade vajadusele, siis EbA eesmärk on teada saada, kuivõrd on sidusrühmadel olemas vajalikud teadmised, oskused, harjumused või vahendid, mis on toote edukuseks vajalikud. EbA meetod toetub põhimõttele, et inimestel on käitumismuster, mis tugineb varasematele harjumustele.<br></br>EbA meetodit saab rakendada kasutatavuse inspekteerimiseks kohe, kui uus lahendus on ära kirjeldatud. EbA meetodit kasutades on võimalik juba lahenduse visiooni valideerides saada aimu, kas sellisena hakkab toode toimima või on mõistlik nõudeid pigem muuta, või vajavad mingid aspektid täiendavat analüüsi. Varakult analüüsides saadakse ülevaade olukorrast juba enne, kui nõuete põhjal hakatakse prototüüpi tegema, testimisi läbi viima ja arendama. EbA meetodis sobivad analüüsimiseks lahenduse kirjeldused, mis näitavad, mida kasutajad saavad või peavad tegema, kasutuslood, kasutusjuhud, stsenaariumid, protsessi kirjeldused, kavandatava lahenduse üldisemad kirjeldused ärianalüüsi või strateegia dokumendist, andmed teekonna kaardilt, eesmärgimudeli funktsionaalsed nõuded vms sisendid, mis kirjeldavad kavandatavat lahendust ja kus on näha sidusrühmade kaasatust.<br></br>EbA meetod on mõeldud eelkõige kasutamiseks neile, kes tegelevad toote nõuete väljaselgitamisega. Lisaks nõuete analüüsi tegijatele on EbA meetod mõeldud kasutamiseks ka tooteomanikele, ärianalüütikutele jms.<br></br>Joonisel 1 on kujutatud EbA meetodi raamistik, mis kajastab EbA analüüsiks vajaminevaid komponente ja analüüsi protsessi. Esmalt tuleb kavandatud lahenduse kirjeldus jagada funktsionaalsusteks (ingl <i>features</i>). Seejärel peab otsustama, millised sidusrühmad (ingl <i>stakeholders</i>) on funktsionaalsusega seotud ja millised on funktsionaalsuse edukaks toimimiseks vajalikud eeltingimused. Igale eeltingimusele tuleb leida näide situatsioonist, mis samastub eeltingimusega ja mida sidusrühm on varasemalt kogenud. Järgnevalt tuleb määrata, mil määral on funktsionaalsuse eeltingimus ja näite situatsioon võrreldavad lähtuvalt sidusrühmast ja kontekstist ning hinnata, kas sidusrühma käitumine võrreldavas näites oli eesmärgipärane ja milline oli seejuures sidusrühma rahulolu. EbA meetod kombineerib vastuse, mis  – tuginedes sidusrühma varasemale tegutsemisele  – kirjeldab, mil määral on eeltingimus täidetud uue toote kontekstis. Need vastused aitavad otsustada, kas eeldused on lahenduse edukaks toimimiseks piisavad või mitte ja on abiks edasiste tegevuste kavandamisel."
     },
     "step1": {
@@ -209,6 +210,26 @@
     "nb": {
       "header": "EbA meetodit kasutades tuleb silmas pidada järgmist:",
       "text": "<ol><li>EbA meetod aitab saada vastuseid sellele, mida küsitakse: vastavalt mida funktsionaalsustena sisestatakse ja eeldustena küsitakse – seda nii sisu kui ulatuse mõttes.</li><li>Analüüsi sisukus ja tegevuskava kvaliteet oleneb analüüsi tegija silmaringist ning võimekusest tuvastada seotud sidusrühmi, kirjeldada nende tegevusi planeeritavas tootes ja sidusrühmadelt eeldatud eeltingimusi.</li><li>Analüüsist saadud info kehtivus sõltub paljuski eeldusele (etapp 2) võrdluseks toodud näite situatsioonist (etapp 3) ning selle adekvaatsest hindamisest (etapp 4).</li></ol>"
+    }, 
+    "figures": {
+      "1": "assets/Figures/Joonis1.png",
+      "2": "assets/Figures/Joonis2.png",
+      "3": "assets/Figures/Joonis3.png",
+      "4": "assets/Figures/Joonis4.png",
+      "5": "assets/Figures/Joonis5.png",
+      "6": "assets/Figures/Joonis6.png",
+      "7": "assets/Figures/Joonis7.png",
+      "8": "assets/Figures/Joonis8.png"
+    },
+    "figureText": {
+      "1": "Joonis 1. EbA meetodi raamistik",
+      "2": "Joonis 2. Kavandatud lahenduse kirjeldus on jagatud funktsionaalsusteks",
+      "3": "Joonis 3. Iga funktsionaalsuse juurde tuleb leida funktsionaalsusega seotud huvirühmad ja huvirühmadele seatud eeltingimused",
+      "4": "Joonis 4. Igale funktsionaalsuse eeltingimusele tuleb võrdluseks leida näide samasugusest situatsioonist, mida sidusrühm on varasemalt kogenud",
+      "5": "Joonis 5. Näite ja eelduse vastavuse täpsuse määramine ning sidusrühma toimingute hindamine võrdluseks toodud näites",
+      "6": "Joonis 6. EbA annab kombineeritud vastuse kui osa eeltingimuse seisundit kirjeldavast lausest, millele liidetakse sidusrühm koos funktsionaalsuse eeltingimusega",
+      "7": "Joonis 7. Näite analüüs EbA raamistikus",
+      "8": "Joonis 8. Lähtuvalt selgunud infost koostage tegevuskava"
     }
   },
   "questionnaires": "Küsimustikud",

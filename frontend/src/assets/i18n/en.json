@@ -144,6 +144,7 @@
     "intro": {
       "title": "EbA Method",
       "header": "Experience-based Analysis (EbA) Method",
+      "area": "What is the EbA method?<br></br>How to apply the EbA method?<br></br>What do you need to know when using the EbA method?",
       "text": "The Experience-based Analysis (EbA) method has been created to provide an early indication in digital product or e-service („product“ hereafter) development of whether the solution will function efficiently in terms of stakeholders' behavior and habits, and identify potential risks that may arise. Requirements validation usually focuses on finding out whether the product being developed meets the needs of the stakeholders. However, the purpose of EbA is to find out to what extent the stakeholders have the expected knowledge, skills, habits, or means necessary for the success of the product. EbA method is based on the premise that people behave according to experiential patterns.<br></br>EbA is a usability inspection method that can be used as soon as a new solution is described. Using the EbA method, you can validate your vision of the solution, whether it would work as such, or if it would be reasonable to change the requirements, or should some aspects be analyzed further. An early analysis gives an overview of the situation before the requirements are handed over for prototyping, user-testing and development. For EbA, the solution descriptions can be statements about what the users can do or have to do, user stories, use cases, scenarios, process descriptions, general descriptions of the solution of the business analysis or from the strategy document, journey map data, functional goals of goal models, or other similar input that describes the planned solution and the intended kinds of users.<br></br>EbA is intended to be used by the people who elicit the requirements. In addition to requirements engineers, the EbA method is also intended for use by product owners, business analysts, etc.<br></br>Figure 1 displays the framework of the EbA method. The figure shows the components required for the analysis and the analysis process. In the EbA method, the description of the planned solution should first be divided into features. Then, decide which stakeholders are involved in the feature and what preconditions are expected from stakeholders within this specific feature to make this feature efficient. For each precondition, find an example of a situation that identifies with the precondition and that the stakeholder has experienced in the past. Next, validate to what extent the feature precondition and example situation are comparable by stakeholder and context, and evaluate whether the stakeholder's behavior was purposeful and what the satisfaction level of the stakeholder was in the comparable situation. The EbA method combined an answer that  – based on the stakeholder's previous actions  – describes the extent to which the precondition has been met. These answers help to decide whether the preconditions are met sufficiently for the solution to work successfully or not and are helpful in planning further actions."
     },
     "step1": {
@@ -202,6 +203,26 @@
     "nb": {
       "header": "By using the EbA method, please keep in mind:",
       "text": "<ol><li>The EbA method helps to get answers to what is asked, according to what is entered as features and what is asked as preconditions, both in terms of content and scope.</li><li>The content of the analysis and the quality of the action plan relate to the expanded knowledge of the person making the analysis and the ability to identify related stakeholders, describe stakeholders' activities in the planned product, and the preconditions expected from the stakeholders.</li><li>he validity of the information obtained from the analysis depends on the situation of the example (stage 3) given for comparison to the precondition and its adequate evaluation (stage 4).</li></ol>"
+    }, 
+    "figures": {
+      "1": "assets/Figures/Figure1.png",
+      "2": "assets/Figures/Figure2.png",
+      "3": "assets/Figures/Figure3.png",
+      "4": "assets/Figures/Figure4.png",
+      "5": "assets/Figures/Figure5.png",
+      "6": "assets/Figures/Figure6.png",
+      "7": "assets/Figures/Figure7.png",
+      "8": "assets/Figures/Figure8.png"
+    },
+    "figureText": {
+      "1": "Figure 1. The EbA framework",
+      "2": "Figure 2. The description of the planned solution is divided into features",
+      "3": "Figure 3. For each feature it is decided who are the stakeholders involved in the feature and what are the preconditions",
+      "4": "Figure 4. For each precondition, the closest comparable example situation that the stakeholder has experienced in the past should be found",
+      "5": "Figure 5. Validating the accuracy of the example and assumption, and the behavior of stakeholders in the example situation",
+      "6": "Figure 6. EbA yields a combined answer as a part of the sentence that describes the precondition situation and combines this with the Stakeholder and Feature precondition",
+      "7": "Figure 7. An example analyzed by the EbA framework",
+      "8": "Figure 8. Based on predictions make an action plan"
     }
   },
   "questionnaires": "Questionnaires",
