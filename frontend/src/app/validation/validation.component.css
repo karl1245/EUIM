@@ -11,6 +11,7 @@ table {
   border-width: 2px;
   border-radius: 4px;
 }
+
 thead {
   border: 1px;
   border-color: var(--text-color);
@@ -33,6 +34,7 @@ th {
 }
 
 td {
+  height: 120px;
   vertical-align: top;
   text-align: left;
   border: 1px solid;
@@ -64,7 +66,6 @@ textarea {
 
 .table-wrapper {
   border: none;
-  overflow-x: scroll;
 }
 
 .header {
@@ -88,6 +89,11 @@ textarea {
   z-index: 1;
   width: 56px;
 }
+
+.id-cell textarea {
+  max-height: 200px;
+}
+
 .content-cell-first-child {
   position: sticky;
   left: 3rem;
@@ -118,10 +124,15 @@ textarea {
   width: 16rem;
 }
 
-
 .content-cell-four-options {
-  justify-content: center !important;
   width: 12.25rem;
+}
+
+.selection {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
 }
 
 .content-cell-tenth-child {
@@ -146,6 +157,10 @@ textarea {
 
 .content-cell-fourteenth-child, .content-cell-fifteenth-child  {
   width: 28rem;
+}
+
+.add-row {
+  vertical-align: middle;
 }
 
 .textarea-container {
@@ -190,7 +205,7 @@ textarea {
   flex-direction: row;
   align-items: start;
   justify-content: right;
-  height: 100%;
+  height: fit-content;
   gap: 0.5rem;
 }
 
@@ -216,8 +231,6 @@ textarea {
   height: fit-content;
   border: solid;
   border-radius: 8px;
-  margin-top: 8px;
-  margin-bottom: 8px;
   padding: 1rem;
   gap: 8px;
   background-color: var(--light-green);
@@ -226,4 +239,13 @@ textarea {
 
 .add-row-button:hover {
   background-color: var(--green);
+}
+
+
+.delete-row {
+  width: 60px !important;
+}
+
+.delete-row-button {
+  all: unset;
 }
