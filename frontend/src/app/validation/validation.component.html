@@ -13,12 +13,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let validationRowValue of validationRowValues; index as i">
-        <td class="id-cell background-beige">{{ i  + 1 }}</td>
+      <tr *ngFor="let validationRowValue of validationRowValues; index as j">
+        <td class="id-cell background-beige">{{ j  + 1 }}</td>
         <ng-container *ngFor="let validation of validations; index as i">
           <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" class="background-beige" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
             <div class="selection" *ngIf="isValidationSelectable(validation)">
               <app-select
+                instanceId="{{j}}{{i}}"
                 (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               />
             </div>
