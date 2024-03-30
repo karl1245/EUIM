@@ -19,7 +19,7 @@
           <td *ngIf="isAnswerNotDisplayed(validation, validationRowValue)" class="background-beige" [ngClass]="getStickyClassByIndex(i)" [attr.rowspan]="getAnswerRowSpanAndMapAsDisplayed(validation, validationRowValue)">
             <div class="selection" *ngIf="isValidationSelectable(validation)">
               <app-select
-                instanceId="{{j}}{{i}}"
+                [selectedValue]="getValidationValue(getValidationRowAnswer(validation, validationRowValue).answer)"
                 (selectionChange)="onValidationRowValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
               />
             </div>

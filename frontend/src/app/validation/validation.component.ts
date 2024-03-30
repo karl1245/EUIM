@@ -18,6 +18,7 @@ import { FeaturePreCondition } from '../feature/model/feature-pre-condition';
 import { FeaturePreConditionService } from '../feature/service/feature-pre-condition.service';
 import { MenuComponent } from '../menus/menu.component';
 import { TextareaInputChange } from './model/textarea-input-change';
+import { ValidationValue } from './model/validation-value';
 
 @Component({
   selector: 'app-validation',
@@ -666,6 +667,10 @@ export class ValidationComponent implements OnInit{
     const element = event.target as HTMLTextAreaElement;
     element.style.height = '5px';
     element.style.height = (element.scrollHeight) + 'px';
-  }  
+  }
+
+  getValidationValue(answer: string): ValidationValue {
+    return (<any>ValidationValue)[answer];
+  }
 }
 
