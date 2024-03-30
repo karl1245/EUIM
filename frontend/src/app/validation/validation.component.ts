@@ -672,5 +672,11 @@ export class ValidationComponent implements OnInit{
   getValidationValue(answer: string): ValidationValue {
     return (<any>ValidationValue)[answer];
   }
+
+  setDefaultTextAreaSize(el: HTMLTextAreaElement): { [p: string]: any } | null | undefined {
+    el.style.height = '5px';
+    el.style.height = (el.scrollHeight) + 'px';
+    return null;
+  }
 }
 
