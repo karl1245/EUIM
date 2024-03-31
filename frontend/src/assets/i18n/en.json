@@ -18,7 +18,7 @@
     "noExample": "No example"
   },
   "toolbar": {
-    "name": "EUIM",
+    "name": "EbA",
     "projects": "Projects",
     "method": "EbA Method",
     "about": "About"
@@ -203,7 +203,7 @@
     "nb": {
       "header": "By using the EbA method, please keep in mind:",
       "text": "<ol><li>The EbA method helps to get answers to what is asked, according to what is entered as features and what is asked as preconditions, both in terms of content and scope.</li><li>The content of the analysis and the quality of the action plan relate to the expanded knowledge of the person making the analysis and the ability to identify related stakeholders, describe stakeholders' activities in the planned product, and the preconditions expected from the stakeholders.</li><li>he validity of the information obtained from the analysis depends on the situation of the example (stage 3) given for comparison to the precondition and its adequate evaluation (stage 4).</li></ol>"
-    }, 
+    },
     "figures": {
       "1": "assets/Figures/Figure1.png",
       "2": "assets/Figures/Figure2.png",
