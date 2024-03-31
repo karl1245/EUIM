@@ -28,6 +28,6 @@
 5. Press compile button
    * See following image steps 1,2 and 3
    ![Inno](readme_pictures/inno_compiler_guide.png)
-6. Find created installer at folder `installer creation/executable/EUIM installer.exe`
+6. Find created installer at folder `installer creation/executable/EbA installer.exe`
 7. Run Installer
 

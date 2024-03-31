@@ -19,7 +19,7 @@
     "noExample": "Näidet pole"
   },
   "toolbar": {
-    "name": "EUIM",
+    "name": "EbA",
     "projects": "Projektid",
     "method": "KPA meetod",
     "about": "Meist"
@@ -210,7 +210,7 @@
     "nb": {
       "header": "EbA meetodit kasutades tuleb silmas pidada järgmist:",
       "text": "<ol><li>EbA meetod aitab saada vastuseid sellele, mida küsitakse: vastavalt mida funktsionaalsustena sisestatakse ja eeldustena küsitakse – seda nii sisu kui ulatuse mõttes.</li><li>Analüüsi sisukus ja tegevuskava kvaliteet oleneb analüüsi tegija silmaringist ning võimekusest tuvastada seotud sidusrühmi, kirjeldada nende tegevusi planeeritavas tootes ja sidusrühmadelt eeldatud eeltingimusi.</li><li>Analüüsist saadud info kehtivus sõltub paljuski eeldusele (etapp 2) võrdluseks toodud näite situatsioonist (etapp 3) ning selle adekvaatsest hindamisest (etapp 4).</li></ol>"
-    }, 
+    },
     "figures": {
       "1": "assets/Figures/Joonis1.png",
       "2": "assets/Figures/Joonis2.png",

@@ -15,9 +15,9 @@ frontend/node_modules
 frontend/dist
 testdb.db
 database.db
-EUIM-*.*.*.exe
+EbA-*.*.*.exe
 launch4j.log
-EUIM installer.exe
+EbA installer.exe
 ### STS ###
 .apt_generated
 .classpath

@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\delivery\target\EUIM-0.5.0.jar</jar>
-  <outfile>executable\EUIM-0.5.0.exe</outfile>
+  <jar>..\delivery\target\EbA-0.5.0.jar</jar>
+  <outfile>executable\EbA-0.5.0.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -23,15 +23,15 @@
   </jre>
   <versionInfo>
     <fileVersion>0.5.0.0</fileVersion>
-    <txtFileVersion>EUIM</txtFileVersion>
-    <fileDescription>EUIM executable</fileDescription>
+    <txtFileVersion>EbA</txtFileVersion>
+    <fileDescription>EbA executable</fileDescription>
     <copyright>Free use</copyright>
     <productVersion>0.5.0.0</productVersion>
-    <txtProductVersion>EUIM</txtProductVersion>
-    <productName>EUIM</productName>
+    <txtProductVersion>EbA</txtProductVersion>
+    <productName>EbA</productName>
     <companyName></companyName>
-    <internalName>EUIM</internalName>
-    <originalFilename>EUIM-0.5.0.exe</originalFilename>
+    <internalName>EbA</internalName>
+    <originalFilename>EbA-0.5.0.exe</originalFilename>
     <trademarks></trademarks>
     <language>ENGLISH_US</language>
   </versionInfo>

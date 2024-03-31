@@ -7,15 +7,15 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { AboutComponent } from './about/about.component';
 import { MethodComponent } from './method/method.component';
 
-interface EuimRouteData extends Data {
+interface EbaRouteData extends Data {
   meta?: PageMeta;
 }
 
-interface EuimRoute extends Route {
-  data?: EuimRouteData;
+interface EbaRoute extends Route {
+  data?: EbaRouteData;
 }
 
-const validationRoutes: EuimRoute[] = [
+const validationRoutes: EbaRoute[] = [
   {
     path: 'validation',
     component: HomepageComponent,
@@ -63,7 +63,7 @@ const validationRoutes: EuimRoute[] = [
 ];
 
 
-const routes: EuimRoute[] = [
+const routes: EbaRoute[] = [
   {path: '', redirectTo: 'questionnaire', pathMatch: 'full'},
   ...validationRoutes,
   {path: '**', pathMatch: 'full', redirectTo: 'questionnaire'}
