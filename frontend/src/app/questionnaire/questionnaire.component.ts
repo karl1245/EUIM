@@ -18,6 +18,7 @@ export class QuestionnaireComponent implements OnInit {
   questionnaires: QuestionnaireResponse[] = [];
   questionnaireName: string = '';
   currentlyEditingQuestionnaires: any[] = [];
+  TIMEOUT_BEFORE_RETRYING = 5000;
   validationPath = "/validation"
   // @ts-ignore
   modalRef: BsModalRef;
@@ -39,7 +40,14 @@ export class QuestionnaireComponent implements OnInit {
       next => {
         this.questionnaires = next;
         this.loading = false;
-      }
+      }, () => {
+        setTimeout(() => {
+          this.questionnaireService.getQuestionnaires().subscribe(
+            next => {
+              this.questionnaires = next;
+              this.loading = false;
+            })
+      }, this.TIMEOUT_BEFORE_RETRYING);}
     );
   }
 
