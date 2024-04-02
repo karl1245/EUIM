@@ -35,46 +35,57 @@
             </div>
             <div *ngIf="isValidationFeature(validation)" class="feature-cell">
               <div class="cell-with-menu">
-                <textarea #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
-                  [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
-                  (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
-                  class="overflow-auto w-100 border-0 textarea-min-height custom-id"
-                >
-                </textarea>
+                <div class="textarea-border">
+                  <textarea id="id" #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
+                    [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
+                    (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
+                    class="overflow-auto border-0 custom-id"
+                    placeholder="ID"
+                  >
+                  </textarea>
+                </div>
                 <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
               </div>
-              <textarea #refEl1 [ngStyle]="setDefaultTextAreaSize(refEl1)" (input)="autoGrow($event)"
-                [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-                (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-                class="overflow-auto w-100 border-0 textarea-min-height"
-              >
-              </textarea>
+              <div class="textarea-border">
+                <textarea #refEl1 [ngStyle]="setDefaultTextAreaSize(refEl1)" (input)="autoGrow($event)"
+                  [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+                  (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+                  class="overflow-auto border-0 feature"
+                >
+                </textarea>
+              </div>
             </div>
             <div *ngIf="isValidationFeaturePrecondition(validation)" class="cell-with-menu">
-              <textarea #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
-              [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-              (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-              class="overflow-auto w-100 border-0 textarea-min-height"
-              >
-              </textarea>
+              <div class="textarea-border">
+                <textarea #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
+                [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+                (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+                class="overflow-auto border-0 textarea-min-height"
+                >
+                </textarea>
+              </div>
               <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getPreconditionActions(validationRowValue)" [returnAction]="getStakeHolderMenuAction(validationRowValue)" [stakeholders]="stakeholders" [isStakeholdersCell]="true"></app-menu>
             </div>
             <div *ngIf="isValidationExample(validation)" class="cell-with-menu">
-              <textarea #refEl (input)="autoGrow($event)" [ngStyle]="setDefaultTextAreaSize(refEl)"
-                [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-                (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-                class="overflow-auto w-100 border-0 textarea-min-height"
-              >
-              </textarea>
+              <div class="textarea-border">
+                <textarea #refEl (input)="autoGrow($event)" [ngStyle]="setDefaultTextAreaSize(refEl)"
+                  [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+                  (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+                  class="overflow-auto border-0 textarea-min-height"
+                >
+                </textarea>
+              </div>
               <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
             </div>
-            <div *ngIf="isValidationTextField(validation)" class="cell-with-menu">
-              <textarea #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
-                [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
-                (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
-                class="overflow-auto w-100 border-0 textarea-min-height"
-              >
-              </textarea>
+            <div *ngIf="isValidationTextField(validation)" class="textfield">
+              <div class="textarea-border">
+                <textarea #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
+                  [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
+                  (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
+                  class="overflow-auto border-0 textarea-min-height"
+                >
+                </textarea>
+              </div>
             </div>
             <div *ngIf="isValidationAutofill(validation)">
               <span class="answer-stakeholder {{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}">{{getValidationRowAnswer(validation, validationRowValue).answer}}</span>

@@ -52,15 +52,31 @@ tr>th:first-child/*,tr>td:first-child*/ {
 }
 
 textarea {
+  overflow: hidden;
   display: flex;
   text-align: left;
   justify-content: start;
-  width: 100%;
+  width: 100% !important;
   height: 100%;
   max-width: 1000rem;
   background: none;
   word-break: keep-all;
+  border: solid;
   resize: none;
+  min-height: 120px;
+}
+
+textarea::placeholder {
+  color: var(--dark-green);
+}
+
+.textarea-border {
+  display: flex;
+  border: solid;
+  border-width: 2px;
+  border-radius: 0.25rem;
+  width: fit-content;
+  border-color: var(--dark-green);
 }
 
 .table-wrapper {
@@ -89,10 +105,6 @@ textarea {
   width: 56px;
 }
 
-.id-cell textarea {
-  max-height: 200px;
-}
-
 .content-cell-first-child {
   position: sticky;
   left: 3rem;
@@ -102,13 +114,13 @@ textarea {
 
 .content-cell-second-child {
   left: 15.5rem;
-  width: 56px;
+  width: 52px;
   border-right: none;
 }
 
 .content-cell-third-child {
   left: 20rem;
-  width: 140px;
+  width: 156px;
   border-right: none;
   border-left: none;
 }
@@ -144,7 +156,7 @@ textarea {
 }
 
 .content-cell-twelveth-child {
-  width: 8.75rem;
+  width: 156px;
   border-right: none;
   border-left: none;
 }
@@ -205,6 +217,7 @@ textarea {
   align-items: start;
   justify-content: right;
   height: fit-content;
+  width: 100%;
   gap: 0.5rem;
 }
 
@@ -215,11 +228,21 @@ textarea {
   align-items: end;
   justify-content: right;
   height: 100%;
+  gap: 8px;
 }
 
 .custom-id {
   border-radius: 0.25rem;
   background-color: var(--table-head);
+  min-height: 40px;
+}
+
+.feature {
+  min-height: 72px;
+}
+
+.textfield {
+  width: 100%;
 }
 
 .add-row-button {
