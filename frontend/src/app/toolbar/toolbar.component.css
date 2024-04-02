@@ -38,7 +38,8 @@ a {
 }
 
 a.toolbar-router {
-  color: var(--contrast_highlight);  
+  color: var(--text-color);  
+  font-weight: 500;
   text-decoration: none;
   width: fit-content;
   height: fit-content;
@@ -56,6 +57,7 @@ a.toolbar-router:hover {
   width: fit-content;
   height: fit-content;
   padding: 0.5rem;
+  color: var(--text-color);
 }
 
 .language-active {
