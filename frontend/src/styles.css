@@ -100,7 +100,7 @@ p {
     line-height: 150%;
     word-spacing: 150%;
     letter-spacing: 0.5%;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
