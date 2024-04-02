@@ -46,12 +46,12 @@ img {
   flex-direction: column;
   background-color: var(--beige);
   width: 1000px;
-  padding: 32px;
+  padding: 2rem;
   border: solid;
   border-color: var(--text-color);
   border-width: 2px;
   border-radius: 0.625rem;
-  gap: 32px;
+  gap: 2rem;
 }
 
 .option-description {

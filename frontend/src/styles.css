@@ -78,81 +78,63 @@ mat-tooltip-component .mdc-tooltip__surface {
 html, body {
     height: 100%;
     width: 100vw;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 body {
     margin: 0;
-    font-family: Inter, sans-serif !important;
     background-color: var(--bg-color);
     color: var(--text-color);
 }
 
 p {
     display: block;
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;   
+    font-style: normal;   
     font-weight: normal;
+    line-height: 150%;
+    word-spacing: 150%;
+    letter-spacing: 0.5%;
+    margin-bottom: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    display: block;
+    color: var(--text-color);
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto; 
+    font-style: normal;   
+    font-weight: 600; /*semi bold*/
+    line-height: 125%;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
 }
 
 h1 {
-    color: var(--text-color);
-    font-family: Inter;
-    font-weight: 600;
-    display: block;
     font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
 }
 
 h2 {
-    font-family: Inter;
-    font-weight: 600;
-    display: block;
     font-size: 1.5rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
 }
+
 h3 {
-    font-family: Inter;
-    font-weight: 600;
-    display: block;
     font-size: 1.17rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
 }
-h4 {
-    font-family: Inter;
-    font-weight: 600;
-    display: block;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-}
+
 h5 {
-    font-family: Inter;
-    font-weight: 600;
-    display: block;
     font-size: .83rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
 }
+
 h6 {
-    font-family: Inter;
-    font-weight: 600;
-    display: block;
     font-size: .67rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
 }
 
 input {
