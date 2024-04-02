@@ -10,13 +10,14 @@
     "delete":"Kustuta",
     "copy": "Tee koopia",
     "download": "Lae alla",
+    "deleteFeature": "Kustuta funktsionaalsus",
     "addStakeholder": "Lisa sidusrühm",
     "addPrecondition": "Lisa eeltingimus",
     "deletePrecondition": "Kustuta eeltingimus",
-    "deleteFeature": "Kustuta tunnus",
     "addExample": "Lisa situatsioon",
     "deleteExample": "Kustuta situatsioon",
-    "noExample": "Näidet pole"
+    "noExample": "Situatsiooni ei ole",
+    "noStakeholder": "Sidusrühmi ei ole veel"
   },
   "toolbar": {
     "name": "EbA-UIM",

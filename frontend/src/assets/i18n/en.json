@@ -10,12 +10,14 @@
     "delete":"Delete",
     "copy": "Make a copy",
     "download": "Download",
-    "addStakeholder": "Add Stakeholder",
-    "addPrecondition": "Add preconditon",
-    "deletePrecondition": "Delete preconditon",
-    "addExample": "Add example",
-    "deleteExample": "Delete example",
-    "noExample": "No example"
+    "deleteFeature": "Delete this feature",
+    "addStakeholder": "Add a stakeholder",
+    "addPrecondition": "Add a preconditon",
+    "deletePrecondition": "Delete this preconditon",
+    "addExample": "Add a situation",
+    "deleteExample": "Delete this situation",
+    "noExample": "No situation",
+    "noStakeholder": "No stakeholders yet"
   },
   "toolbar": {
     "name": "EbA-UIM",
