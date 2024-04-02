@@ -4,20 +4,29 @@
   gap: 1rem;
   padding: 1rem;
   background-color: var(--beige);
+  min-width: 160px;
+  width: fit-content;
 }
+
 
 .stakeholders-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: start;
+  justify-content: left;
+  gap: 0.25rem;
   width: fit-content;
+}
+
+.none-added {
+  white-space: nowrap;
 }
 
 .stakeholder {
   display: flex;
   width: fit-content;
   height: fit-content;
-  max-width: 120px; 
+  max-width: 140px; 
   gap: 4px;
   padding: 4px 0.5rem 4px 0.5rem;
   border-style: solid;
