@@ -548,7 +548,7 @@ export class ValidationComponent implements OnInit{
     return true;
   }
 
-  getStickyClassByIndex(i: number): string {
+  getStickyClassByIndex(i: number, isHeader?: boolean): string {
     if (i === 0) {
       return 'content-cell-first-child'
     } else if (i === 1) {
@@ -564,6 +564,9 @@ export class ValidationComponent implements OnInit{
     } else if (i === 9) {
       return 'content-cell-tenth-child'
     } else if (i === 10) {
+      if (isHeader) {
+        return 'content-header-eleventh-child'
+      }
       return 'content-cell-eleventh-child'
     } else if (i === 11) {
       return 'content-cell-twelveth-child'

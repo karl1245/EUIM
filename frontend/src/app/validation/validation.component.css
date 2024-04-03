@@ -109,7 +109,7 @@ textarea::placeholder {
   position: sticky;
   left: 3rem;
   z-index: 1;
-  width: 12.25rem;
+  width: 12.7rem;
 }
 
 .content-cell-second-child {
@@ -150,6 +150,12 @@ textarea::placeholder {
   width: 6.25rem;
 }
 
+.content-header-eleventh-child {
+  width: 16rem;
+  border-right: none;
+  white-space: pre;
+}
+
 .content-cell-eleventh-child {
   width: 16rem;
   border-right: none;
@@ -170,8 +176,15 @@ textarea::placeholder {
   width: 28rem;
 }
 
+.content-cell-sixteenth-child  {
+  width: 3rem;
+}
+
 .add-row {
   vertical-align: middle;
+  position: sticky;
+  left: 0.5rem;
+  z-index: 1;
 }
 
 .textarea-container {
@@ -270,4 +283,8 @@ textarea::placeholder {
 
 .delete-row-button {
   all: unset;
+}
+
+.overflow-unset {
+  overflow: unset;
 }
