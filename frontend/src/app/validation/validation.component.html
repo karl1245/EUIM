@@ -7,7 +7,7 @@
         </th>
         <th *ngFor="let validation of validations; index as i" [ngClass]="getStickyClassByIndex(i, true)">
           <div class="header">{{getTranslation(validation)}}
-          <mat-icon *ngIf="validation.tooltipEt"   matTooltip="{{isCurrentLangEt ? validation.tooltipEt : validation.tooltipEn}}"   matTooltipClass="tooltip" class="material-symbols-outlined overflow-unset">info</mat-icon>
+            <mat-icon *ngIf="validation.tooltipEt"   matTooltip="{{isCurrentLangEt ? validation.tooltipEt : validation.tooltipEn}}"   matTooltipClass="tooltip" class="material-symbols-outlined overflow-unset">info</mat-icon>
           </div>
         </th>
         <th class="content-cell-sixteenth-child">

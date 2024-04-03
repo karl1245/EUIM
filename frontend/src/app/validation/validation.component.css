@@ -88,6 +88,12 @@ textarea::placeholder {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  text-align: left;
+}
+
+th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child.ng-star-inserted > div {
+  justify-content: center;
+  text-align: center;
 }
 
 .background-beige {
@@ -114,7 +120,7 @@ textarea::placeholder {
 
 .content-cell-second-child {
   left: 15.5rem;
-  width: 52px;
+  width: 56px;
   border-right: none;
 }
 
