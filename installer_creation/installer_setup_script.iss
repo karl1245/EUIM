@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "EbA"
-#define MyAppVersion "0.5.0"
+#define MyAppVersion "0.9.0"
 #define MyAppPublisher "University of Tartu"
 #define MyAppURL "https://ut.ee"
-#define MyAppExeName "EbA-0.5.0.exe"
-#define MyAppJarName "EbA-0.5.0.jar"
+#define MyAppExeName "EbA-0.9.0.exe"
+#define MyAppJarName "EbA-0.9.0.jar"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -39,6 +39,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "..\delivery\target\{#MyAppJarName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\*"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "executable\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".."; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
