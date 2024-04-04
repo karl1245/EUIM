@@ -8,7 +8,7 @@
     --bg-color: #89A480;
     --container: #729368;
     --highlight: #BCD6A9;
-    --contrast_highlight: #4F7744;
+    --contrast-highlight: #4F7744;
     --table-head: #CCD7BB;
     --beige: #F5EEE6;
     --brown: #CAB89C;
@@ -37,7 +37,7 @@
     --bg-color: #89A480;
     --container: #729368;
     --highlight: #BCD6A9;
-    --contrast_highlight: #4F7744;
+    --contrast-highlight: #4F7744;
     --table-head: #CCD7BB;
 }
 
@@ -46,7 +46,7 @@
     --bg-color: #8091a4;
     --container: #687d93;
     --highlight: #a9c6d6;
-    --contrast_highlight: #446377;
+    --contrast-highlight: #446377;
     --table-head: #bbccd7;
 }
 
