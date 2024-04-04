@@ -218,7 +218,11 @@ export class ValidationComponent implements OnInit{
   }
 
   isValidationTextField(validation: Validation): boolean {
-    return validation.type === ValidationType.TEXT || validation.type === ValidationType.DO; // || validation.type === ValidationType.EXAMPLE;
+    return validation.type === ValidationType.TEXT;
+  }
+
+  isValidationDoField(validation: Validation): boolean {
+    return validation.type === ValidationType.DO;
   }
 
   isValidationFeature(validation: Validation): boolean {

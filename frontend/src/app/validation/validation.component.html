@@ -89,6 +89,11 @@
                 </textarea>
               </div>
             </div>
+            <div *ngIf="isValidationDoField(validation)">
+              <div class="w-100">
+                {{ getValidationRowAnswer(validation, validationRowValue).answer }}
+              </div>
+            </div>
             <div *ngIf="isValidationAutofill(validation)">
               <span class="answer-stakeholder {{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}">{{getValidationRowAnswer(validation, validationRowValue).answer}}</span>
             </div>
