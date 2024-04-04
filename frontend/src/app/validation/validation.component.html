@@ -80,7 +80,7 @@
               <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getExampleActions(validationRowValue)"></app-menu>
             </div>
             <div *ngIf="isValidationTextField(validation)" class="textfield">
-              <div class="textarea-border">
+              <div class="textarea-border w-100">
                 <textarea #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
                   [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
                   (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
