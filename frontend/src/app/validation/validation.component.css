@@ -13,7 +13,6 @@ table {
 }
 
 thead {
-  border: 1px;
   border-color: var(--text-color);
   background-color: var(--table-head);
   border-collapse: separate;
@@ -21,9 +20,11 @@ thead {
 }
 
 th {
+  border: solid;
+  border-width: 1px;
   gap: 0.5rem;
   padding: 0.5rem;
-  border-color: var(--text-color);
+  border-color: var(--bg-color);
   background-color: var(--table-head);
   font-weight: 600;
   height: 5rem;
@@ -121,20 +122,17 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
 .content-cell-second-child {
   left: 15.5rem;
   width: 56px;
-  border-right: none;
 }
 
 .content-cell-third-child {
   left: 20rem;
   width: 156px;
-  border-right: none;
-  border-left: none;
+
 }
 
 .content-cell-fourth-child {
   left: 28.75rem;
   width: 16rem;
-  border-left: none;
 }
 
 .content-cell-fifth-child {
@@ -225,11 +223,6 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   word-break: break-all;
 }
 
-.none {
-  display: none;
-  border: none !important;
-}
-
 .cell-with-menu {
   display: flex;
   flex-direction: row;
@@ -240,6 +233,15 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   gap: 0.5rem;
 }
 
+.cell-with-menu-stakeholder {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100%;
+  gap: 0.5rem;
+}
 
 .feature-cell {
   display: flex;
