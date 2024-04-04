@@ -99,12 +99,14 @@ table {
 }
 
 .see-more-button {
-  background-color: var(--highlight);
+  background-color: var(--light-green);
   text-decoration: none;
+  border: solid;
+  border-width: 2px;
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   color: var(--text);
-
+  border-color: var(--dark-green);
 }
 .see-more-button:hover {
   background-color: var(--green);
