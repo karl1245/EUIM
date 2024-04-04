@@ -24,7 +24,7 @@ th {
   border-width: 1px;
   gap: 0.5rem;
   padding: 0.5rem;
-  border-color: var(--bg-color);
+  border-color: var(--container);
   background-color: var(--table-head);
   font-weight: 600;
   height: 5rem;
@@ -77,7 +77,7 @@ textarea::placeholder {
   border-width: 2px;
   border-radius: 0.25rem;
   width: fit-content;
-  border-color: var(--dark-green);
+  border-color: var(--container);
 }
 
 .table-wrapper {
@@ -116,7 +116,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   position: sticky;
   left: 3rem;
   z-index: 1;
-  width: 12.7rem;
+  width: 248px;
 }
 
 .content-cell-second-child {
@@ -132,7 +132,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
 
 .content-cell-fourth-child {
   left: 28.75rem;
-  width: 16rem;
+  width: 272px;
 }
 
 .content-cell-fifth-child {
@@ -140,7 +140,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
 }
 
 .content-cell-four-options {
-  width: 12.25rem;
+  width: 176px;
 }
 
 .selection {
