@@ -22,7 +22,7 @@
   "toolbar": {
     "name": "EbA-UIM",
     "projects": "Projects",
-    "method": "EbA Method",
+    "method": "EbA method",
     "about": "About"
   },
   "languages": {
@@ -63,9 +63,9 @@
     "input": "Stakeholder name"
   },
   "addGroup": {
-    "title": "Add a new feature group",
-    "list": "Existing feature groups",
-    "input": "Feature group name",
+    "title": "Add a new table tab",
+    "list": "Existing table tabs",
+    "input": "Table tab name",
     "placeholder": "Enter feature ID or abbreviation"
   },
   "addStakeholder": {

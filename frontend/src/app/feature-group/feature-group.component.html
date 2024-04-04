@@ -4,7 +4,7 @@
     <div class="projects-wrapper">
       <div class="add-project">
         <div class="add-project-header">
-          <h1>{{'addGroup.title' | translate}}</h1>
+          <h2>{{'addGroup.title' | translate}}</h2>
           <button (click)="toggleAddNewGroup()" class="button-icon">
             <span *ngIf=!isToggledGroupAdding class="material-symbols-outlined icon">expand_more</span>
             <span *ngIf=isToggledGroupAdding class="material-symbols-outlined icon">expand_less</span>
@@ -14,7 +14,7 @@
             <div class="add-project-input">
               <div>
                 <div class="add-project-header">
-                  <h2>{{'addGroup.list' | translate}}</h2>
+                  <h3>{{'addGroup.list' | translate}}</h3>
                   <button (click)="toggleGroupList()" class="button-icon">
                     <span *ngIf=!isToggledGroupList class="material-symbols-outlined icon">expand_more</span>
                     <span *ngIf=isToggledGroupList class="material-symbols-outlined icon">expand_less</span>
@@ -24,7 +24,7 @@
                   <app-stakeholder *ngFor="let featureGroup of featureGroups; index as i" [stakeholder]="featureGroup.name" [editAction]="getFeatureGroupEditAction(featureGroup)" [deleteAction]="getFeatureGroupDeleteAction(featureGroup)" [color]="getStakeholderColorClass(i)"></app-stakeholder>
                 </div>
               </div>
-              <h2>{{'addGroup.input' | translate}}</h2>
+              <h3>{{'addGroup.input' | translate}}</h3>
               <input type="text" placeholder="{{'addGroup.placeholder' | translate}}" id="featureGroupName" type="text" [(ngModel)]="featureGroupName"/>
             </div>
             <div class="add-project-buttons">
@@ -37,7 +37,7 @@
     <div class="projects-wrapper">
       <div class="add-project">
         <div class="add-project-header">
-          <h1>{{'addStakeholder.title' | translate}}</h1>
+          <h2>{{'addStakeholder.title' | translate}}</h2>
           <button (click)="toggleAddNewStakeholder()" class="button-icon">
             <span *ngIf=!isToggledStakeholderAdding class="material-symbols-outlined icon">expand_more</span>
             <span *ngIf=isToggledStakeholderAdding class="material-symbols-outlined icon">expand_less</span>
@@ -47,7 +47,7 @@
             <div class="add-project-input">
               <div>
                 <div class="add-project-header">
-                  <h2>{{'addStakeholder.list' | translate}}</h2>
+                  <h3>{{'addStakeholder.list' | translate}}</h3>
                   <button (click)="toggleStakeholderList()" class="button-icon">
                     <span *ngIf=!isToggledStakeholderList class="material-symbols-outlined icon">expand_more</span>
                     <span *ngIf=isToggledStakeholderList class="material-symbols-outlined icon">expand_less</span>
@@ -57,7 +57,7 @@
                   <app-stakeholder *ngFor="let stakeholder of stakeholders; index as i" [stakeholder]="stakeholder.name" [editAction]="getStakeholderEditAction(stakeholder)" [deleteAction]="getStakeholderDeleteAction(stakeholder)" [color]="getStakeholderColorClass(i)"></app-stakeholder>
                 </div>
               </div>
-              <h2>{{'addStakeholder.input' | translate}}</h2>
+              <h3>{{'addStakeholder.input' | translate}}</h3>
               <input type="text" placeholder="{{'addStakeholder.placeholder' | translate}}" id="questionnaireName" type="text" [(ngModel)]="stakeholderName"/>
             </div>
             <div class="add-project-buttons">
