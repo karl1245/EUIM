@@ -53,6 +53,7 @@
                             <executable>ng</executable>
                             <arguments>
                                 <argument>build</argument>
+                                <argument>--output-hashing=all</argument>
                             </arguments>
                         </configuration>
                     </execution>
