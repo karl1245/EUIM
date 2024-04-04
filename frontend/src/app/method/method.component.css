@@ -95,11 +95,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: fit-content;
   width: fit-content;
+  padding: 1rem;
+  min-height: 56px;
   background-color: var(--table-head);
   border: solid;
-  padding: 1rem;
   border-width: 2px;
   border-radius: 4px;
   color: var(--text-color);

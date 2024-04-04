@@ -22,7 +22,7 @@
   "toolbar": {
     "name": "EbA-UIM",
     "projects": "Projektid",
-    "method": "KPA meetod",
+    "method": "EbA meetod",
     "about": "Meist"
   },
   "languages": {
@@ -63,9 +63,9 @@
     "input": "Sidusrühma nimetus"
   },
   "addGroup": {
-    "title": "Lisa funktsionaalsuste grupp",
-    "list": "Olemasolevad funktsionaalsuste grupid",
-    "input": "Funktsionaalsuste grupi nimetus",
+    "title": "Lisa tabeli vahekaart",
+    "list": "Olemasolevad tabeli vahekaardid",
+    "input": "Tabeli vahekaardi nimetus",
     "placeholder": "Sisesta tunnuse ID või lühend"
   },
   "addStakeholder": {
