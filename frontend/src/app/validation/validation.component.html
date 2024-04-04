@@ -98,7 +98,7 @@
               </div>
             </div>
             <div *ngIf="isValidationAutofill(validation)">
-              <span class="answer-stakeholder {{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}">{{getValidationRowAnswer(validation, validationRowValue).answer}}</span>
+              <span *ngIf="getValidationRowAnswer(validation, validationRowValue).answer.length>0" class="answer-stakeholder {{getStakeholderColorClass(getValidationRowAnswer(validation, validationRowValue).answer, i)}}">{{getValidationRowAnswer(validation, validationRowValue).answer}}</span>
             </div>
           </td>
         </ng-container>
