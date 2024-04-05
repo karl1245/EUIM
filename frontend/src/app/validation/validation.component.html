@@ -44,14 +44,14 @@
                   <textarea id="id" #refEl [ngStyle]="setDefaultTextAreaSize(refEl)" (input)="autoGrow($event)"
                     [ngModel]="getValidationRowAnswer(validation, validationRowValue).feature.customId"
                     (ngModelChange)="onFeatureCustomIdChange($event, getValidationRowAnswer(validation, validationRowValue).feature)"
-                    class="overflow-auto border-0 custom-id"
+                    class="overflow-auto border-0 custom-id "
                     placeholder="ID"
                   >
                   </textarea>
                 </div>
                 <app-menu [toggle]="'Menu'" [icon]="menuIcon" [actions]="getFeatureActions(validationRowValue)"></app-menu>
               </div>
-              <div class="textarea-border">
+              <div class="textarea-border w-100">
                 <textarea #refEl1 [ngStyle]="setDefaultTextAreaSize(refEl1)" (input)="autoGrow($event)"
                   [ngModel]="getValidationRowAnswer(validation, validationRowValue).answer"
                   (ngModelChange)="textAreaValueChange($event, getValidationRowAnswer(validation, validationRowValue), validation, validationRowValue)"
