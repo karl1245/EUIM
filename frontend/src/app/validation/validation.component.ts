@@ -281,7 +281,7 @@ export class ValidationComponent implements OnInit{
   }
 
   private setRelatedRowSpanAnswers(validation: Validation, validationRowAnswer: ValidationAnswer, eventValue: any) {
-    if (validation.type === ValidationType.DO || ValidationType.FEATURE_PRECONDITION || ValidationType.STAKEHOLDER) {
+    if ([ValidationType.DO, ValidationType.FEATURE_PRECONDITION, ValidationType.STAKEHOLDER].includes(validation.type)) {
       for (let validationRow of this.validationRowValues) {
         for (let answer of validationRow.answers) {
           if (answer.featurePrecondition.id === validationRowAnswer.featurePrecondition.id && answer.id !== validationRowAnswer.id) {
@@ -306,12 +306,12 @@ export class ValidationComponent implements OnInit{
             setTimeout(() => {
               this.validationService.saveValidationAnswer(answer).subscribe(
                 next => {
-                  this.updateRelatedValidationAnswers(validation, validationRow);
                 }
               );
             }, this.TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE)
           }
         }
+        this.updateRelatedValidationAnswers(validation, validationRow);
       }
     }
   }
@@ -445,9 +445,11 @@ export class ValidationComponent implements OnInit{
     }
   }
 
-  hasMatchingCombination(combinationResult: ValidationCombinationResult, answerValuesSortedByWeight: any[]) {
+  hasMatchingCombination(combinationResult: ValidationCombinationResult, answerValuesSortedByWeightOriginal: any[]) {
+    let answerValuesSortedByWeight: any[] = JSON.parse(JSON.stringify(answerValuesSortedByWeightOriginal)); //TODO viga selles et orig kaalu kirjutab üle
     for (let combination of combinationResult.validationCombinations) {
-      const foundAnswer = answerValuesSortedByWeight.find(av => av.validationId == combination.validationResponse.id && av.value == combination.validationValue);
+      const foundAnswer = answerValuesSortedByWeight.find(
+        av => av.validationId == combination.validationResponse.id && av.value == combination.validationValue);
       if (foundAnswer) {
         foundAnswer.hasMatch = true;
       }
