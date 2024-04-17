@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ValidationService } from './service/validation.service';
 import { Validation, ValidationType } from './model/validation';
 import { ValidationRow } from './model/validation-row';
@@ -25,7 +25,7 @@ import { ValidationValue } from './model/validation-value';
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.css']
 })
-export class ValidationComponent implements OnInit{
+export class ValidationComponent implements OnInit, AfterContentChecked {
 
   private TIMEOUT_BEFORE_SENDING_ANSWER_UPDATE = 400;
   questionnaireId: number;
@@ -60,14 +60,24 @@ export class ValidationComponent implements OnInit{
     private router: Router,
     private translateService: TranslateService,
     private featureService: FeatureService,
-    private featurePreconditionService: FeaturePreConditionService
+    private featurePreconditionService: FeaturePreConditionService,
+    private el: ElementRef
   ) {
     this.onLanguageChanged();
   }
   onLanguageChanged() {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.reloadComponent();
+      if (this.router.url.startsWith('/validation')) {
+        this.reloadComponent();
+      }
     });
+  }
+
+  ngAfterContentChecked() {
+    var vtextarea = this.el.nativeElement.querySelectorAll('textarea')
+    for(let i=0;i<vtextarea.length;i++){
+      vtextarea[i].style.height = vtextarea[i].scrollHeight + 'px';
+    }
   }
 
   ngOnInit(): void {
@@ -465,7 +475,10 @@ export class ValidationComponent implements OnInit{
 
   deleteRow(rowId: number) {
     this.validationService.deleteValidationAnswersByQuestionnaireIdAndRowId(this.questionnaireId, rowId).subscribe(
-      next => this.validationRowValues = this.validationRowValues.filter(vrv => vrv.rowId !== rowId)
+      next => {
+        this.validationRowValues = this.validationRowValues.filter(vrv => vrv.rowId !== rowId);
+        this.reloadComponent();
+      }
     );
   }
 
@@ -680,12 +693,6 @@ export class ValidationComponent implements OnInit{
 
   getValidationValue(answer: string): ValidationValue {
     return (<any>ValidationValue)[answer];
-  }
-
-  setDefaultTextAreaSize(el: HTMLTextAreaElement): { [p: string]: any } | null | undefined {
-    el.style.height = '5px';
-    el.style.height = (el.scrollHeight) + 'px';
-    return null;
   }
 }
 
