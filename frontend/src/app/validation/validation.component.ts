@@ -456,7 +456,7 @@ export class ValidationComponent implements OnInit, AfterContentChecked {
   }
 
   hasMatchingCombination(combinationResult: ValidationCombinationResult, answerValuesSortedByWeightOriginal: any[]) {
-    let answerValuesSortedByWeight: any[] = JSON.parse(JSON.stringify(answerValuesSortedByWeightOriginal)); //TODO viga selles et orig kaalu kirjutab üle
+    let answerValuesSortedByWeight: any[] = JSON.parse(JSON.stringify(answerValuesSortedByWeightOriginal));
     for (let combination of combinationResult.validationCombinations) {
       const foundAnswer = answerValuesSortedByWeight.find(
         av => av.validationId == combination.validationResponse.id && av.value == combination.validationValue);
