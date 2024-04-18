@@ -4,6 +4,7 @@ To view the actual changes made inside the application either compile the applic
 ## Setting up the project environment developers machine [Cloning official guide video](https://www.jetbrains.com/guide/java/tips/clone-project-from-github/)
    * Download and install [Intellij Idea Community edition](https://www.jetbrains.com/idea/download/?section=windows) or some other IDE, this guide is for Intellij idea community edition
    * Find the repository where the code is located at, and get the url for cloning for example currently on github: https://github.com/karl1245/EUIM.git
+     * In github while being on the main repository page press the green code button and under https there is the URL
    * Open Intellij installed application and finish the inital configuration
    * Click "Get from VCS" in the Intellij Welcome screen
    * If prompted with red "Git is not installed message" click the blue "Download and install" button and follow instructions
