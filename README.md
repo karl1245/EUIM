@@ -3,11 +3,12 @@ To view the actual changes made inside the application either compile the applic
 
 ## Setting up the project environment developers machine [Cloning official guide video](https://www.jetbrains.com/guide/java/tips/clone-project-from-github/)
    * Download and install [Intellij Idea Community edition](https://www.jetbrains.com/idea/download/?section=windows) or some other IDE, this guide is for Intellij idea community edition
+     * NB! Make sure you download the Community edition not Ultimate
    * Find the repository where the code is located at, and get the url for cloning for example currently on github: https://github.com/karl1245/EUIM.git
-   * Open Intellij installed application and finish the inital configuration
+   * Open Intellij installed application and finish the initial configuration
    * Click "Get from VCS" in the Intellij Welcome screen
-   * If prompted with red "Git is not installed message" click the blue "Download and install" button and follow instructions
    * Paste the github (or whichever git management) URL in the url section
+   * If prompted with red "Git is not installed message" click the blue "Download and install" button and follow instructions
    * Press the clone button
    * When prompted login to github or any other git managing tool with your account
    * When prompted, Trust the project
@@ -22,11 +23,11 @@ To view the actual changes made inside the application either compile the applic
    * Database data files are located at `backend/src/main/resources/db/migration/data`
    * When making data changes you must make a new file into this folder
      * The naming of the new file must follow the logic of the files previously in the folder
-     * Format: `V0_YEAR_MONTH_DAY_HOUR_MINUTE__meaningful_description_of_data_changes.sql`
+     * Format: `V0_YEAR.MONTH.DAY.HOUR.MINUTE__meaningful_description_of_data_changes.sql`
    * You can avoid writing SQL manually
      * You can view the compiled database if you have installed and run the application OR started the application from source code
      * For example I have installed the application using the installer
-     * I have also installed some database visual manager too like [DBeaver](https://dbeaver.io/download/) which this guide is for
+     * I have also installed some database visual manager too like [DBeaver](https://dbeaver.io/download/)(community edition ) which this guide is for
      * In Dbeaver i create new connection [Official guide](https://dbeaver.com/docs/dbeaver/Create-Connection/)
      * In the new connection setup i choose SQLite
      * And when prompted i will open the database file. Example database path: `"C:\Users\Username\AppData\Local\Programs\EbA\database.db"`
