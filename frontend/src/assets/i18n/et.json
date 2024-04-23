@@ -14,7 +14,7 @@
     "addStakeholder": "Lisa sidusrühm",
     "addPrecondition": "Lisa eeltingimus",
     "deletePrecondition": "Kustuta eeltingimus",
-    "addExample": "Lisa situatsioon",
+    "addExample": "Lisa veel üks situatsioon",
     "deleteExample": "Kustuta situatsioon",
     "noExample": "Situatsiooni ei ole",
     "noStakeholder": "Sidusrühmi ei ole veel"
