@@ -57,7 +57,7 @@ textarea {
   display: flex;
   text-align: left;
   justify-content: start;
-  width: 100% !important;
+  width: 100%;
   height: 100%;
   max-width: 1000rem;
   background: none;
@@ -126,7 +126,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
 
 .content-cell-third-child {
   left: 20rem;
-  width: 156px;
+  width: 192px;
 
 }
 
@@ -214,7 +214,6 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  max-width: 120px;
   gap: 4px;
   padding: 4px 8px 4px 8px;
   border-style: solid;
