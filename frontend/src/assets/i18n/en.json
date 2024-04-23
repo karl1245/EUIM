@@ -14,7 +14,7 @@
     "addStakeholder": "Add a stakeholder",
     "addPrecondition": "Add a preconditon",
     "deletePrecondition": "Delete this preconditon",
-    "addExample": "Add a situation",
+    "addExample": "Add another situation",
     "deleteExample": "Delete this situation",
     "noExample": "No situation",
     "noStakeholder": "No stakeholders yet"
