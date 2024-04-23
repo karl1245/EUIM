@@ -76,7 +76,7 @@ textarea::placeholder {
   border: solid;
   border-width: 2px;
   border-radius: 0.25rem;
-  width: fit-content;
+  width: 100%;
   border-color: var(--container);
 }
 
@@ -248,7 +248,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   align-items: end;
   justify-content: right;
   height: 100%;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .custom-id {
