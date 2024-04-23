@@ -12,9 +12,9 @@
     "download": "Lae alla",
     "deleteFeature": "Kustuta funktsionaalsus",
     "addStakeholder": "Lisa sidusrühm",
-    "addPrecondition": "Lisa veel üks eeltingimus",
+    "addPrecondition": "Lisa eeltingimus",
     "deletePrecondition": "Kustuta eeltingimus",
-    "addExample": "Lisa situatsioon",
+    "addExample": "Lisa veel üks situatsioon",
     "deleteExample": "Kustuta situatsioon",
     "noExample": "Situatsiooni ei ole",
     "noStakeholder": "Sidusrühmi ei ole veel"
