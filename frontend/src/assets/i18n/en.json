@@ -36,7 +36,7 @@
   },
   "projectsTable": {
     "title": "Projects",
-    "seeMore" : "See more ->"
+    "seeMore" : "Enter project ->"
   },
   "deleteProjectModal": {
     "title": "Delete projekt: {{name}}",

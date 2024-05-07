@@ -36,7 +36,7 @@
   },
   "projectsTable": {
     "title": "Projektid",
-    "seeMore" : "Vaata ->"
+    "seeMore" : "Sisene projekti ->"
   },
   "deleteProjectModal": {
     "title": "Kustuta projekt: {{name}}",
@@ -101,7 +101,7 @@
     "red": "Ei toimi",
     "blue": "Testimisele",
     "yellow": "Lisategevus",
-    "pink": "Täiendamisele",
+    "orange": "Täiendamisele",
     "none": "Muu"
   },
   "about": {

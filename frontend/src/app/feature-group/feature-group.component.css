@@ -5,8 +5,8 @@ mat-tab-group, mat-tab, app-validation {
 }
 
 mat-tab-group {
-  max-width: 113.75rem;
-  width: 91.16vw;
+  max-width: 218.5rem;
+  width: 96.67cqw;
 }
 
 :host ::ng-deep .mat-mdc-tab-body.mat-mdc-tab-body-active {
@@ -93,6 +93,7 @@ mat-tab-group {
 }
 
 .page-body {
+  box-sizing: border-box;
   padding-top: 5rem;
   gap: 5rem;
   height: 100%;
