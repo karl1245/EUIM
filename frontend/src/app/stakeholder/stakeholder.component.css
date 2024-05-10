@@ -5,8 +5,7 @@
   width: fit-content;
   height: fit-content;
   max-width: 200px; 
-  gap: 4px;
-  padding: 4px 0.5rem 4px 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-style: solid;
   border-width: 2px;
   border-radius: 0.5rem;
