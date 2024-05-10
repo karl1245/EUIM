@@ -29,7 +29,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let questionnaire of questionnaires" class="projects-table-row">
+      <tr *ngFor="let questionnaire of questionnaires.reverse()" class="projects-table-row">
         <td class="project-cell">
           <span>{{questionnaire.name}}</span>
           <a [routerLink]="validationPath" [queryParams]="{questionnaireId: questionnaire.id}" class="see-more-button">{{'projectsTable.seeMore' | translate}}</a>
