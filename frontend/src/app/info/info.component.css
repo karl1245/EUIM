@@ -11,11 +11,11 @@
   align-items: center;
   height: fit-content;
   width: fit-content;
-  max-width: 300px;
+  max-width: 20rem;
   position: absolute;
   padding: 1rem;
   gap: 1rem;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   background-color: var(--text-color);
   color: var(--beige);
   z-index: 2;

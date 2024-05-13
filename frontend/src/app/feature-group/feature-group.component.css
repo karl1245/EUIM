@@ -19,12 +19,12 @@ mat-tab-group {
   justify-content: center;
   width: fit-content;
   padding: 1rem;
-  height: 56px;
-  min-width: 200px;
+  height: 3.5rem;
+  min-width: 12.5rem;
   background-color: var(--table-head);
   border: solid;
-  border-width: 2px;
-  border-radius: 4px;
+  border-width: 0.125rem;
+  border-radius: 0.25rem;
   color: var(--text-color);
   font: inherit;
   letter-spacing: normal;
@@ -38,14 +38,14 @@ mat-tab-group {
 :host ::ng-deep div[role='tab'].mdc-tab--active {
   background-color: var(--beige);
   color: var(--text-color);
-  border-width: 4px;
+  border-width: 0.25rem;
 }
 
 :host ::ng-deep div[role='tablist'] > .mat-mdc-tab-labels {
   display: flex;
   align-items: center;
-  padding: 4px;
-  gap: 4px;
+  padding: 0.25rem;
+  gap: 0.25rem;
   background-color: none;
 }
 
@@ -54,8 +54,8 @@ mat-tab-group {
   color: var(--text-color);
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
+  gap: 0.25rem;
+  padding: 0.25rem;
 }
  
 :host ::ng-deep .mat-mdc-tab-header.mat-mdc-tab-header-pagination-controls-enabled > .mat-mdc-tab-header-pagination.mat-mdc-tab-header-pagination-before.mat-ripple,
@@ -63,13 +63,13 @@ mat-tab-group {
   background-color: var(--table-head);
   color: var(--text-color);
   width: fit-content;
-  height: 52px;
-  min-width: 24px;
-  min-height: 24px;
-  padding: 4px;
+  height: 3.25rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0.25rem;
   border: solid;
-  border-width: 2px;
-  border-radius: 4px;
+  border-width: 0.125rem;
+  border-radius: 0.25rem;
 }
 
 :host ::ng-deep .mdc-tab-indicator .mdc-tab-indicator__content {
@@ -112,7 +112,7 @@ mat-tab-group {
 
   @media (max-width: 1500px) {
     align-items: center;
-    gap: 40px;
+    gap: 2.5rem;
     flex-direction: column;
   }
 }
@@ -135,7 +135,7 @@ mat-tab-group {
   padding: 1rem;
   border: solid;
   border-color: var(--text-color);
-  border-width: 2px;
+  border-width: 0.125rem;
   border-radius: 0.625rem;
   gap: 0.5rem;
 }

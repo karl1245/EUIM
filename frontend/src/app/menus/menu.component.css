@@ -24,16 +24,16 @@
   color: var(--text-color);
   overflow: hidden;
   border: solid;
-  border-width: 2px;
+  border-width: 0.125rem;
 }
 
 .arrow_drop_down-menu {
-  top: 0px;
+  top: 0rem;
   left: 1.5rem;
 }
 
 .color-menu {
-  top: 0px;
+  top: 0rem;
   right: 1.5rem;
 }
 
@@ -61,9 +61,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   border: solid;
-  border-width: 2px;
+  border-width: 0.125rem;
 }
 
 .arrow_drop_down:hover {
