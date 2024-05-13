@@ -22,7 +22,7 @@ table {
   padding: 1rem;
   border: solid;
   border-color: var(--text-color);
-  border-width: 2px;
+  border-width: 0.125rem;
   border-radius: 0.625rem;
   gap: 0.5rem;
 }
@@ -67,7 +67,7 @@ table {
   border-radius: 0.625rem;
   border-color: var(--text-color);
   border: solid;
-  border-width: 2px;
+  border-width: 0.125rem;
   margin-top: 5rem;
 }
 
@@ -77,13 +77,13 @@ table {
 }
 
 .projects-table-head {
-  padding: 32px 32px 32px 32px;
+  padding: 2rem;
   justify-content: left;
   align-items: center;
 }
 
 .project-cell {
-  padding: 32px 32px 32px 32px;
+  padding: 2rem;
   width: 31.25rem;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ table {
 }
   
 .action-button-cell {
-  padding: 32px 32px 32px 32px;
+  padding: 2rem;
   width: 31.25rem;
   display: flex;
   align-items: center;
@@ -102,9 +102,9 @@ table {
   background-color: var(--light-green);
   text-decoration: none;
   border: solid;
-  border-width: 2px;
+  border-width: 0.125rem;
   border-radius: 0.5rem;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   color: var(--text);
   border-color: var(--dark-green);
 }

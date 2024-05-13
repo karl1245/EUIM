@@ -150,7 +150,7 @@ h6 {
 input {
     border-radius: 0.5rem;
     padding: 0.5rem;
-    height: 32px;
+    height: 2rem;
 }
 
 .fcc {
@@ -166,11 +166,11 @@ input {
 }
 
 .button {
-    min-width: 120px;
+    min-width: 7.5rem;
     width: fit-content;
     padding: 0.25rem;
     border-radius: 0.625rem;
-    border-width: 2px;
+    border-width: 0.125rem;
     outline: none;
     height: fit-content;
 }
@@ -280,13 +280,13 @@ border-color: var(--dark-purple);
 }
 
 .pink {
-background-color: var(--light-pink);
-color: var(--dark-pink);
-border-color: var(--dark-pink);
-}
+    background-color: var(--light-pink);
+    color: var(--dark-pink);
+    border-color: var(--dark-pink);
+    }
 
 .none {
-background-color: var(--beige);
-color: var(--text-color);
-border-color:  var(--text-color);
+    background-color: var(--beige);
+    color: var(--text-color);
+    border: none !important;
 }

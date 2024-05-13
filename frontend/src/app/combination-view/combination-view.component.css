@@ -9,7 +9,7 @@ table{
   height: auto;
   width: 8%;
   border: solid;
-  border-width: 1px;
+  border-width: 0.125rem;
 }
 
 .answer {
@@ -19,7 +19,7 @@ table{
   height: auto;
   width: 16%;
   border: solid;
-  border-width: 1px;
+  border-width: 0.125rem;
   word-break: normal;
   overflow: hidden;
 }
@@ -31,7 +31,7 @@ table{
   height: auto;
   width: 28%;
   border: solid;
-  border-width: 1px;
+  border-width: 0.125rem;
 }
 
 .YES  {

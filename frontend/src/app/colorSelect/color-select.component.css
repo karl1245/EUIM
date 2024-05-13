@@ -9,7 +9,7 @@
 .color-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   width: fit-content;
 }
 
@@ -19,9 +19,9 @@
   justify-content: center;
   width: 120.5rem;
   height: fit-content;
-  gap: 4px;
+  gap: 0.25rem;
   padding: 4px 0.5rem 4px 0.5rem;
   border-style: solid;
-  border-width: 2px;
+  border-width: 0.125rem;
   border-radius: 0.5rem;
 }
