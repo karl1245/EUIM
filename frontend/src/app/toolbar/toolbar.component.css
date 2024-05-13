@@ -12,8 +12,8 @@
   height: fit-content;
   justify-content: left;
   align-items: center;
-  gap: 80px;
-  padding-left: 80px;
+  gap: 5rem;
+  padding-left: 5rem;
 }
 
 .nav-group-right {
@@ -21,8 +21,8 @@
   height: fit-content;
   justify-content: right;
   align-items: center;
-  gap: 80px;
-  padding-right: 80px;
+  gap: 5rem;
+  padding-right: 5rem;
 }
 
 .lang-select-width {
