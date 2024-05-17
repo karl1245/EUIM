@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './service/questionnaire.service';
 import { QuestionnaireResponse } from './model/questionnaire-response';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { DeleteQuestionnaireModalComponent } from './modal/delete-questionnaire-modal/delete-questionnaire-modal.component';
-import { EditQuestionnaireModalComponent } from './modal/edit-questionnaire-name-modal/edit-questionnaire-name-modal.component';
+import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
+import { EditModalComponent } from './modal/edit-modal/edit-modal.component';
+
 @Component({
   selector: 'app-questionnaire',
   templateUrl: './questionnaire.component.html',
@@ -17,9 +18,11 @@ export class QuestionnaireComponent implements OnInit {
   questionnaires: QuestionnaireResponse[] = [];
   questionnaireName: string = '';
   currentlyEditingQuestionnaires: any[] = [];
+  TIMEOUT_BEFORE_RETRYING = 5000;
   validationPath = "/validation"
   // @ts-ignore
   modalRef: BsModalRef;
+  menuIcon: string = "more_vert";
 
 
   constructor(
@@ -37,7 +40,14 @@ export class QuestionnaireComponent implements OnInit {
       next => {
         this.questionnaires = next;
         this.loading = false;
-      }
+      }, () => {
+        setTimeout(() => {
+          this.questionnaireService.getQuestionnaires().subscribe(
+            next => {
+              this.questionnaires = next;
+              this.loading = false;
+            })
+      }, this.TIMEOUT_BEFORE_RETRYING);}
     );
   }
 
@@ -48,24 +58,25 @@ export class QuestionnaireComponent implements OnInit {
       }
     )
   }
-  
+
   toggleAddNewQuistionnaire(): void {
     this.isToggled = !this.isToggled;
   }
-  
+
   openActionButtonsMenu(): void {
     this.isOpen = !this.isOpen;
   }
 
   deleteQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
+      isProject: true,
       questionnaireName: questionnaire.name
     };
-    this.modalRef = this.modalService.show(DeleteQuestionnaireModalComponent, {
+    this.modalRef = this.modalService.show(DeleteModalComponent, {
       class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
-      if (result.deleteQuestionnaire) {
+      if (result.deleteObject) {
         this.loading = true;
         this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
           this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
@@ -79,17 +90,21 @@ export class QuestionnaireComponent implements OnInit {
 
   editQuestionnaire(questionnaire: QuestionnaireResponse) {
     const initialState = {
-      questionnaire: questionnaire,
-      questionnairesList: this.questionnaires,
+      name: questionnaire.name,
+      titleTranslationKey: 'editProjectModal.title',
+      inputTranslationKey: 'editProjectModal.input',
     };
-    this.modalRef = this.modalService.show(EditQuestionnaireModalComponent, {
+    this.modalRef = this.modalService.show(EditModalComponent, {
       class: 'modal-box modal-md', initialState
     });
     this.modalRef.content.onClose.subscribe((result: any) => {
-      if (result.deleteQuestionnaire) {
+      if (result?.edit) {
         this.loading = true;
-        this.questionnaireService.deleteQuestionnaire(questionnaire.id).subscribe( next => {
-          this.questionnaires = this.questionnaires.filter(q => q.id !== questionnaire.id);
+        this.questionnaireService.saveQuestionnaire({id: questionnaire.id, name: result.newValue}).subscribe( next => {
+          const questionnaireToEdit = this.questionnaires.find(q => q.id === questionnaire.id);
+          if (questionnaireToEdit){
+            questionnaireToEdit.name = result.newValue;
+          }
           this.loading = false;
 
           }, () => this.loading = false
@@ -104,6 +119,4 @@ export class QuestionnaireComponent implements OnInit {
       {name: "menu.delete", icon: 'delete', onClick: () => this.deleteQuestionnaire(questionnaire)},
     ];
   }
-  
-  
 }

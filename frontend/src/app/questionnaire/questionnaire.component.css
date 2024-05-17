@@ -3,26 +3,30 @@ table {
 }
 
 .projects-wrapper {
-  margin-top: 80px;
+  margin-top: 5rem;
   height: fit-content;
   width: fit-content;
-  padding: 40px 40px 40px 40px;
-  background-color: #729368;
-  border-radius: 10px;
+  padding: 2rem;
+  background-color: var(--container);
+  border-radius: 0.625rem;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  justify-content: center;
 }
 
 .add-project {
   display: flex;
   flex-direction: column;
   background-color: var(--beige);
-  max-width: 1000px;
-  padding: 32px 32px 32px 32px;
-  border-radius: 10px;
-  gap: 32px;
+  width: 62.5rem;
+  padding: 1rem;
+  border: solid;
+  border-color: var(--text-color);
+  border-width: 0.125rem;
+  border-radius: 0.625rem;
+  gap: 0.5rem;
 }
+
 .add-project-header {
   display: flex;
   flex-direction: row;
@@ -34,6 +38,7 @@ table {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .add-project-input {
@@ -41,7 +46,7 @@ table {
   flex-direction: column;
   justify-content: left;
   width: 100%;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .add-project-buttons {
@@ -50,12 +55,20 @@ table {
   justify-content: right;
   align-items: flex-end;
   width: 100%;
-  gap: 16px;
+  gap: 1rem;
+}
+
+table {
+  border-radius: 0.625rem;
 }
 
 .projects-table {
-  max-width: 1000px;
-  border-radius: 10px;
+  max-width: 100%;
+  border-radius: 0.625rem;
+  border-color: var(--text-color);
+  border: solid;
+  border-width: 0.125rem;
+  margin-top: 5rem;
 }
 
 .projects-table-row {
@@ -64,35 +77,38 @@ table {
 }
 
 .projects-table-head {
-  padding: 32px 32px 32px 32px;
+  padding: 2rem;
   justify-content: left;
   align-items: center;
 }
 
 .project-cell {
-  padding: 32px 32px 32px 32px;
-  width: 500px;
+  padding: 2rem;
+  width: 31.25rem;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
   
 .action-button-cell {
-  padding: 32px 32px 32px 32px;
-  width: 500px;
+  padding: 2rem;
+  width: 31.25rem;
   display: flex;
   align-items: center;
   justify-content: right;
 }
 
 .see-more-button {
-  background-color: var(--highlight);
+  background-color: var(--light-green);
   text-decoration: none;
-  border-radius: 8px;
-  padding: 4px 8px 4px 8px;
+  border: solid;
+  border-width: 0.125rem;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
   color: var(--text);
-
+  border-color: var(--dark-green);
 }
 .see-more-button:hover {
   background-color: var(--green);
 }
+

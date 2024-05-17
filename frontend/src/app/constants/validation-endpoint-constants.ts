@@ -7,10 +7,6 @@ export class ValidationEndpointConstants {
     return ValidationEndpointConstants.API_ENDPOINT + 'validation'
   }
 
-  static getValidationSummaryUri(): string {
-    return ValidationEndpointConstants.API_ENDPOINT + 'validation-summary'
-  }
-
   static getValidationCombinationResultUri(): string {
     return ValidationEndpointConstants.API_ENDPOINT + 'validation-combination-result'
   }

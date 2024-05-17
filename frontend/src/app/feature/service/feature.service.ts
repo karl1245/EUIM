@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FeatureEndpointConstants } from '../../constants/feature-endpoint-constants';
 import { FeatureResponse } from '../model/feature';
+import { QuestionnaireEndpointConstants } from '../../constants/questionnaire-endpoint-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,14 @@ export class FeatureService {
     );
   }
 
-  public update(id: number, answer: string): Observable<FeatureResponse> {
+  public update(id: number, answer: string, customId: string): Observable<FeatureResponse> {
     return this.http.put<FeatureResponse>(
       FeatureEndpointConstants.idPath(id),
-      {answer: answer}
+      {answer: answer, customId: customId}
     );
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.http.delete(FeatureEndpointConstants.idPath(id));
   }
 }

@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\delivery\target\EUIM-0.5.0.jar</jar>
-  <outfile>executable\EUIM-0.5.0.exe</outfile>
+  <jar>..\delivery\target\EbA-1.0.3.jar</jar>
+  <outfile>executable\EbA-1.0.3.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -15,23 +15,23 @@
   <manifest></manifest>
   <icon>business_ordering_pencil_table_2333.ico</icon>
   <jre>
-    <path>bin</path>
+    <path>bin\jre</path>
     <requiresJdk>true</requiresJdk>
     <requires64Bit>true</requires64Bit>
     <minVersion>17.0</minVersion>
     <maxVersion></maxVersion>
   </jre>
   <versionInfo>
-    <fileVersion>0.5.0.0</fileVersion>
-    <txtFileVersion>EUIM</txtFileVersion>
-    <fileDescription>EUIM executable</fileDescription>
+    <fileVersion>1.0.3.0</fileVersion>
+    <txtFileVersion>EbA</txtFileVersion>
+    <fileDescription>EbA executable</fileDescription>
     <copyright>Free use</copyright>
-    <productVersion>0.5.0.0</productVersion>
-    <txtProductVersion>EUIM</txtProductVersion>
-    <productName>EUIM</productName>
+    <productVersion>1.0.3.0</productVersion>
+    <txtProductVersion>EbA</txtProductVersion>
+    <productName>EbA</productName>
     <companyName></companyName>
-    <internalName>EUIM</internalName>
-    <originalFilename>EUIM-0.5.0.exe</originalFilename>
+    <internalName>EbA</internalName>
+    <originalFilename>EbA-1.0.3.exe</originalFilename>
     <trademarks></trademarks>
     <language>ENGLISH_US</language>
   </versionInfo>
