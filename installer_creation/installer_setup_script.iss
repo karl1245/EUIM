@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "EbA"
-#define MyAppVersion "1.0.3"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "University of Tartu"
 #define MyAppURL "https://ut.ee"
-#define MyAppExeName "EbA-1.0.3.exe"
-#define MyAppJarName "EbA-1.0.3.jar"
+#define MyAppExeName "EbA-1.1.0.exe"
+#define MyAppJarName "EbA-1.1.0.jar"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
