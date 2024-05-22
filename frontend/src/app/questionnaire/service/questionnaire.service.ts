@@ -34,4 +34,11 @@ export class QuestionnaireService {
       body
     );
   }
+
+  public exportQuestionnaire(id: number, language: string): Observable<any> {
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+    return this.http.get<any>('api/excel/' + id + "?language=" + language, httpOptions);
+  }
 }

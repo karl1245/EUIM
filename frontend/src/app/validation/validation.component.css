@@ -1,15 +1,15 @@
 table {
   table-layout: fixed;
   width: fit-content;
-  border: 1px;
+  border: 0.125rem;
   background-color: var(--beige);
   border-color: var(--text-color);
   border-collapse: separate;
   border-spacing: 0;
   border: solid;
   border-color: var(--text-color);
-  border-width: 2px;
-  border-radius: 4px;
+  border-width: 0.125rem;
+  border-radius: 0.25rem;
 }
 
 thead {
@@ -21,7 +21,7 @@ thead {
 
 th {
   border: solid;
-  border-width: 1px;
+  border-width: 0.125rem;
   gap: 0.5rem;
   padding: 0.5rem;
   border-color: var(--container);
@@ -34,7 +34,7 @@ th {
 }
 
 td {
-  height: 120px;
+  height: 7.5rem;
   vertical-align: top;
   text-align: left;
   border: 1px solid;
@@ -57,14 +57,14 @@ textarea {
   display: flex;
   text-align: left;
   justify-content: start;
-  width: 100% !important;
+  width: 100%;
   height: 100%;
   max-width: 1000rem;
   background: none;
   word-break: keep-all;
   border: solid;
   resize: none;
-  min-height: 120px;
+  min-height: 7.5rem;
 }
 
 textarea::placeholder {
@@ -74,9 +74,9 @@ textarea::placeholder {
 .textarea-border {
   display: flex;
   border: solid;
-  border-width: 2px;
+  border-width: 0.125rem;
   border-radius: 0.25rem;
-  width: fit-content;
+  width: 100%;
   border-color: var(--container);
 }
 
@@ -109,30 +109,30 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   position: sticky;
   left: 0;
   z-index: 1;
-  width: 56px;
+  width: 3.5rem;
 }
 
 .content-cell-first-child {
   position: sticky;
   left: 3rem;
   z-index: 1;
-  width: 248px;
+  width: 15.5rem;
 }
 
 .content-cell-second-child {
   left: 15.5rem;
-  width: 56px;
+  width: 3.5rem;
 }
 
 .content-cell-third-child {
   left: 20rem;
-  width: 156px;
+  width: 13rem;
 
 }
 
 .content-cell-fourth-child {
   left: 28.75rem;
-  width: 272px;
+  width: 17rem;
 }
 
 .content-cell-fifth-child {
@@ -140,7 +140,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
 }
 
 .content-cell-four-options {
-  width: 176px;
+  width: 11rem;
 }
 
 .selection {
@@ -166,7 +166,7 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
 }
 
 .content-cell-twelveth-child {
-  width: 156px;
+  width: 9.75rem;
   border-right: none;
   border-left: none;
 }
@@ -214,13 +214,12 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  max-width: 120px;
-  gap: 4px;
-  padding: 4px 8px 4px 8px;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
   border-style: solid;
-  border-width: 2px;
-  border-radius: 8px;
-  word-break: break-all;
+  border-width: 0.125rem;
+  border-radius:0.5rem;
+  word-break: normal;
 }
 
 .cell-with-menu {
@@ -249,17 +248,17 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   align-items: end;
   justify-content: right;
   height: 100%;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .custom-id {
   border-radius: 0.25rem;
   background-color: var(--table-head);
-  min-height: 40px;
+  min-height: 2.5rem;
 }
 
 .feature {
-  min-height: 72px;
+  min-height: 4.5rem;
 }
 
 .textfield {
@@ -270,12 +269,13 @@ th.content-cell-tenth-child.ng-star-inserted > div, th.content-cell-second-child
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 236px;
+  width:  14.75rem;
   height: fit-content;
   border: solid;
-  border-radius: 8px;
+  border-radius: 0.5rem;
+  border-width: 0.125rem;
   padding: 1rem;
-  gap: 8px;
+  gap: 0.5rem;
   background-color: var(--light-green);
   color: var(--dark-green);
 }

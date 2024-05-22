@@ -36,7 +36,7 @@
   },
   "projectsTable": {
     "title": "Projektid",
-    "seeMore" : "Vaata ->"
+    "seeMore" : "Sisene projekti ->"
   },
   "deleteProjectModal": {
     "title": "Kustuta projekt: {{name}}",
@@ -101,19 +101,20 @@
     "red": "Ei toimi",
     "blue": "Testimisele",
     "yellow": "Lisategevus",
-    "pink": "Täiendamisele",
+    "orange": "Täiendamisele",
     "none": "Muu"
   },
   "about": {
     "header": "Meist",
+    "area": "Info EbA meetodi ja EbA-UIM töövahendi kohta<br></br>Copyright<br></br>Kontaktandmed",
     "section1Heading": "EbA meetod",
-    "section1Text": "Kogemuse-põhine analüüs ehk Experience-based Analysis (EbA) kui meetod on loodud eesmärgiga muuta digitoodete ja e-teenuste arendus kuluefektiivsemaks, kuna EbA meetod aitab tootearenduse varases faasis saada aimu, kas lahendus kavandatud moel hakkab toimima ja millised on võimalikud riskid – seda just lähtuvalt kasutajate käitumise ja harjumuste seisukohast. EbA meetodi autor on Anu Piirisild, kes kirjeldas meetodit esmalt 2021 a. oma magistritöös, kuid jätkab meetodi uurimist ja täiustamist Tartu Ülikooli doktorantuuris. Meetod on hetkel testimisfaasis. Meil oleks hea meel, kui jagaksite meiega oma kogemust nii EbA meetodi ja kui ka selle töövahendi kohta. Tagasisidet ootame e-mailile ",
-    "section2Heading": "EbA meetodi töövahend EBA-UIM tool",
-    "section2Text": "<b>EBA-UIM Tool</b> ehk EbA meetodi töövahend lihtsustab EbA meetodi kasutamist. Töövahend aitab infot struktureerida ning kuvab analüüsitava toote/e-teenuse kasutatavust prognoosivad kirjeldused automaatselt.<br></br>Töövahendis saate luua projekte, teha nendest koopiaid ja neid Excel-formaadis alla laadida. Allalaaditud Excel-failis saate analüüsitud infot oma vajaduste järgi visuaalselt kohandada. Töövahend sisaldab ka näidisprojekti, EbA meetodi kirjeldust ja meetodi kasutamise juhendit. Hetkel on töövahend kahes keeles: eesti ja inglise keeles.<br></br><b>EBA-UIM</b> tool on võrguühenduseta rakendus, mis salvestab analüüsi andmed kasutaja enda arvutisse. Rakendus on majutatud Tartu Ülikooli Teadusarvutuste keskuses. Rakendus on tasuta kasutamiseks. EbA meetodi ja töövahendi ÕIGUSED KUULUVAD….<br></br>Töövahendit on kavas täiendada, mistõttu soovitame käia aeg-ajalt vaatamas uuendatud versiooni. Info uuendatud versiooni ja selle allalaadimise kohta leiate TÜ teadusarvutuste keskuse lehelt:..... ",
-    "section3Heading": "Töövahendi EBA-UIM tool meeskond",
-    "section3Text": "<b>EBA-UIM tool</b> rakendus on edasiarendus EbA meetodi töövahendi MVP (<i>minimum viable product</i>) versioonist. <b>EBA-UIM tool</b> rakenduse on arendanud Tartu Ülikooli …. eriala tudengid Iris Kreinin ja Karl Olaf Kuldmaa oma bakalaureuse lõputöö raames. Iris Kreinin lõi rakenduse ………………………... Karl Olaf Kuldmaa …………………………. Anu Piirisild koostas EbA meetodi kasutusjuhendi ja meetodit selgitavad tekstid ning näidisprojekti.",
+    "section1Text": "Kasutatavuse kogemuspõhine analüüs ehk Experience-based Analysis (EbA) kui meetod on loodud eesmärgiga muuta digitoodete ja e-teenuste arendus kuluefektiivsemaks, kuna EbA meetod aitab tootearenduse varases faasis saada aimu, kas lahendus kavandatud moel hakkab toimima ja millised on võimalikud riskid – seda just lähtuvalt kasutajate käitumise ja harjumuste seisukohast. EbA meetodi autor on Anu Piirisild, kes kirjeldas meetodit esmalt 2021 a. oma magistritöös, kuid jätkab meetodi uurimist ja täiustamist Tartu Ülikooli doktorantuuris. Meetod on hetkel PoC-faasis (pilootprojekt, ingl <i>Proof-of-Concept</i>). Meil oleks hea meel, kui jagaksite meiega oma kogemust nii EbA meetodi kui ka EbA-UIM töövahendi kohta. Tagasisidet ootame e-mailile <a href='mailto:anu.piirisild@ut.ee'>anu.piirisild@ut.ee</a>.",
+    "section2Heading": "EbA meetodi töövahend EBA-UIM",
+    "section2Text": "<b>EBA-UIM</b> ehk EbA meetodi töövahend lihtsustab EbA meetodi kasutamist. Töövahend aitab infot struktureerida ning kuvab analüüsitava digitoote/e-teenuse kasutatavust prognoosivad kirjeldused automaatselt.<br></br>Töövahendis saate hetkel luua projekte ja viia läbi analüüsi EbA-meetodil. Töövahendi järgmistes versioonides on kavas lisada projektidest koopia tegemise võimalus. Hetkel saate esilehelt projekte ka Excel-formaadis alla laadida, kuid allalaetud faili formaadi disaini lahendus on täiendamisel. Allalaaditud Excel-failis saate analüüsitud infot oma vajaduste järgi kohandada, näiteks peita aruande jaoks ebavajalikud tulbad, teha tekstides rõhutusi ja kasutada väljade märgistamisel taustavärve. EbA-UIM töövahend sisaldab ka näidisprojekti, EbA meetodi kirjeldust koos meetodi kasutamise juhendiga. Töövahend on kahes keeles: eesti ja inglise keeles. Töövahendit on kavas täiendada, mistõttu soovitame käia aeg-ajalt vaatamas uuendatud versiooni. <br></br><b>EBA-UIM</b> töövahend on võrguühenduseta rakendus, mis salvestab analüüsi andmed kasutaja enda arvutisse. Rakendus on edaspidi kavas majutada Tartu Ülikooli teadusarvutuste keskuse serverisse. <br></br><br></br><b>Copyright (c) 2024 University of Tartu</b><br></br>Käesolevaga antakse igale isikule, kes omandab selle tarkvara ja sellega seotud dokumentatsiooni failide („Tarkvara“) koopia, tasuta luba kasutada ja kopeerida Tarkvara ning lubatakse isikutel, kellele Tarkvara on tarnitud, seda teha, järgmistel tingimustel:<ul><li>Käesolev autoriõiguse teatis ja käesolev loa teatis peavad sisalduma kõikides Tarkvara koopiates.</li><li>Lubatud on ainult Tarkvara kasutamine ning keelatud on kõik muud tegevused (N: Tarkvara muutmine jne.).</li><li>Tarkvara all peetakse silmas nii Tarkvara ennast kui ka Tarkvaras kasutatud meetodeid.</li></ul>TARKVARA PAKUTAKSE PÕHIMÕTTEL „NAGU ON“, ILMA IGASUGUSE GARANTIITA. LITSENTSIANDJA EI VASTUTA MITTE MINGIL JUHUL KAHJUDE EEST, SH MISTAHES JUHUSLIKUD, ERAKORDSED, KAUDSED VÕI TEGEVUSE TAGAJÄRJEL TEKKINUD KAHJUD, SH KAOTATUD KASUM VÕI SÄÄSTUD, ÄRITEGEVUSE KATKEMINE VÕI MUU KAUBANDUSLIK KAHJU VÕI KAOTUS, MIS TULENEB TARKVARA KASUTAMISEST.",
+    "section3Heading": "EBA-UIM töövahendi meeskond",
+    "section3Text": "EBA-UIM rakendus on edasiarendus EbA meetodi töövahendi esialgsest versioonist. EBA-UIM rakenduse on arendanud Tartu Ülikooli informaatika eriala tudengid Karl Olaf Kuldmaa ja Iris Kreinin oma bakalaureuse lõputöö raames. Karl Olaf Kuldmaa lõi rakenduse tagasüsteemi (ingl <i>back-end</i>), andmebaasi ja eessüsteemi (ingl <i>front-end</i>). Iris Kreinin lõi rakenduse eessüsteemi (ingl <i>front-end</i>) ja selle kasutajaliidese. Anu Piirisild koostas EbA meetodi kasutusjuhendi ja meetodit selgitavad tekstid ning näidisprojekti.",
     "contact": "Kontakt",
-    "address": "Tartu Ülikool<br></br>Arvutiteaduse instituut<br></br>Narva mnt 18<br></br>51009 Tartu, Eesti"
+    "address": "Anu Piirisild<br></br><a href='mailto:anu.piirisild@ut.ee'>anu.piirisild@ut.ee</a><br></br><br></br>Tartu Ülikool<br></br>Arvutiteaduse instituut<br></br>Narva mnt 18<br></br>51009 Tartu, Eesti"
   },
   "combinations": {
     "header": "Kombineeritud vastused",

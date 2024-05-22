@@ -4,6 +4,8 @@ import { QuestionnaireResponse } from './model/questionnaire-response';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
 import { EditModalComponent } from './modal/edit-modal/edit-modal.component';
+import { formatDate } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-questionnaire',
@@ -28,6 +30,7 @@ export class QuestionnaireComponent implements OnInit {
   constructor(
     private questionnaireService: QuestionnaireService,
     private modalService: BsModalService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -113,10 +116,23 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
+  downloadQuestionnaire(questionnaire: QuestionnaireResponse) {
+    this.questionnaireService.exportQuestionnaire(questionnaire.id, this.translateService.currentLang).subscribe((data) => {
+
+      const downloadURL = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = questionnaire.name + "_" + formatDate(new Date(), 'yyyy-MM-dd', 'en-US') + ".xlsx";
+      link.click();
+
+    });
+  }
+
   getActions(questionnaire: any):{name: string, icon: string, onClick: any}[] {
     return [
       {name: "menu.edit", icon: 'edit', onClick: () => this.editQuestionnaire(questionnaire)},
       {name: "menu.delete", icon: 'delete', onClick: () => this.deleteQuestionnaire(questionnaire)},
+      {name: "menu.download", icon: 'download', onClick: () => this.downloadQuestionnaire(questionnaire)},
     ];
   }
 }

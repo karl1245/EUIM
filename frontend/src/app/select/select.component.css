@@ -13,7 +13,7 @@
   justify-content: space-between;
   padding: 1rem;
   border-radius: 0.625rem;
-  width: 7.5rem;
+  width: 9.875rem;
   background-color: lightgray;
   border-color: #5B5B5B;
   color: #5B5B5B;
@@ -32,7 +32,7 @@
   width: fit-content;
   flex-wrap: wrap;
   padding: 0;
-  top: 60px;
+  top: 4.5rem;
   border: 1px solid;
   border-radius: 0.625rem;
   border-color: var(--text-color);
@@ -46,7 +46,7 @@
   display: block;
   display: inline-block;
   padding: 0.5rem;
-  width: 7.5rem;
+  width: 9.875rem;
   border: none;
   z-index: 1;
 }

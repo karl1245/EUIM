@@ -4,26 +4,35 @@
 */
 
 :root {
-    --text-color: #2C4935;
-    --bg-color: #89A480;
-    --container: #729368;
-    --highlight: #BCD6A9;
-    --contrast-highlight: #4F7744;
-    --table-head: #CCD7BB;
-    --beige: #F5EEE6;
-    --brown: #CAB89C;
-    --light-red: #E8857E;
-    --red:#EF6565;
-    --dark-red:#58050C;
-    --light-yellow:#EED784;
-    --yellow:#E9C730;
-    --dark-yellow:#5F4209;
-    --light-green:#A9CD94;
-    --green: #84BF6E;
-    --dark-green: #2C4935;
-    --light-blue: #A6D5E9;
-    --blue: #55C3E9;
-    --dark-blue: #074468;
+    --text-color: #384B38;
+    --contrast-highlight: #547750;
+    --container: #7CA478;
+    --bg-color: #A6C6A0;
+    --highlight: #D0E5CA;
+    --table-head: #D0E5CA;
+    --beige: #F7F1E6;
+    --brown: #DACDBD;
+    --light-red: #F5948A;
+    --red:#F76B64;
+    --dark-red:#690101;
+    --light-orange: #F6BA89;
+    --orange:#F79E55;
+    --dark-orange:#72331F;
+    --light-yellow:#F7DE87;
+    --yellow:#F7D044;
+    --dark-yellow:#655B36;
+    --light-lime: #D5DC91;
+    --lime:#BBC853;
+    --dark-lime:#505035;
+    --light-green:#B3D99B;
+    --green: #7FBE5F;
+    --dark-green: #3B4532;
+    --light-aquamarine: #A9D3C3;
+    --aquamarine:#90C6A5;
+    --dark-aquamarine:#3E4E48;
+    --light-blue: #A0CEEA;
+    --blue: #76BEEE;
+    --dark-blue: #394A54;
     --light-purple: #CEACF0;
     --purple: #9D76D1;
     --dark-purple: #271358;
@@ -33,12 +42,12 @@
 }
 
 .scheme1 {
-    --text-color: #2C4935;
-    --bg-color: #89A480;
-    --container: #729368;
-    --highlight: #BCD6A9;
-    --contrast-highlight: #4F7744;
-    --table-head: #CCD7BB;
+    --text-color: #384B38;
+    --bg-color: #A6C6A0;
+    --container: #7CA478;
+    --highlight: #D0E5CA;
+    --contrast-highlight: #547750;
+    --table-head: #D0E5CA;
 }
 
 .scheme2 {
@@ -75,28 +84,27 @@ mat-tooltip-component .mdc-tooltip__surface {
     max-height: 100% !important;
 }
 
-html, body {
-    height: 100%;
-    width: 100vw;
+
+* {
+    box-sizing: border-box;    
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-style: normal;
-    text-align: justify;
     text-justify: inter-word;
 }
 
-body {
+body {    
     margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow-x: clip;
 }
 
 p {
     display: block;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;   
-    font-style: normal;   
     font-weight: normal;
+    text-align: justify;
     line-height: 150%;
     word-spacing: 150%;
     letter-spacing: 0.5%;
@@ -140,7 +148,7 @@ h6 {
 input {
     border-radius: 0.5rem;
     padding: 0.5rem;
-    height: 32px;
+    height: 2rem;
 }
 
 .fcc {
@@ -156,11 +164,11 @@ input {
 }
 
 .button {
-    min-width: 120px;
+    min-width: 7.5rem;
     width: fit-content;
     padding: 0.25rem;
     border-radius: 0.625rem;
-    border-width: 2px;
+    border-width: 0.125rem;
     outline: none;
     height: fit-content;
 }
@@ -207,14 +215,19 @@ input {
 
 .icon {
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2.25rem;
 }
 
 .small-icon {
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .red {
     background-color: var(--light-red);
@@ -222,38 +235,56 @@ input {
     border-color: var(--dark-red);
 }
 
+.orange {
+background-color: var(--light-orange);
+color: var(--dark-orange);
+border-color: var(--dark-orange);
+}
+
 .yellow {
-    background-color: var(--light-yellow);
-    color: var(--dark-yellow);
-    border-color: var(--dark-yellow);
+background-color: var(--light-yellow);
+color: var(--dark-yellow);
+border-color: var(--dark-yellow);
+}
+
+.lime {
+background-color: var(--light-lime);
+color: var(--dark-lime);
+border-color: var(--dark-lime);
 }
 
 .green {
-    background-color: var(--light-green);
-    color: var(--dark-green);
-    border-color: var(--dark-green);
+background-color: var(--light-green);
+color: var(--dark-green);
+border-color: var(--dark-green);
+}
+
+.aquamarine {
+background-color: var(--light-aquamarine);
+color: var(--dark-aquamarine);
+border-color: var(--dark-aquamarine);
 }
 
 .blue {
-    background-color: var(--light-blue);
-    color: var(--dark-blue);
-    border-color: var(--dark-blue);
+background-color: var(--light-blue);
+color: var(--dark-blue);
+border-color: var(--dark-blue);
 }
 
 .purple {
-    background-color: var(--light-purple);
-    color: var(--dark-purple);
-    border-color: var(--dark-purple);
+background-color: var(--light-purple);
+color: var(--dark-purple);
+border-color: var(--dark-purple);
 }
 
 .pink {
     background-color: var(--light-pink);
     color: var(--dark-pink);
     border-color: var(--dark-pink);
-}
+    }
 
-.truncate {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.none {
+    background-color: var(--beige);
+    color: var(--text-color);
+    border: none !important;
 }

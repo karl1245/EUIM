@@ -1,5 +1,5 @@
 .wrapper {
-  margin-top: 80px;
+  margin-top: 5rem;
   height: fit-content;
   width: fit-content;
   padding: 2.5rem;
@@ -13,11 +13,22 @@
   display: flex;
   flex-direction: column;
   background-color: var(--beige);
-  width: 1000px;
-  padding: 32px;
+  width:  62.5rem;
+  padding: 2rem;
   border: solid;
   border-color: var(--text-color);
-  border-width: 2px;
+  border-width: 0.125rem;
   border-radius: 0.625rem;
-  gap: 32px;
+  gap: 2rem;
+}
+
+.green-area {
+  background-color: var(--table-head);
+  border: solid;
+  border-width: 0.125rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 0rem;
+  width: 100%;
+  height: fit-content;
 }
