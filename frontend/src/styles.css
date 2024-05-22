@@ -80,7 +80,7 @@ mat-tooltip-component .mdc-tooltip__surface {
     font-family: Inter, sans-serif !important;
     font-size: 0.875rem !important;
     font-weight: normal !important;
-    line-height: 1rem !important;
+    line-height: 1.6 !important;
     max-height: 100% !important;
 }
 
@@ -105,7 +105,7 @@ p {
     font-optical-sizing: auto;   
     font-weight: normal;
     text-align: justify;
-    line-height: 150%;
+    line-height: 1.6;
     word-spacing: 150%;
     letter-spacing: 0.5%;
     margin-bottom: 0;
@@ -126,23 +126,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2em;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
 }
 
 h3 {
-    font-size: 1.17rem;
+    font-size: 1.17em;
 }
 
 h5 {
-    font-size: .83rem;
+    font-size: .83em;
 }
 
 h6 {
-    font-size: .67rem;
+    font-size: .67em;
 }
 
 input {
