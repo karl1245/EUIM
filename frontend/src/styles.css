@@ -89,7 +89,6 @@ mat-tooltip-component .mdc-tooltip__surface {
     box-sizing: border-box;    
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-style: normal;
     text-justify: inter-word;
 }
 
@@ -104,7 +103,6 @@ p {
     display: block;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;   
-    font-style: normal;   
     font-weight: normal;
     text-align: justify;
     line-height: 150%;

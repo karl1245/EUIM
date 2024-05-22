@@ -21,3 +21,14 @@
   border-radius: 0.625rem;
   gap: 2rem;
 }
+
+.green-area {
+  background-color: var(--table-head);
+  border: solid;
+  border-width: 0.125rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 0rem;
+  width: 100%;
+  height: fit-content;
+}
